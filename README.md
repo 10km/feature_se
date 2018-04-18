@@ -58,7 +58,7 @@ Windows下命令行编译过程:
 
 ### vs2015工程编译
 
-如果你没有安装cmake可以直接用Visual Studio 2015打开预生成的[project.vs2015/feature_se.sln](project.vs2015/feature_se.sln)
+可以用 [make_msvc_project.bat](make_msvc_project.bat) 创建Visuao Studio 2015工程
 
 ### Linux
 

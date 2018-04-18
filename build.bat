@@ -18,7 +18,9 @@ echo install_folder=%install_folder%
 if exist build_msvc rmdir build_msvc /s/q
 mkdir build_msvc
 cd build_msvc
-call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
+if not defined VisualStudioVersion (
+	call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
+)
 cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=%install_folder% ..
 nmake install
 cd ..
