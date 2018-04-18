@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="J:\faceapi\feature_se\project.vs2015\CMakeFiles\481db1dd990a5c9d2222f11a8d67d448\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B9DF34F7-C673-38A6-BE4D-EAA6304E75B1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

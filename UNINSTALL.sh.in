@@ -1,0 +1,29 @@
+#!/bin/sh
+if [ -n "$1" ]
+then
+	FACEDB_HOME=$1
+else
+	##没有指定安装路径时，指定默认的路径
+	FACEDB_HOME="/usr/local/facedb"
+fi
+
+FACEDB_HOME_LIB="$FACEDB_HOME/bin"
+##目录不存在则退出
+if [[ ! -d $FACEDB_HOME_LIB ]]
+then
+	echo  "not exist dir: $FACEDB_HOME_LIB"
+	exit 0
+fi
+echo "uninstall from $FACEDB_HOME.............................."
+# 删除安装目录
+rm -frv  $FACEDB_HOME
+## 删除conf
+rm -fv /etc/ld.so.conf.d/facedb_lib.conf
+/sbin/ldconfig
+##更新profile 
+reg_path=`echo $FACEDB_HOME_LIB|sed -r 's/([\/\.])/\\\\\1/g'`
+echo delete the line if exist:
+echo \"export LD_LIBRARY_PATH=$FACEDB_HOME_LIB:\$LD_LIBRARY_PATH\"
+sed -i_bak -r "/^\s*export\s*LD_LIBRARY_PATH=$reg_path:\\\$LD_LIBRARY_PATH/d" /etc/profile 		
+echo "uninstall finished"
+

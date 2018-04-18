@@ -1,0 +1,20 @@
+ECHO OFF
+ECHO install......
+pushd %~dp0
+set full_path=%cd%
+set full_path=%full_path:\= %
+for %%a in (%full_path%) do set sub_name=%%a
+pushd ..
+set full_path=%cd%
+set full_path=%full_path:\= %
+for %%a in (%full_path%) do set folder_name=%%a
+popd
+popd
+SET FACEDB_HOME=%SystemDrive%\%folder_name%
+SET FACEDB_HOME_LIB=%FACEDB_HOME%\%sub_name%
+pushd %~sdp0
+xcopy . %FACEDB_HOME_LIB% /S /I
+popd
+ECHO install finished
+ECHO please manual add the %FACEDB_HOME_LIB% to environment variable 'PATH'
+:END

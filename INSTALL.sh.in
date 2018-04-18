@@ -1,0 +1,53 @@
+#!/bin/sh
+
+if [ -n "$1" ]
+then
+	FACEDB_HOME="$1"
+else
+	##没有指定安装路径时，指定默认的路径 
+	FACEDB_HOME="/usr/local/facedb"
+fi
+mkdir_if_no_exist(){
+	if [ $# -eq 1 ]
+	then
+		if [[ -d $1 ]]
+		then
+			return 0
+			
+		else
+			##安装路径不存在时创建目录 
+			mkdir $1
+		fi
+	else 
+		echo invalid argument
+		return -1
+	fi
+}
+FACEDB_HOME_LIB="$FACEDB_HOME/bin"
+if mkdir_if_no_exist $FACEDB_HOME && mkdir_if_no_exist $FACEDB_HOME_LIB
+then
+	echo "install to $FACEDB_HOME........................."
+	src_path=$(cd "$(dirname "$0")"; pwd)
+	cd "$(dirname "$0")"
+	echo copy to $FACEDB_HOME_LIB
+	chmod +x lib*
+	cp -r * $FACEDB_HOME_LIB
+	echo "$FACEDB_HOME_LIB">/etc/ld.so.conf.d/facedb_lib.conf
+	/sbin/ldconfig
+	# modify .bash_profile,add FACEDB_HOME_LIB to LD_LIBRARY_PATH
+	new_export="export LD_LIBRARY_PATH=$FACEDB_HOME_LIB:\$LD_LIBRARY_PATH"
+	reg_str="^\s*export\s*LD_LIBRARY_PATH=$FACEDB_HOME_LIB:\$LD_LIBRARY_PATH"
+	if grep -q $reg_str /etc/profile
+	then
+		echo $FACEDB_HOME_LIB exists in LD_LIBRARY_PATH,skip
+	else
+		echo defined LD_LIBRARY_PATH variable
+		echo $new_export >> /etc/profile
+	fi
+	# display new line
+	grep $reg_str /etc/profile
+	echo variable LD_LIBRARY_PATH in /etc/profile updated	
+	source /etc/profile		
+	echo "install finished"
+fi
+

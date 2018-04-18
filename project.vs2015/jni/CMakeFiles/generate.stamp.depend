@@ -1,0 +1,6 @@
+# CMake generation dependency list for this directory.
+J:/faceapi/feature_se/jni/CMakeLists.txt
+P:/cmake-3.8.2-win32-x86/share/cmake-3.8/Modules/FindJNI.cmake
+P:/cmake-3.8.2-win32-x86/share/cmake-3.8/Modules/CMakeFindJavaCommon.cmake
+P:/cmake-3.8.2-win32-x86/share/cmake-3.8/Modules/FindPackageHandleStandardArgs.cmake
+P:/cmake-3.8.2-win32-x86/share/cmake-3.8/Modules/FindPackageMessage.cmake
