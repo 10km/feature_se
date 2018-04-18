@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGUID>{1262694C-E15F-369A-ACD0-45D09E75D036}</ProjectGUID>
+    <ProjectGUID>{46394423-7E8D-366A-979D-12178DEE83DB}</ProjectGUID>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
     <ProjectName>fse_cas_jni</ProjectName>
@@ -59,25 +59,25 @@
   <PropertyGroup Label="UserMacros" />
     <PropertyGroup>
       <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:\faceapi\feature_se\project.vs2015\bin\Debug\</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:\feature_se\project.vs2015\bin\Debug\</OutDir>
       <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fse_cas_jni.dir\Debug\</IntDir>
       <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fse_cas_jni_d</TargetName>
       <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
       <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
       <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:\faceapi\feature_se\project.vs2015\bin\Release\</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:\feature_se\project.vs2015\bin\Release\</OutDir>
       <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fse_cas_jni.dir\Release\</IntDir>
       <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fse_cas_jni</TargetName>
       <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
       <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
       <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:\faceapi\feature_se\project.vs2015\bin\MinSizeRel\</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:\feature_se\project.vs2015\bin\MinSizeRel\</OutDir>
       <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">fse_cas_jni.dir\MinSizeRel\</IntDir>
       <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">fse_cas_jni</TargetName>
       <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
       <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
       <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:\faceapi\feature_se\project.vs2015\bin\RelWithDebInfo\</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:\feature_se\project.vs2015\bin\RelWithDebInfo\</OutDir>
       <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">fse_cas_jni.dir\RelWithDebInfo\</IntDir>
       <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">fse_cas_jni</TargetName>
       <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
@@ -86,7 +86,7 @@
     </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -104,10 +104,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;FSE_IS_A_DLL=0;CASSDK;CMAKE_INTDIR=\"Debug\";fse_cas_jni_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -120,8 +120,8 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>J:/faceapi/feature_se/project.vs2015/lib/Debug/fse_cas_jni_d.lib</ImportLibrary>
-      <ProgramDataBaseFile>J:/faceapi/feature_se/project.vs2015/bin/Debug/fse_cas_jni_d.pdb</ProgramDataBaseFile>
+      <ImportLibrary>J:/feature_se/project.vs2015/lib/Debug/fse_cas_jni_d.lib</ImportLibrary>
+      <ProgramDataBaseFile>J:/feature_se/project.vs2015/bin/Debug/fse_cas_jni_d.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
       <Version></Version>
     </Link>
@@ -131,7 +131,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
@@ -148,10 +148,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;FSE_IS_A_DLL=0;CASSDK;CMAKE_INTDIR=\"Release\";fse_cas_jni_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -164,8 +164,8 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>No</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>J:/faceapi/feature_se/project.vs2015/lib/Release/fse_cas_jni.lib</ImportLibrary>
-      <ProgramDataBaseFile>J:/faceapi/feature_se/project.vs2015/bin/Release/fse_cas_jni.pdb</ProgramDataBaseFile>
+      <ImportLibrary>J:/feature_se/project.vs2015/lib/Release/fse_cas_jni.lib</ImportLibrary>
+      <ProgramDataBaseFile>J:/feature_se/project.vs2015/bin/Release/fse_cas_jni.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
       <Version></Version>
     </Link>
@@ -175,7 +175,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
@@ -192,10 +192,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;FSE_IS_A_DLL=0;CASSDK;CMAKE_INTDIR=\"MinSizeRel\";fse_cas_jni_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -208,8 +208,8 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>No</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>J:/faceapi/feature_se/project.vs2015/lib/MinSizeRel/fse_cas_jni.lib</ImportLibrary>
-      <ProgramDataBaseFile>J:/faceapi/feature_se/project.vs2015/bin/MinSizeRel/fse_cas_jni.pdb</ProgramDataBaseFile>
+      <ImportLibrary>J:/feature_se/project.vs2015/lib/MinSizeRel/fse_cas_jni.lib</ImportLibrary>
+      <ProgramDataBaseFile>J:/feature_se/project.vs2015/bin/MinSizeRel/fse_cas_jni.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
       <Version></Version>
     </Link>
@@ -219,7 +219,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -236,10 +236,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;FSE_IS_A_DLL=0;CASSDK;CMAKE_INTDIR=\"RelWithDebInfo\";fse_cas_jni_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\faceapi\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;C:\Program Files\Java\jdk1.7.0_55\include;C:\Program Files\Java\jdk1.7.0_55\include\win32;J:\feature_se\feature_se;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -252,8 +252,8 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>J:/faceapi/feature_se/project.vs2015/lib/RelWithDebInfo/fse_cas_jni.lib</ImportLibrary>
-      <ProgramDataBaseFile>J:/faceapi/feature_se/project.vs2015/bin/RelWithDebInfo/fse_cas_jni.pdb</ProgramDataBaseFile>
+      <ImportLibrary>J:/feature_se/project.vs2015/lib/RelWithDebInfo/fse_cas_jni.lib</ImportLibrary>
+      <ProgramDataBaseFile>J:/feature_se/project.vs2015/bin/RelWithDebInfo/fse_cas_jni.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
       <Version></Version>
     </Link>
@@ -262,10 +262,10 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="J:\faceapi\feature_se\jni\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule J:/faceapi/feature_se/jni/CMakeLists.txt</Message>
+    <CustomBuild Include="J:\feature_se\jni\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule J:/feature_se/jni/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/faceapi/feature_se -BJ:/faceapi/feature_se/project.vs2015 --check-stamp-file J:/faceapi/feature_se/project.vs2015/jni/CMakeFiles/generate.stamp
+P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/feature_se -BJ:/feature_se/project.vs2015 --check-stamp-file J:/feature_se/project.vs2015/jni/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -273,12 +273,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:/faceapi/feature_se/jni/CMakeLists.txt;J:\faceapi\feature_se\jni\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindJNI.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakeFindJavaCommon.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageMessage.cmake;J:\faceapi\feature_se\jni\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:\faceapi\feature_se\project.vs2015\jni\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:/feature_se/jni/CMakeLists.txt;J:\feature_se\jni\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindJNI.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakeFindJavaCommon.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageMessage.cmake;J:\feature_se\jni\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:\feature_se\project.vs2015\jni\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule J:/faceapi/feature_se/jni/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule J:/feature_se/jni/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/faceapi/feature_se -BJ:/faceapi/feature_se/project.vs2015 --check-stamp-file J:/faceapi/feature_se/project.vs2015/jni/CMakeFiles/generate.stamp
+P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/feature_se -BJ:/feature_se/project.vs2015 --check-stamp-file J:/feature_se/project.vs2015/jni/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -286,12 +286,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:/faceapi/feature_se/jni/CMakeLists.txt;J:\faceapi\feature_se\jni\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindJNI.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakeFindJavaCommon.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageMessage.cmake;J:\faceapi\feature_se\jni\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:\faceapi\feature_se\project.vs2015\jni\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:/feature_se/jni/CMakeLists.txt;J:\feature_se\jni\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindJNI.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakeFindJavaCommon.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageMessage.cmake;J:\feature_se\jni\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:\feature_se\project.vs2015\jni\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule J:/faceapi/feature_se/jni/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule J:/feature_se/jni/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/faceapi/feature_se -BJ:/faceapi/feature_se/project.vs2015 --check-stamp-file J:/faceapi/feature_se/project.vs2015/jni/CMakeFiles/generate.stamp
+P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/feature_se -BJ:/feature_se/project.vs2015 --check-stamp-file J:/feature_se/project.vs2015/jni/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -299,12 +299,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:/faceapi/feature_se/jni/CMakeLists.txt;J:\faceapi\feature_se\jni\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindJNI.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakeFindJavaCommon.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageMessage.cmake;J:\faceapi\feature_se\jni\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:\faceapi\feature_se\project.vs2015\jni\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:/feature_se/jni/CMakeLists.txt;J:\feature_se\jni\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindJNI.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakeFindJavaCommon.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageMessage.cmake;J:\feature_se\jni\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:\feature_se\project.vs2015\jni\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule J:/faceapi/feature_se/jni/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule J:/feature_se/jni/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/faceapi/feature_se -BJ:/faceapi/feature_se/project.vs2015 --check-stamp-file J:/faceapi/feature_se/project.vs2015/jni/CMakeFiles/generate.stamp
+P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/feature_se -BJ:/feature_se/project.vs2015 --check-stamp-file J:/feature_se/project.vs2015/jni/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -312,24 +312,24 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:/faceapi/feature_se/jni/CMakeLists.txt;J:\faceapi\feature_se\jni\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindJNI.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakeFindJavaCommon.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageMessage.cmake;J:\faceapi\feature_se\jni\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:\faceapi\feature_se\project.vs2015\jni\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:/feature_se/jni/CMakeLists.txt;J:\feature_se\jni\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindJNI.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakeFindJavaCommon.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageHandleStandardArgs.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\FindPackageMessage.cmake;J:\feature_se\jni\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:\feature_se\project.vs2015\jni\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="J:\faceapi\feature_se\common_source_cpp\jni_utilits.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\jni\net_gdface_sdk_fse_FseJniBridge.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\jni\jni_mgr.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\jni\BeanUtilits.cpp"  />
+    <ClCompile Include="J:\feature_se\common_source_cpp\jni_utilits.cpp"  />
+    <ClCompile Include="J:\feature_se\jni\net_gdface_sdk_fse_FseJniBridge.cpp"  />
+    <ClCompile Include="J:\feature_se\jni\jni_mgr.cpp"  />
+    <ClCompile Include="J:\feature_se\jni\BeanUtilits.cpp"  />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="J:\faceapi\feature_se\project.vs2015\ZERO_CHECK.vcxproj">
-      <Project>{7DD68BB0-E3AF-3830-93F4-C3EAFD9CBE0D}</Project>
+    <ProjectReference Include="J:\feature_se\project.vs2015\ZERO_CHECK.vcxproj">
+      <Project>{006EABE5-0BDB-3606-B589-D1C057C140C3}</Project>
       <Name>ZERO_CHECK</Name>
     </ProjectReference>
-    <ProjectReference Include="J:\faceapi\feature_se\project.vs2015\feature_se\fse_cas_static_mt.vcxproj">
-      <Project>{EA311230-C6B1-336F-AC99-39326F80868A}</Project>
+    <ProjectReference Include="J:\feature_se\project.vs2015\feature_se\fse_cas_static_mt.vcxproj">
+      <Project>{682E2F4D-DF47-3354-961B-809109D04E51}</Project>
       <Name>fse_cas_static_mt</Name>
     </ProjectReference>
   </ItemGroup>

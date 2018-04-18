@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="J:\faceapi\feature_se\common_source_cpp\jni_utilits.cpp">
+    <ClCompile Include="J:\feature_se\common_source_cpp\jni_utilits.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\jni\net_gdface_sdk_fse_FseJniBridge.cpp">
+    <ClCompile Include="J:\feature_se\jni\net_gdface_sdk_fse_FseJniBridge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\jni\jni_mgr.cpp">
+    <ClCompile Include="J:\feature_se\jni\jni_mgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\jni\BeanUtilits.cpp">
+    <ClCompile Include="J:\feature_se\jni\BeanUtilits.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="J:\faceapi\feature_se\jni\CMakeLists.txt" />
+    <CustomBuild Include="J:\feature_se\jni\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{70C5B781-A1EE-3F95-97BA-C5144A8FE8CB}</UniqueIdentifier>
+      <UniqueIdentifier>{6B3C8065-ED69-3AB5-AD43-AABA56876DC5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

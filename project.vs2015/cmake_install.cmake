@@ -1,8 +1,8 @@
-# Install script for directory: J:/faceapi/feature_se
+# Install script for directory: J:/feature_se
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "J:/faceapi/feature_se/release/fse_windows_x86_64")
+  set(CMAKE_INSTALL_PREFIX "J:/feature_se/release/fse_windows_x86_64")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -28,17 +28,17 @@ if(NOT CMAKE_INSTALL_COMPONENT)
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE FILE RENAME "INSTALL.bat" FILES "J:/faceapi/feature_se/INSTALL.bat.in")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE FILE RENAME "INSTALL.bat" FILES "J:/feature_se/INSTALL.bat.in")
 endif()
 
 if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE FILE RENAME "UNINSTALL.bat" FILES "J:/faceapi/feature_se/UNINSTALL.bat.in")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE FILE RENAME "UNINSTALL.bat" FILES "J:/feature_se/UNINSTALL.bat.in")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("J:/faceapi/feature_se/project.vs2015/jni/cmake_install.cmake")
-  include("J:/faceapi/feature_se/project.vs2015/feature_se/cmake_install.cmake")
+  include("J:/feature_se/project.vs2015/jni/cmake_install.cmake")
+  include("J:/feature_se/project.vs2015/feature_se/cmake_install.cmake")
 
 endif()
 
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "J:/faceapi/feature_se/project.vs2015/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "J:/feature_se/project.vs2015/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

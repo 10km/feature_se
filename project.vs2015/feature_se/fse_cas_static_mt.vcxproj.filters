@@ -1,40 +1,40 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\OverTableManager.cpp">
+    <ClCompile Include="J:\feature_se\feature_se\OverTableManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\HashMapCl.cpp">
+    <ClCompile Include="J:\feature_se\feature_se\HashMapCl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\ICodeManager.cpp">
+    <ClCompile Include="J:\feature_se\feature_se\ICodeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\ICodeManagerCPU.cpp">
+    <ClCompile Include="J:\feature_se\feature_se\ICodeManagerCPU.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\CodeManagerFactory.cpp">
+    <ClCompile Include="J:\feature_se\feature_se\CodeManagerFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\TopKCodeBean.cpp">
+    <ClCompile Include="J:\feature_se\feature_se\TopKCodeBean.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\feature_se.cpp">
+    <ClCompile Include="J:\feature_se\feature_se\feature_se.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\common_source_cpp\RWLock.cpp">
+    <ClCompile Include="J:\feature_se\common_source_cpp\RWLock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="J:\faceapi\feature_se\common_source_cpp\ThreadPool.cpp">
+    <ClCompile Include="J:\feature_se\common_source_cpp\ThreadPool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="J:\faceapi\feature_se\feature_se\CMakeLists.txt" />
+    <CustomBuild Include="J:\feature_se\feature_se\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{70C5B781-A1EE-3F95-97BA-C5144A8FE8CB}</UniqueIdentifier>
+      <UniqueIdentifier>{6B3C8065-ED69-3AB5-AD43-AABA56876DC5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

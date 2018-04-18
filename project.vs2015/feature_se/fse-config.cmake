@@ -16,6 +16,6 @@ endmacro()
 
 include (CMakeFindDependencyMacro)
 
-find_dependency(Cassdk)
+find_dependency(cassdk)
 
 include ("${CMAKE_CURRENT_LIST_DIR}/fse-targets.cmake")

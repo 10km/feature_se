@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGUID>{9B84D583-18D1-3230-8608-913178680E5C}</ProjectGUID>
+    <ProjectGUID>{C1D76336-22E7-3418-8332-C8B5991048C2}</ProjectGUID>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
     <ProjectName>fse_cas_static</ProjectName>
@@ -59,26 +59,26 @@
   <PropertyGroup Label="UserMacros" />
     <PropertyGroup>
       <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:\faceapi\feature_se\project.vs2015\lib\Debug\</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:\feature_se\project.vs2015\lib\Debug\</OutDir>
       <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fse_cas_static.dir\Debug\</IntDir>
       <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fse_cas_static_d</TargetName>
       <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:\faceapi\feature_se\project.vs2015\lib\Release\</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:\feature_se\project.vs2015\lib\Release\</OutDir>
       <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fse_cas_static.dir\Release\</IntDir>
       <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fse_cas_static</TargetName>
       <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:\faceapi\feature_se\project.vs2015\lib\MinSizeRel\</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:\feature_se\project.vs2015\lib\MinSizeRel\</OutDir>
       <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">fse_cas_static.dir\MinSizeRel\</IntDir>
       <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">fse_cas_static</TargetName>
       <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:\faceapi\feature_se\project.vs2015\lib\RelWithDebInfo\</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:\feature_se\project.vs2015\lib\RelWithDebInfo\</OutDir>
       <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">fse_cas_static.dir\RelWithDebInfo\</IntDir>
       <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">fse_cas_static</TargetName>
       <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
     </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -96,10 +96,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;FSE_EXPORTS;FSE_IS_A_DLL=0;CASSDK;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -112,7 +112,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
@@ -129,10 +129,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;FSE_EXPORTS;FSE_IS_A_DLL=0;CASSDK;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -145,7 +145,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
@@ -162,10 +162,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;FSE_EXPORTS;FSE_IS_A_DLL=0;CASSDK;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -178,7 +178,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -195,10 +195,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;FSE_EXPORTS;FSE_IS_A_DLL=0;CASSDK;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>J:\faceapi\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>J:\feature_se\common_source_cpp;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -210,10 +210,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="J:\faceapi\feature_se\feature_se\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule J:/faceapi/feature_se/feature_se/CMakeLists.txt</Message>
+    <CustomBuild Include="J:\feature_se\feature_se\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule J:/feature_se/feature_se/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/faceapi/feature_se -BJ:/faceapi/feature_se/project.vs2015 --check-stamp-file J:/faceapi/feature_se/project.vs2015/feature_se/CMakeFiles/generate.stamp
+P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/feature_se -BJ:/feature_se/project.vs2015 --check-stamp-file J:/feature_se/project.vs2015/feature_se/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -221,12 +221,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:/faceapi/feature_se/feature_se/CMakeLists.txt;J:\faceapi\feature_se\feature_se\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakePackageConfigHelpers.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\WriteBasicConfigVersionFile.cmake;J:\faceapi\feature_se\cmake\Modules\FindCassdk.cmake;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\cmake\cassdk-config.cmake;J:\faceapi\feature_se\cmake\config.cmake.in;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;J:\faceapi\feature_se\feature_se\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:\faceapi\feature_se\project.vs2015\feature_se\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:/feature_se/feature_se/CMakeLists.txt;J:\feature_se\feature_se\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakePackageConfigHelpers.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\WriteBasicConfigVersionFile.cmake;J:\feature_se\cmake\Modules\FindCassdk.cmake;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\cmake\cassdk-config.cmake;J:\feature_se\cmake\config.cmake.in;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;J:\feature_se\feature_se\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">J:\feature_se\project.vs2015\feature_se\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule J:/faceapi/feature_se/feature_se/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule J:/feature_se/feature_se/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/faceapi/feature_se -BJ:/faceapi/feature_se/project.vs2015 --check-stamp-file J:/faceapi/feature_se/project.vs2015/feature_se/CMakeFiles/generate.stamp
+P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/feature_se -BJ:/feature_se/project.vs2015 --check-stamp-file J:/feature_se/project.vs2015/feature_se/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -234,12 +234,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:/faceapi/feature_se/feature_se/CMakeLists.txt;J:\faceapi\feature_se\feature_se\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakePackageConfigHelpers.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\WriteBasicConfigVersionFile.cmake;J:\faceapi\feature_se\cmake\Modules\FindCassdk.cmake;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\cmake\cassdk-config.cmake;J:\faceapi\feature_se\cmake\config.cmake.in;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;J:\faceapi\feature_se\feature_se\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:\faceapi\feature_se\project.vs2015\feature_se\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:/feature_se/feature_se/CMakeLists.txt;J:\feature_se\feature_se\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakePackageConfigHelpers.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\WriteBasicConfigVersionFile.cmake;J:\feature_se\cmake\Modules\FindCassdk.cmake;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\cmake\cassdk-config.cmake;J:\feature_se\cmake\config.cmake.in;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;J:\feature_se\feature_se\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">J:\feature_se\project.vs2015\feature_se\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule J:/faceapi/feature_se/feature_se/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule J:/feature_se/feature_se/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/faceapi/feature_se -BJ:/faceapi/feature_se/project.vs2015 --check-stamp-file J:/faceapi/feature_se/project.vs2015/feature_se/CMakeFiles/generate.stamp
+P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/feature_se -BJ:/feature_se/project.vs2015 --check-stamp-file J:/feature_se/project.vs2015/feature_se/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -247,12 +247,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:/faceapi/feature_se/feature_se/CMakeLists.txt;J:\faceapi\feature_se\feature_se\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakePackageConfigHelpers.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\WriteBasicConfigVersionFile.cmake;J:\faceapi\feature_se\cmake\Modules\FindCassdk.cmake;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\cmake\cassdk-config.cmake;J:\faceapi\feature_se\cmake\config.cmake.in;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;J:\faceapi\feature_se\feature_se\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:\faceapi\feature_se\project.vs2015\feature_se\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:/feature_se/feature_se/CMakeLists.txt;J:\feature_se\feature_se\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakePackageConfigHelpers.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\WriteBasicConfigVersionFile.cmake;J:\feature_se\cmake\Modules\FindCassdk.cmake;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\cmake\cassdk-config.cmake;J:\feature_se\cmake\config.cmake.in;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;J:\feature_se\feature_se\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">J:\feature_se\project.vs2015\feature_se\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule J:/faceapi/feature_se/feature_se/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule J:/feature_se/feature_se/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/faceapi/feature_se -BJ:/faceapi/feature_se/project.vs2015 --check-stamp-file J:/faceapi/feature_se/project.vs2015/feature_se/CMakeFiles/generate.stamp
+P:\cmake-3.8.2-win32-x86\bin\cmake.exe -HJ:/feature_se -BJ:/feature_se/project.vs2015 --check-stamp-file J:/feature_se/project.vs2015/feature_se/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -260,25 +260,25 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:/faceapi/feature_se/feature_se/CMakeLists.txt;J:\faceapi\feature_se\feature_se\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakePackageConfigHelpers.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\WriteBasicConfigVersionFile.cmake;J:\faceapi\feature_se\cmake\Modules\FindCassdk.cmake;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\cmake\cassdk-config.cmake;J:\faceapi\feature_se\cmake\config.cmake.in;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;J:\faceapi\feature_se\feature_se\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:\faceapi\feature_se\project.vs2015\feature_se\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:/feature_se/feature_se/CMakeLists.txt;J:\feature_se\feature_se\CMakeLists.txt;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\CMakePackageConfigHelpers.cmake;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\WriteBasicConfigVersionFile.cmake;J:\feature_se\cmake\Modules\FindCassdk.cmake;J:\workspace.neon\cassdk54\release\cassdk_windows_x86_64\cmake\cassdk-config.cmake;J:\feature_se\cmake\config.cmake.in;P:\cmake-3.8.2-win32-x86\share\cmake-3.8\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;J:\feature_se\feature_se\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">J:\feature_se\project.vs2015\feature_se\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\OverTableManager.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\HashMapCl.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\ICodeManager.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\ICodeManagerCPU.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\CodeManagerFactory.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\TopKCodeBean.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\feature_se.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\common_source_cpp\RWLock.cpp"  />
-    <ClCompile Include="J:\faceapi\feature_se\common_source_cpp\ThreadPool.cpp"  />
+    <ClCompile Include="J:\feature_se\feature_se\OverTableManager.cpp"  />
+    <ClCompile Include="J:\feature_se\feature_se\HashMapCl.cpp"  />
+    <ClCompile Include="J:\feature_se\feature_se\ICodeManager.cpp"  />
+    <ClCompile Include="J:\feature_se\feature_se\ICodeManagerCPU.cpp"  />
+    <ClCompile Include="J:\feature_se\feature_se\CodeManagerFactory.cpp"  />
+    <ClCompile Include="J:\feature_se\feature_se\TopKCodeBean.cpp"  />
+    <ClCompile Include="J:\feature_se\feature_se\feature_se.cpp"  />
+    <ClCompile Include="J:\feature_se\common_source_cpp\RWLock.cpp"  />
+    <ClCompile Include="J:\feature_se\common_source_cpp\ThreadPool.cpp"  />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="J:\faceapi\feature_se\project.vs2015\ZERO_CHECK.vcxproj">
-      <Project>{7DD68BB0-E3AF-3830-93F4-C3EAFD9CBE0D}</Project>
+    <ProjectReference Include="J:\feature_se\project.vs2015\ZERO_CHECK.vcxproj">
+      <Project>{006EABE5-0BDB-3606-B589-D1C057C140C3}</Project>
       <Name>ZERO_CHECK</Name>
     </ProjectReference>
   </ItemGroup>

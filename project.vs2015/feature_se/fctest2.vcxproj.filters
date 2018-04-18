@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="J:\faceapi\feature_se\feature_se\FeatureCompareVeracityTest.cpp">
+    <ClCompile Include="J:\feature_se\feature_se\FeatureCompareVeracityTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="J:\faceapi\feature_se\feature_se\CMakeLists.txt" />
+    <CustomBuild Include="J:\feature_se\feature_se\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{70C5B781-A1EE-3F95-97BA-C5144A8FE8CB}</UniqueIdentifier>
+      <UniqueIdentifier>{6B3C8065-ED69-3AB5-AD43-AABA56876DC5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
