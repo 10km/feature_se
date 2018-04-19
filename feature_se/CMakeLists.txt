@@ -87,7 +87,7 @@ define_fse_target(fse_cas)
 add_executable(fctest EXCLUDE_FROM_ALL FeatureCompareSpeedTest.cpp)
 add_executable(fctest2 EXCLUDE_FROM_ALL FeatureCompareVeracityTest.cpp)
 # ----------------------------------------------------------------------------
-set (fse_DEPENDENCY "find_dependency(cassdk)")
+set (fse_DEPENDENCY "find_dependency(Cassdk)")
 configure_package_config_file (${PROJECT_SOURCE_DIR}/cmake/config.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/fse-config.cmake
   INSTALL_DESTINATION cmake
