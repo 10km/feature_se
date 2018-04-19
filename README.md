@@ -52,7 +52,10 @@ Windows下命令行编译过程:
 	rem 创建VS2015编译环境,只需要执行一次
 	call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
 	rem 生成Makefile
-	cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=..\release\fse_windows_x86_64 ..
+	cmake -G "NMake Makefiles" ^ 
+		-DCMAKE_BUILD_TYPE=RELEASE ^
+		-DCASSDK_ROOT_DIR=%CASSDK算法SDK安装位置% ^
+		-DCMAKE_INSTALL_PREFIX=..\release\fse_windows_x86_64 ..
 	rem 编译并安装到CMAKE_INSTALL_PREFIX指定的位置
 	nmake install 
 
@@ -110,7 +113,9 @@ cmake脚本中引用feature_se库的完整示例参见 [test/CMakeLists.txt](tes
 	cd build
 	call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
 	rem 生成64位工程
-	cmake -G "Visual Studio 14 2015 Win64" -DFSE_ROOT_DIR=..\..\release\fse_windows_x86_64 ..
+	cmake -G "Visual Studio 14 2015 Win64" ^
+		-DCASSDK_ROOT_DIR=%CASSDK算法SDK安装位置% ^
+		-DFSE_ROOT_DIR=..\..\release\fse_windows_x86_64 ..
 	rem 需要先编译feature_se
 	rem FSE_ROOT_DIR用于指定 feature_se 安装位置
 
