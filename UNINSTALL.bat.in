@@ -11,9 +11,9 @@ set full_path=%full_path:\= %
 for %%a in (%full_path%) do set folder_name=%%a
 popd
 popd
-SET FACEDB_HOME=%SystemDrive%\%folder_name%
-IF exist %FACEDB_HOME% rmdir %FACEDB_HOME% /S /Q
-ECHO please manual remove the %FACEDB_HOME_LIB% from environment variable 'PATH'
+SET FSE_HOME=%SystemDrive%\%folder_name%
+IF exist %FSE_HOME% rmdir %FSE_HOME% /S /Q
+ECHO please manual remove the %FSE_HOME_LIB% from environment variable 'PATH'
 ECHO uninstall finished
 :END
 
