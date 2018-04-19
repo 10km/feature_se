@@ -22,6 +22,6 @@ else
 fi
 pushd build.gcc
 cmake "`dirs +1`" $GXX_PATH -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=$INSTALL_FOLDER
-make install
+make -j8 install
 popd
 rm -fr build.gcc

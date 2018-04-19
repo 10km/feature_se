@@ -37,8 +37,8 @@ if(MSVC)
 endif()
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux") 
-  target_link_libraries(test_fse )
-  target_link_libraries(test_fse_static -pthread -ldl)
+#  target_link_libraries(test_fse )
+#  target_link_libraries(test_fse_static -pthread -ldl)
 endif()
 
 # 标准C调用测试
@@ -53,8 +53,8 @@ if(MSVC)
 endif()
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-  target_link_libraries(test_fse_c )
-  target_link_libraries(test_fse_c_static -pthread -ldl)
+#  target_link_libraries(test_fse_c )
+#  target_link_libraries(test_fse_c_static -pthread -ldl)
 endif()
 
 # Cleanup temporary variables.
