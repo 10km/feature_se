@@ -80,7 +80,9 @@ linux下命令行编译过程:
 	fi
 	pushd build
 	# 生成release 版 Makefile
-	cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=../release/fse_linux_x86_64 ..
+	cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE \
+		-DCASSDK_ROOT_DIR=${CASSDK算法SDK安装位置} \
+		-DCMAKE_INSTALL_PREFIX=../release/fse_linux_x86_64 ..
 	# 编译并安装到CMAKE_INSTALL_PREFIX指定的位置
 	make install
 	popd

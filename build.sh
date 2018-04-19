@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 GXX_PATH=
 if [ `/usr/bin/g++ -dumpversion` != "5.2.0" ]
 then
