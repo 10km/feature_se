@@ -19,8 +19,10 @@ if exist build_msvc rmdir build_msvc /s/q
 mkdir build_msvc
 cd build_msvc
 if not defined VisualStudioVersion (
+	echo make MSVC environment ...
 	call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
 )
+echo creating x86_64 Project for Visual Studio 2015 ...
 cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=%install_folder% ..
 nmake install
 cd ..

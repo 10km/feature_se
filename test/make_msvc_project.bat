@@ -16,6 +16,8 @@ if exist project.vs2015 rmdir project.vs2015 /s/q
 mkdir project.vs2015
 cd project.vs2015
 if not defined VisualStudioVersion (
+	echo make MSVC environment ...
 	call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
 )
+echo creating x86_64 Project for Visual Studio 2015 ...
 cmake -G "Visual Studio 14 2015 Win64" -DFSE_ROOT_DIR=..\..\release\fse_windows_x86_64 .. 
