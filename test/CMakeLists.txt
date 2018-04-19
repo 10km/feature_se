@@ -36,11 +36,6 @@ if(MSVC)
   target_link_libraries(test_fse_static_mt gdface::fse_cas_static_mt)
 endif()
 
-if(CMAKE_SYSTEM_NAME MATCHES "Linux") 
-#  target_link_libraries(test_fse )
-#  target_link_libraries(test_fse_static -pthread -ldl)
-endif()
-
 # 标准C调用测试
 add_executable(test_fse_c ${_C_SOURCE_FILES})
 add_executable(test_fse_c_static ${_C_SOURCE_FILES})
@@ -50,11 +45,6 @@ target_link_libraries(test_fse_c_static gdface::fse_cas_static)
 if(MSVC)
   add_executable(test_fse_c_static_mt ${_C_SOURCE_FILES})
   target_link_libraries(test_fse_c_static_mt gdface::fse_cas_static_mt)
-endif()
-
-if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-#  target_link_libraries(test_fse_c )
-#  target_link_libraries(test_fse_c_static -pthread -ldl)
 endif()
 
 # Cleanup temporary variables.
