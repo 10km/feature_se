@@ -31,6 +31,7 @@
 *.out
 *.app
 build/
+build.gcc/
 /release
 Debug/
 Release/
