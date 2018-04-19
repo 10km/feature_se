@@ -2,7 +2,12 @@
 
 (人脸)特征内存搜索引擎(feature search engine)，提供高速的人脸特征相似度比对搜索/排序,支持多线程并行搜索，适用于百万级以上人脸库的快速搜索。(C++11实现)
 
-### feature_se
+## clone代码
+
+	git clone --recursive https://gitee.com/l0km/feature_se.git
+	# 因为项目中有submodule，克隆代码时必须加上 --recursive 参数
+
+## feature_se
 
 实现在内存中进行大规模特征比对的人脸搜索功能。
 
@@ -25,7 +30,7 @@ cmake生成的工程文件可以同时生成动态库(fse_cas)，静态库(fse_c
 
 标准C接口，参见 [feature_se/feature_se.h](feature_se/feature_se.h)
 
-### jni
+## jni
 
 feature_se的jni接口动态库实现，提供java访问能力。
 
