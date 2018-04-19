@@ -119,4 +119,7 @@ cmake脚本中引用feature_se库的完整示例参见 [test/CMakeLists.txt](tes
 	rem 需要先编译feature_se
 	rem FSE_ROOT_DIR用于指定 feature_se 安装位置
 
-参见 [test/make_msvc_project.bat](test/make_msvc_project.bat) 
+完整脚本参见 [test/make_msvc_project.bat](test/make_msvc_project.bat)
+ 
+生成unix Makefile过程参见：
+[test/make_unix_makefile.sh](test/make_unix_makefile.sh)
