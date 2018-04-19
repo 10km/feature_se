@@ -1,7 +1,7 @@
 # - Try to find CASSDK
 #
 # The following variables are optionally searched for defaults
-#  FSE_ROOT_DIR:            Base directory where all FEATURE_SE components are found
+#  CASSDK_ROOT_DIR:            Base directory where all CASSDK components are found
 #
 # The following are set after configuration is done:
 #定义CASSDK位置

@@ -90,7 +90,8 @@ cmake查找feature_se库的示例：
 
 	# ---[ Using cmake scripts and modules
 	list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
-	find_package(fse REQUIRED)
+	# 调用cmake/Modules/FindFse.cmake查找fse依赖库
+	find_package(Fse REQUIRED)
 
 cmake脚本中引用feature_se库的示例：
 
