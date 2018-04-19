@@ -63,7 +63,11 @@ target_compile_definitions (${target}
 	PUBLIC FSE_IS_A_DLL=${_is_shared_str}
 	PUBLIC CASSDK
 	)
-set_target_properties (${target}  PROPERTIES PUBLIC_HEADER "${_PUBLIC_HEADERS}")
+set_target_properties (${target}  PROPERTIES 
+	PUBLIC_HEADER "${_PUBLIC_HEADERS}"
+	VERSION ${PROJECT_VERSION} 
+	SOVERSION ${PROJECT_VERSION_MAJOR}
+	)
 set(_link_libraries cassdk_THFeature)
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
 	list(APPEND _link_libraries -pthread -ldl)
@@ -71,17 +75,10 @@ endif()
 if(_is_shared)
 	target_link_libraries(${target} PRIVATE ${_link_libraries})
 else()
+	set_target_properties (${target}  PROPERTIES 	INTERFACE_POSITION_INDEPENDENT_CODE ON)
 	target_link_libraries(${target} PUBLIC ${_link_libraries})
 endif()
-unset(_link_libraries)
-target_include_directories (${target}   INTERFACE "$<INSTALL_INTERFACE:include>")
-#############设置动态库版本号###################
-if(_is_shared)
-  set_target_properties(${target} PROPERTIES  VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
-  message(STATUS "${target} VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR}")
-elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
-  set_property(TARGET  ${target} PROPERTY COMPILE_FLAGS "${COMPILE_FLAGS} -fPIC")  
-endif()
+target_include_directories (${target} INTERFACE "$<INSTALL_INTERFACE:include>")
 endfunction()
 
 define_fse_target(fse_cas_static)
