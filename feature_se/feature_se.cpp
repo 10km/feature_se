@@ -22,10 +22,13 @@ static void fill_error_msg(const char* msg) {
 		error_msg[std::min(strlen(msg) + 1,sizeof(error_msg) - 1)] = 0;
 	}
 }
+// 将MD5数组转为MD5Set对象
 static MD5Set toMD5Set(const MD5 *md5Arrays, size_t md5Count) {
 	MD5Set md5_set;
-	for (auto i = md5Count; i > 0; --i) {
-		md5_set.insert(md5Arrays[i]);
+	if(nullptr != md5Arrays){
+		for (auto i = md5Count; i > 0; --i) {
+			md5_set.insert(md5Arrays[i]);
+		}
 	}
 	return std::move(md5_set);
 }
@@ -87,13 +90,8 @@ int fse_searchCode(const face_code *code, double threshold, size_t rows, code_be
 		return -1;
 	}
 	try {
-		if (nullptr != md5Arrays) {
-			MD5Set md5_set = toMD5Set(md5Arrays, md5Count);
-			return (int)instance->searchCode(*code, threshold, rows, out, std::addressof(md5_set));
-		}
-		else {
-			return (int)instance->searchCode(*code, threshold, rows, out);
-		}
+		MD5Set md5_set = toMD5Set(md5Arrays, md5Count);
+		return (int)instance->searchCode(*code, threshold, rows, out, std::addressof(md5_set));
 	}
 	catch (exception &e) {
 		fill_error_msg(e.what());
