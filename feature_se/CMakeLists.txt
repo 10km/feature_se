@@ -9,7 +9,7 @@ set (INCLUDE_INSTALL_DIR include)
 if(WIN32 AND NOT CYGWIN)
   set (CONFIG_INSTALL_DIR  cmake)
 else()
-  set (CONFIG_INSTALL_DIR  ${LIBRARY_INSTALL_DIR}/cmake)
+  set (CONFIG_INSTALL_DIR  ${LIBRARY_INSTALL_DIR}/cmake/fse)
 endif()
 find_package(Cassdk REQUIRED)
 # 定义所有的源文件列表  
