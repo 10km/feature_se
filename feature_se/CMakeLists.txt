@@ -45,6 +45,8 @@ if(MSVC)
 endif(MSVC)
 
 set_target_output_name("${_FSE_TARGETS}")
+
+#########################3
 # 设置项目属性
 function (define_fse_target target)
 if(NOT TARGET ${target})
@@ -57,6 +59,7 @@ if(${_type} STREQUAL "SHARED_LIBRARY")
 else()
   set(_is_shared_str "0")
 endif()
+target_include_directories (${target} INTERFACE "$<INSTALL_INTERFACE:include>")
 # 加入CASSDK 版本定义,编译库时必须加FSE_EXPORTS定义
 target_compile_definitions (${target} 
 	PRIVATE FSE_EXPORTS
@@ -75,12 +78,12 @@ endif()
 if(_is_shared)
 	target_link_libraries(${target} PRIVATE ${_link_libraries})
 else()
-	set_target_properties (${target}  PROPERTIES 	INTERFACE_POSITION_INDEPENDENT_CODE ON)
-	set_target_properties (${target}  PROPERTIES POSITION_INDEPENDENT_CODE ON)
 	target_link_libraries(${target} PUBLIC ${_link_libraries})
+	set_target_properties (${target}  PROPERTIES INTERFACE_POSITION_INDEPENDENT_CODE ON)
+	set_target_properties (${target}  PROPERTIES           POSITION_INDEPENDENT_CODE ON)
 endif()
-target_include_directories (${target} INTERFACE "$<INSTALL_INTERFACE:include>")
 endfunction()
+#####################
 
 define_fse_target(fse_cas_static)
 define_fse_target(fse_cas_static_mt)
@@ -88,7 +91,7 @@ define_fse_target(fse_cas)
 
 
 # 测试程序
-add_executable(fctest EXCLUDE_FROM_ALL FeatureCompareSpeedTest.cpp)
+add_executable(fctest  EXCLUDE_FROM_ALL FeatureCompareSpeedTest.cpp)
 add_executable(fctest2 EXCLUDE_FROM_ALL FeatureCompareVeracityTest.cpp)
 # ----------------------------------------------------------------------------
 set (fse_DEPENDENCY "find_dependency(Cassdk)")
