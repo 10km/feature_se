@@ -35,19 +35,19 @@ then
 	cp -r * $FSE_HOME
 	echo "$FSE_HOME_LIB">/etc/ld.so.conf.d/feature_se_lib.conf
 	/sbin/ldconfig
-	# modify .bash_profile,add FSE_HOME_LIB to LD_LIBRARY_PATH
-	new_export="export LD_LIBRARY_PATH=$FSE_HOME_LIB:\$LD_LIBRARY_PATH"
-	reg_str="^\s*export\s*LD_LIBRARY_PATH=$FSE_HOME_LIB:\$LD_LIBRARY_PATH"
+	# modify /etc/profile,add FSE_HOME_LIB to PATH
+	new_export="export PATH=$FSE_HOME_LIB:\$PATH"
+	reg_str="^\s*export\s*PATH=$FSE_HOME_LIB:\$PATH"
 	if grep -q $reg_str /etc/profile
 	then
-		echo $FSE_HOME_LIB exists in LD_LIBRARY_PATH,skip
+		echo $FSE_HOME_LIB exists in PATH,skip
 	else
-		echo defined LD_LIBRARY_PATH variable
+		echo defined PATH variable
 		echo $new_export >> /etc/profile
 	fi
 	# display new line
 	grep $reg_str /etc/profile
-	echo variable LD_LIBRARY_PATH in /etc/profile updated	
+	echo variable PATH in /etc/profile updated	
 	source /etc/profile		
 	echo "install finished"
 fi
