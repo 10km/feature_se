@@ -15,7 +15,7 @@ set(SOURCE_FILES
 add_library(fse_cas_jni SHARED ${SOURCE_FILES})
 link_static_libstdcxx_if_linux(fse_cas_jni)
 # 加入依赖库
-if(CMAKE_SYSTEM_NAME MATCHES "Linux")
+if(CMAKE_COMPILER_IS_GNUCXX)
   target_link_libraries(fse_cas_jni fse_cas_static)  
 else()
   target_link_libraries(fse_cas_jni fse_cas_static_mt)
