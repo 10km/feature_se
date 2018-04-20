@@ -23,7 +23,7 @@ rm -fv /etc/ld.so.conf.d/feature_se_lib.conf
 ##更新profile 
 reg_path=`echo $FSE_HOME_LIB|sed -r 's/([\/\.])/\\\\\1/g'`
 echo delete the line if exist:
-echo \"export LD_LIBRARY_PATH=$FSE_HOME_LIB:\$LD_LIBRARY_PATH\"
-sed -i_bak -r "/^\s*export\s*LD_LIBRARY_PATH=$reg_path:\\\$LD_LIBRARY_PATH/d" /etc/profile 		
+echo \"export PATH=$FSE_HOME_LIB:\$PATH\"
+sed -i_bak -r "/^\s*export\s*PATH=$reg_path:\\\$PATH/d" /etc/profile 		
 echo "uninstall finished"
 
