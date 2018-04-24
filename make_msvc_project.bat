@@ -1,5 +1,5 @@
 echo off 
-echo build test by VS2015
+echo make feature_se VS2015 project
 if not defined VS140COMNTOOLS (
 	echo vs2015 NOT FOUND.
 	exit -1
