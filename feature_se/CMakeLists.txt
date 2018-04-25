@@ -21,8 +21,8 @@ set(_SOURCE_FILES
     CodeManagerFactory.cpp
     TopKCodeBean.cpp
     feature_se.cpp
-    ${COMMONS_SOURCE_FOLDER}/RWLock.cpp
-    ${COMMONS_SOURCE_FOLDER}/ThreadPool.cpp
+    ${DEPENDENT_SOURCE_DIR}/RWLock.cpp
+    ${DEPENDENT_SOURCE_DIR}/ThreadPool.cpp
     )
 # 用于外部调用的公共头文件
 set (_PUBLIC_HEADERS
@@ -57,9 +57,12 @@ if(${_type} STREQUAL "SHARED_LIBRARY")
   set(_is_shared TRUE)
   set(_is_shared_str "1")
 else()
+	set(_is_shared FALSE)
   set(_is_shared_str "0")
 endif()
-target_include_directories (${target} INTERFACE "$<INSTALL_INTERFACE:include>")
+target_include_directories (${target} 
+	INTERFACE "$<INSTALL_INTERFACE:include>"
+	PRIVATE ${DEPENDENT_SOURCE_DIR})
 # 加入CASSDK 版本定义,编译库时必须加FSE_EXPORTS定义
 target_compile_definitions (${target} 
 	PRIVATE FSE_EXPORTS
@@ -75,12 +78,13 @@ set(_link_libraries cassdk_THFeature)
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
 	list(APPEND _link_libraries -pthread -ldl)
 endif()
+
 if(_is_shared)
 	target_link_libraries(${target} PRIVATE ${_link_libraries})
 else()
 	target_link_libraries(${target} PUBLIC ${_link_libraries})
-	set_target_properties (${target}  PROPERTIES INTERFACE_POSITION_INDEPENDENT_CODE ON)
-	set_target_properties (${target}  PROPERTIES           POSITION_INDEPENDENT_CODE ON)
+	set_target_properties (${target}  PROPERTIES INTERFACE_POSITION_INDEPENDENT_CODE ON
+																							           POSITION_INDEPENDENT_CODE ON)
 endif()
 endfunction()
 #####################
