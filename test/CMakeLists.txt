@@ -5,9 +5,11 @@ cmake_minimum_required( VERSION 3.0 )
 
 cmake_policy(SET CMP0048 NEW)
 project( testfse VERSION 1.0.0 LANGUAGES C CXX)
-# ---[ Using cmake scripts and modules
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
+# 查找feature_se库,需要设置 CMAKE_PREIX_PATH 指定 feature_se 的安装路径
+# 需要指定CMAKE_MODULE_PATH 指定 FindFse.cmake 的位置
+# 本例中的位置在项目根目录下/cmake/Modules
 find_package(Fse REQUIRED)
+# include utils.cmake,location /cmake/Modules
 include (utils)
 cxx11_support()
 ##############设置目标文件生成位置#####################

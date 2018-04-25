@@ -10,12 +10,20 @@ then
 		exit -1
 	fi
 fi
+
+sh_folder=$(dirname $(readlink -f $0))
+cd $sh_folder
+
 if [ -d build.gcc ]
 then 
 	rm -fr build.gcc/*
 else 
 	mkdir build.gcc
 fi
+
 cd build.gcc
-cmake $GXX_PATH -G "Unix Makefiles" -DFSE_ROOT_DIR=../../release/fse_linux_x86_64 ..
+
+cmake $GXX_PATH -G "Unix Makefiles" \
+	-DCMAKE_MODULE_PATH=$sh_folder/../cmake/Modules \
+	-DFSE_ROOT_DIR=../../release/fse_linux_x86_64 ..
 
