@@ -98,9 +98,8 @@ linux下命令行编译过程:
 
 cmake查找feature_se库的示例：
 
-	# ---[ Using cmake scripts and modules
-	list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
 	# 调用cmake/Modules/FindFse.cmake查找fse依赖库
+	# 需要在 CMAKE_MODULE_PATH 指定 FindFse.cmake的位置
 	find_package(Fse REQUIRED)
 
 cmake脚本中引用feature_se库的示例：
