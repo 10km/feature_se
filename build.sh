@@ -10,18 +10,24 @@ then
 		exit -1
 	fi
 fi
-[ -n "$1" ] && INSTALL_FOLDER="$1"
-[ -z "$1" ] && INSTALL_FOLDER=$(dirname $(readlink -f $0))/release/fse_linux_x86_64
-# 默认INSTALL_FOLDER为源码文件夹下
-echo INSTALL_FOLDER:$INSTALL_FOLDER
-if [ -d build.gcc ]
-then 
-	rm -fr build.gcc/*
-else 
-	mkdir build.gcc
-fi
+
+sh_folder=$(dirname $(readlink -f $0))
+
+# 定义编译的版本类型(DEBUG|RELEASE)
+build_type=RELEASE
+typeset -u arg1=$1
+[ "$arg1" = "DEBUG" ] && build_type=$arg1
+echo build_type=$build_type
+
+pushd $sh_folder
+
+[ -d build ] && rm -fr build
+mkdir build
+
 pushd build.gcc
 cmake "`dirs +1`" $GXX_PATH -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=$INSTALL_FOLDER
 make -j8 install
 popd
 rm -fr build.gcc
+
+popd

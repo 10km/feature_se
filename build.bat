@@ -11,20 +11,32 @@ if errorlevel 1 (
 	exit -1
 )
 echo cmake found
+
+set sh_folder=%~dp0
+rem 定义编译的版本类型(DEBUG|RELEASE)
+set build_type=RELEASE
+rem 如果输入参数1为"DEBUG"(不区分大小写)则编译DEBUG版本
+if /I "%1" == "DEBUG" ( set build_type=DEBUG) 
+echo build_type=%build_type%
+
+pushd %sh_folder%
+
 :msvc_x86_64
 echo build x86_64 
-if not "%1" == "" (set install_folder="%~f1") else (set install_folder="%cd%\release\fse_windows_x86_64") 
-echo install_folder=%install_folder%
 if exist build_msvc rmdir build_msvc /s/q
 mkdir build_msvc
-cd build_msvc
+pushd build_msvc
 if not defined VisualStudioVersion (
 	echo make MSVC environment ...
 	call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
 )
 echo creating x86_64 Project for Visual Studio 2015 ...
-cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=%install_folder% ..
+cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
+	-DCMAKE_DEBUG_POSTFIX=_d ^
+	-DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_windows_x86_64 ..
 nmake install
-cd ..
+popd
 
 rmdir build_msvc/s/q
+
+popd
