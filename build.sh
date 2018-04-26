@@ -21,11 +21,11 @@ echo build_type=$build_type
 
 pushd $sh_folder
 
-[ -d build ] && rm -fr build
-mkdir build
+[ -d build.gcc ] && rm -fr build.gcc
+mkdir build.gcc
 
 pushd build.gcc
-cmake "`dirs +1`" $GXX_PATH -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=$INSTALL_FOLDER
+cmake "`dirs +1`" $GXX_PATH -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=$sh_folder/release/fse_linux_x86_64
 make -j8 install
 popd
 rm -fr build.gcc
