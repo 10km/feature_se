@@ -44,8 +44,6 @@ if(MSVC)
   list(APPEND _FSE_TARGETS fse_cas_static_mt)
 endif(MSVC)
 
-set_target_output_name("${_FSE_TARGETS}")
-
 #########################3
 # 设置项目属性
 function (define_fse_target target)
@@ -73,6 +71,7 @@ set_target_properties (${target}  PROPERTIES
 	PUBLIC_HEADER "${_PUBLIC_HEADERS}"
 	VERSION ${PROJECT_VERSION} 
 	SOVERSION ${PROJECT_VERSION_MAJOR}
+	DEBUG_POSTFIX _d
 	)
 set(_link_libraries cassdk_THFeature)
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")

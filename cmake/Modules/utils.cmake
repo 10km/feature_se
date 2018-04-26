@@ -182,21 +182,6 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif(CMAKE_COMPILER_IS_GNUCXX)
 endfunction()
 
-# debug模式下对输出文件名加_d后缀
-function(set_target_output_name targets)
-foreach(target ${targets})
-  fatal_if_not_target(${target})
-  get_target_property(_output_name ${target} OUTPUT_NAME_DEBUG)  
-  if(_output_name)
-    set_target_properties(${target} PROPERTIES OUTPUT_NAME_DEBUG "${_output_name}_d" )
-  else()
-    set_target_properties(${target} PROPERTIES OUTPUT_NAME_DEBUG "${target}_d" )
-  endif()  
-  get_target_property(_output_name ${target} OUTPUT_NAME_DEBUG)
-  message(STATUS "TARGET:${target} OUTPUT_NAME_DEBUG=${_output_name}")
-  unset(_output_name)
-endforeach()
-endfunction()
 
 ##############根据编译条件定义project_name 安装文件夹名##############
 #定义变量<project_name>_folder

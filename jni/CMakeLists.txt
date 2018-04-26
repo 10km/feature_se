@@ -21,9 +21,8 @@ else()
   target_link_libraries(fse_cas_jni fse_cas_static_mt)
 endif()
 target_include_directories (fse_cas_jni	PRIVATE ${DEPENDENT_SOURCE_DIR})
-set_target_output_name(fse_cas_jni)
 #############设置动态库版本号###################
-set_target_properties(fse_cas_jni PROPERTIES  VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
+set_target_properties(fse_cas_jni PROPERTIES  VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR} DEBUG_POSTFIX _d)
 message(STATUS "feature_se jni VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR}")
 
 #######Windows 下DLL 文件名前缀为空 #######
