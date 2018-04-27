@@ -104,7 +104,7 @@ add_executable(fctest2 EXCLUDE_FROM_ALL FeatureCompareVeracityTest.cpp)
 set (fse_DEPENDENCY "find_dependency(Cassdk)")
 configure_package_config_file (${PROJECT_SOURCE_DIR}/cmake/config.cmake.in
   ${CMAKE_CURRENT_BINARY_DIR}/fse-config.cmake
-  INSTALL_DESTINATION cmake
+  INSTALL_DESTINATION ${CONFIG_INSTALL_DIR}
   NO_CHECK_REQUIRED_COMPONENTS_MACRO)
 write_basic_package_version_file (fse-config-version.cmake VERSION
   ${PROJECT_VERSION} COMPATIBILITY SameMajorVersion)
