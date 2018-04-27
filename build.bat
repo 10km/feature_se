@@ -32,7 +32,6 @@ if not defined VisualStudioVersion (
 )
 echo creating x86_64 Project for Visual Studio 2015 ...
 cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
-	-DCMAKE_DEBUG_POSTFIX=_d ^
 	-DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_windows_x86_64 ..
 nmake install
 popd
