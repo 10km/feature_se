@@ -31,9 +31,11 @@ if not defined VisualStudioVersion (
 	call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
 )
 echo creating x86_64 Project for Visual Studio 2015 ...
-cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
-	-DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_windows_x86_64 ..
-nmake install
+rem cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
+rem 	-DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_windows_x86_64 ..
+rem nmake install
+cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_windows_x86_64 .. 
+devenv feature_se.sln /Build "%build_type%|X64" /Project INSTALL
 popd
 
 rmdir build_msvc/s/q

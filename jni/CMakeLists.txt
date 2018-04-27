@@ -34,3 +34,5 @@ install(TARGETS fse_cas_jni
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION bin
         )
+# 安装pdb文件
+install(FILES $<TARGET_PDB_FILE:fse_cas_jni> DESTINATION bin OPTIONAL)

@@ -50,6 +50,10 @@ function (define_fse_target target)
 if(NOT TARGET ${target})
 	return ()
 endif()
+# MSVC Debug 编译时生成包含用于调试器的完整符号调试信息的 .obj 文件
+# see also https://msdn.microsoft.com/zh-cn/library/958x11bc.aspx
+target_compile_options(${target} PRIVATE $<$<AND:$<CXX_COMPILER_ID:MSVC>,$<CONFIG:Debug>>:/Z7>)
+
 get_target_property(_type ${target} TYPE)
 if(${_type} STREQUAL "SHARED_LIBRARY")
   set(_is_shared TRUE)
@@ -111,6 +115,12 @@ install(TARGETS ${_FSE_TARGETS} EXPORT fse-targets
   ARCHIVE DESTINATION ${LIBRARY_INSTALL_DIR}
   PUBLIC_HEADER DESTINATION ${INCLUDE_INSTALL_DIR}/feature_se
   )
+  
+foreach(_target ${_FSE_TARGETS})
+	# 如果是动态库则安装对应的pdb文件
+	install(FILES $<$<STREQUAL:SHARED_LIBRARY,$<TARGET_PROPERTY:${_target},TYPE>>:$<TARGET_PDB_FILE:${_target}>> DESTINATION ${RUNTIME_INSTALL_DIR} OPTIONAL)
+endforeach(_target)
+
 install (FILES
   ${CMAKE_CURRENT_BINARY_DIR}/fse-config.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/fse-config-version.cmake

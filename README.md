@@ -66,6 +66,8 @@ Windows下命令行编译过程:
 
 参见编译脚本：[build.bat](build.bat)
 
+执行[all_build.bat](all_build.bat)同时编译debug,release版
+
 ### vs2015工程编译
 
 可以用 [make_msvc_project.bat](make_msvc_project.bat) 创建Visuao Studio 2015工程
