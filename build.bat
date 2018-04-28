@@ -2,13 +2,13 @@ echo off
 echo build feature_se by VS2015
 if not defined VS140COMNTOOLS (
 	echo vs2015 NOT FOUND.
-	exit -1
+	exit /B -1
 )
 echo vs2015 found.
 where cmake
 if errorlevel 1 (
 	echo cmake NOT FOUND.
-	exit -1
+	exit /B -1
 )
 echo cmake found
 

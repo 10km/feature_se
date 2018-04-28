@@ -2,13 +2,13 @@ echo off
 echo make test VS2015 project
 if not defined VS140COMNTOOLS (
 	echo vs2015 NOT FOUND.
-	exit -1
+	exit /B -1
 )
 echo vs2015 found.
 where cmake
 if errorlevel 1 (
 	echo cmake NOT FOUND.
-	exit -1
+	exit /B -1
 )
 echo cmake found
 set sh_folder=%~dp0
