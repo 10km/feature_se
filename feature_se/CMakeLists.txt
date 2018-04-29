@@ -64,7 +64,7 @@ else()
 endif()
 target_include_directories (${target} 
 	INTERFACE "$<INSTALL_INTERFACE:include>"
-	PRIVATE ${DEPENDENT_SOURCE_DIR})
+	)
 # 加入CASSDK 版本定义,编译库时必须加FSE_EXPORTS定义
 target_compile_definitions (${target} 
 	PRIVATE FSE_EXPORTS
@@ -82,6 +82,7 @@ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
 	list(APPEND _link_libraries -pthread -ldl)
 endif()
 
+target_link_libraries(${target} PRIVATE $<BUILD_INTERFACE:common_source>)
 if(_is_shared)
 	target_link_libraries(${target} PRIVATE ${_link_libraries})
 else()
