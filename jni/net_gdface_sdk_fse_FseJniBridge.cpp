@@ -40,15 +40,15 @@ JNIEXPORT void JNICALL Java_net_gdface_sdk_fse_FseJniBridge_release
 }
 
 JNIEXPORT jobjectArray JNICALL Java_net_gdface_sdk_fse_FseJniBridge_searchCode
-  (JNIEnv *env, jclass, jbyteArray jcode, jdouble threshold, jint rows, jobjectArray imgMD5Set, jboolean full){
+  (JNIEnv *env, jclass, jbyteArray jfeature, jdouble threshold, jint rows, jobjectArray imgMD5Set, jboolean full){
 	try{
-		face_code code;
-		if(!BeanUtilits::jbytearraytoface_code(jcode,code)){
+		auto feature = std::make_shared<face_code>();
+		if(!BeanUtilits::jbytearraytoface_code(jfeature,*feature)){
 			throw invalid_argument("fail to jbytearraytoface_code");
 		}
-		auto v=BeanUtilits::jmd5settoMD5Vector(imgMD5Set);
+		auto v = BeanUtilits::jmd5settoMD5Vector(imgMD5Set);
 		vector<code_bean> result(rows);
-		auto size=fse_searchCode(std::addressof(code),threshold,rows,result.data(),v->data(), v->size());
+		auto size=fse_searchCode(feature.get(),threshold,rows,result.data(),v->data(), v->size());
 		if (size >= 0) {
 			return BeanUtilits::code_bean_ptr_tojobjectArray(result.data(), (jsize)size, context->m_code_bean_mirror, full).norelease().get();
 		}
@@ -70,11 +70,11 @@ JNIEXPORT jobject JNICALL Java_net_gdface_sdk_fse_FseJniBridge_getFeature
 	try{
 		MD5 md5;
 		if(BeanUtilits::jbytearraytoMD5(jmd5,md5)){
-			code_bean bean;
-			auto result=fse_getFeature(std::addressof(md5),std::addressof(bean));
+			auto bean = std::make_shared<code_bean>();
+			auto result=fse_getFeature(std::addressof(md5),bean.get());
 			switch (result) {
 			case 1: {
-				return BeanUtilits::toJCodeBean(bean, context->m_code_bean_mirror, full).norelease().get();
+				return BeanUtilits::toJCodeBean(*bean, context->m_code_bean_mirror, full).norelease().get();
 			}
 			case 0: {
 				return nullptr;
@@ -95,12 +95,12 @@ JNIEXPORT jobject JNICALL Java_net_gdface_sdk_fse_FseJniBridge_getFeature
 }
 
 JNIEXPORT jboolean JNICALL Java_net_gdface_sdk_fse_FseJniBridge_addFeature
-  (JNIEnv *env, jclass, jbyteArray id, jbyteArray code, jstring imgMD5){
+  (JNIEnv *env, jclass, jbyteArray featureId, jbyteArray feature, jstring imgMD5){
 	try{
-		code_bean bean;
-		if(BeanUtilits::tocodeBean(bean,id,code,imgMD5)){
+		auto bean = std::make_shared<code_bean>();
+		if(BeanUtilits::tocodeBean(*bean,featureId,feature,imgMD5)){
 			//BeanUtilits::output_bean(bean,"jni add ");
-			auto result = fse_addFeature(std::addressof(bean));
+			auto result = fse_addFeature(bean.get());
 			if(result >= 0){
 				return JNI_TRUE;
 			}
@@ -117,10 +117,10 @@ JNIEXPORT jboolean JNICALL Java_net_gdface_sdk_fse_FseJniBridge_addFeature
 }
 
 JNIEXPORT jboolean JNICALL Java_net_gdface_sdk_fse_FseJniBridge_removeFeature
-  (JNIEnv *env, jclass, jbyteArray codeMD5){
+  (JNIEnv *env, jclass, jbyteArray featureId){
 	try {
 		MD5 md5;
-		if (BeanUtilits::jbytearraytoMD5(codeMD5, md5)) {
+		if (BeanUtilits::jbytearraytoMD5(featureId, md5)) {
 			auto result = fse_removeFeature(std::addressof(md5));
 			switch (result) {
 			case 0: {
