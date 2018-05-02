@@ -20,10 +20,10 @@ bool BeanUtilits::tocodeBean(code_bean& bean, jobject obj, jni_utilits::JavaClas
 	bean.similarity = mirror.GetField<jdouble>(obj, CODEBEAN_SIMILARITY);
 	return success;
 }
-
 bool BeanUtilits::jstringToMD5(jstring jstr, MD5& md5) {
 	if (nullptr == jstr){
-		std::memset(std::addressof(md5), 0, sizeof(MD5));
+		// 为null时填0
+		md5.l[0] = 0,md5.l[1] = 0;
 		return false;
 	}
 	auto env = jni_utilits::getJNIEnv();
@@ -70,7 +70,10 @@ raii_var<jobject> BeanUtilits::toJCodeBean(const code_bean& bean, jni_utilits::J
 		if (full) {
 			mirror.SetField(obj, CODEBEAN_CODE, face_codetojbyteArray(FACE_CODE_CONVERT(bean.code)).get());
 		}
-		mirror.SetField(obj, CODEBEAN_IMGMD5, MD5toJString(bean.imgMD5).get());
+		// 如果imgMD5不为全0则转为java string,否则为null
+		if (bean.imgMD5.l[0] || bean.imgMD5.l[1]) {
+			mirror.SetField(obj, CODEBEAN_IMGMD5, MD5toJString(bean.imgMD5).get());
+		}
 		mirror.SetField(obj, CODEBEAN_SIMILARITY, (jdouble) (bean.similarity));
 	}
 	return var;
