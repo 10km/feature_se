@@ -97,7 +97,8 @@ TopKCodeBean ICodeManagerCPU::searchCode(const face_code &code, TopKCodeBean::cm
 		futures[i - 1] = const_cast<MiniThreadPool&>(m_pool).enqueue(
 			[code, threshold, rows, md5set, i, this]() {
 			//cout<<"working m_maps["<<i-1<<"]"<<endl;
-			return this->m_maps[i - 1].searchCode(code, threshold, rows, static_cast<HashMapCl::MD5Set*>(md5set->m_set));
+			return this->m_maps[i - 1].searchCode(code, threshold, rows,
+				nullptr == md5set ? nullptr : static_cast<HashMapCl::MD5Set*>(md5set->m_set));
 		});
 
 	}
