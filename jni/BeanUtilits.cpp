@@ -5,6 +5,7 @@
  *      Author: guyadong
  */
 #include "BeanUtilits.h"
+#include "md5.h"
 
 namespace gdface {
 bool BeanUtilits::tocodeBean(code_bean& bean, jobject obj, jni_utilits::JavaClassMirror& mirror) {
@@ -73,6 +74,23 @@ raii_var<jobject> BeanUtilits::toJCodeBean(const code_bean& bean, jni_utilits::J
 		mirror.SetField(obj, CODEBEAN_SIMILARITY, (jdouble) (bean.similarity));
 	}
 	return var;
+}
+bool BeanUtilits::tocodeBean(code_bean& bean, jbyteArray id, jbyteArray code, jstring imgMD5) {
+	auto result = jbytearraytoface_code(code, bean.code);
+	// 允许 id,imgMD5为null
+	if (result) {
+		if (nullptr == id) {
+			auto md5util = std::make_shared<md5::MD5>();
+			md5util->digestMemory((md5::BYTE*)std::addressof(bean.code), sizeof(face_code));
+			bean.id = *(MD5*)md5util->digestRaw;
+		}
+		else {
+			result &= jbytearraytoMD5(id, bean.id);
+		}
+		result &= jstringToMD5(imgMD5, bean.imgMD5) || nullptr == imgMD5;
+	}
+	return result;
+	
 }
 std::shared_ptr<vector<MD5> >  BeanUtilits::jmd5settoMD5Vector(jobjectArray jset) {
 	decltype(jni_utilits::getJNIEnv()->GetArrayLength(jset)) len =

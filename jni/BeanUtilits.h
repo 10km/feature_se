@@ -23,12 +23,8 @@ public:
 #define CODEBEAN_IMGMD5 		"imgMD5"
 #define CODEBEAN_SIMILARITY	"similarity"
 	static raii_var<jobject> toJCodeBean(const code_bean& bean, jni_utilits::JavaClassMirror& mirror,jboolean full=true);
-	static bool tocodeBean(code_bean& bean, jbyteArray id, jbyteArray code, jstring imgMD5) {
-		return jbytearraytoMD5(id, bean.id)
-			&& jbytearraytoface_code(code, bean.code)
-			&& (jstringToMD5(imgMD5, bean.imgMD5) || nullptr == imgMD5 );
-		// 允许 imgMD5为null
-	}
+	// 将id,code,imgMD5填充到bean对应的字段
+	static bool tocodeBean(code_bean& bean, jbyteArray id, jbyteArray code, jstring imgMD5);
 
 	static bool tocodeBean(code_bean& bean,jobject obj,  jni_utilits::JavaClassMirror& mirror);
 	static bool jstringToMD5(jstring jstr, MD5& md5);
