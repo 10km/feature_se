@@ -17,7 +17,7 @@ namespace gdface {
 class BeanUtilits {
 public:
 #define JAVA_STRING					"Ljava/lang/String;"
-#define CODEBEAN 						"Lnet/gdface/sdk/fse/FseJniBridge$CodeBean;"
+#define CODEBEAN 						"Lnet/gdface/sdk/fse/CodeBean;"
 #define CODEBEAN_ID 				"id"
 #define CODEBEAN_CODE 			"code"
 #define CODEBEAN_IMGMD5 		"imgMD5"

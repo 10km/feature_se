@@ -34,7 +34,7 @@ JNIEXPORT void JNICALL Java_net_gdface_sdk_fse_FseJniBridge_release
 /*
  * Class:     net_gdface_sdk_fse_FseJniBridge
  * Method:    searchCode
- * Signature: ([BDI[Ljava/lang/String;)[Lnet/gdface/sdk/fse/FseJniBridge/CodeBean;
+ * Signature: ([BDI[Ljava/lang/String;)[Lnet/gdface/sdk/fse/CodeBean;
  */
 JNIEXPORT jobjectArray JNICALL Java_net_gdface_sdk_fse_FseJniBridge_searchCode
   (JNIEnv *, jclass, jbyteArray, jdouble, jint, jobjectArray);
@@ -42,7 +42,7 @@ JNIEXPORT jobjectArray JNICALL Java_net_gdface_sdk_fse_FseJniBridge_searchCode
 /*
  * Class:     net_gdface_sdk_fse_FseJniBridge
  * Method:    getFeature
- * Signature: ([B)Lnet/gdface/sdk/fse/FseJniBridge/CodeBean;
+ * Signature: ([B)Lnet/gdface/sdk/fse/CodeBean;
  */
 JNIEXPORT jobject JNICALL Java_net_gdface_sdk_fse_FseJniBridge_getFeature
   (JNIEnv *, jclass, jbyteArray);
