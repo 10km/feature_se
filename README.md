@@ -78,14 +78,10 @@ linux下编译要求支持c++11的gcc 5.2.0
 
 linux下命令行编译过程:
 
-	# 清除 build 文件夹
-	if [ -d build ]
-	then 
-		rm -fr build/*
-	else 
-		mkdir build
-	fi
-	pushd build
+	# 清除 build.gcc 文件夹
+	[ -d build.gcc ] && rm -fr build.gcc
+	mkdir build.gcc
+	pushd build.gcc
 	# 生成release 版 Makefile
 	cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE \
 		-DCASSDK_ROOT_DIR=${CASSDK算法SDK安装位置} \
