@@ -84,7 +84,7 @@ bool BeanUtilits::tocodeBean(code_bean& bean, jbyteArray id, jbyteArray code, js
 	if (result) {
 		if (nullptr == id) {
 			auto md5util = std::make_shared<md5::MD5>();
-			md5util->digestMemory((md5::BYTE*)std::addressof(bean.code), sizeof(face_code));
+			md5util->digestMemory(std::addressof(bean.code), sizeof(face_code));
 			bean.id = *(MD5*)md5util->digestRaw;
 		}
 		else {
