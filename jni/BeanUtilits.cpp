@@ -8,8 +8,9 @@
 
 namespace gdface {
 bool BeanUtilits::tocodeBean(code_bean& bean, jobject obj, jni_utilits::JavaClassMirror& mirror) {
-	if (nullptr == obj)
+	if (nullptr == obj) {
 		return false;
+	}
 	auto success = tocodeBean(bean,
 			mirror.GetField<jbyteArray>(obj, CODEBEAN_ID).get(),
 			mirror.GetField<jbyteArray>(obj, CODEBEAN_CODE).get(),
@@ -20,9 +21,10 @@ bool BeanUtilits::tocodeBean(code_bean& bean, jobject obj, jni_utilits::JavaClas
 }
 
 bool BeanUtilits::jstringToMD5(jstring jstr, MD5& md5) {
-	if (nullptr == jstr)
+	if (nullptr == jstr){
+		std::memset(std::addressof(md5), 0, sizeof(MD5));
 		return false;
-
+	}
 	auto env = jni_utilits::getJNIEnv();
 	auto len = env->GetStringUTFLength(jstr);
 	if (len == (sizeof(MD5) << 1)) {
@@ -34,9 +36,9 @@ bool BeanUtilits::jstringToMD5(jstring jstr, MD5& md5) {
 }
 
 bool BeanUtilits::jbytearraytoMD5(jbyteArray bytes, MD5& md5) {
-	if (nullptr == bytes)
+	if (nullptr == bytes) {
 		return false;
-
+	}
 	auto env = jni_utilits::getJNIEnv();
 	if (env->GetArrayLength(bytes) == sizeof(MD5)) {
 		auto byte_ptr = jni_utilits::raii_GetByteArrayElements(bytes);
@@ -47,9 +49,9 @@ bool BeanUtilits::jbytearraytoMD5(jbyteArray bytes, MD5& md5) {
 }
 
 bool BeanUtilits::jbytearraytoface_code(jbyteArray bytes, face_code& code) {
-	if (nullptr == bytes)
+	if (nullptr == bytes) {
 		return false;
-
+	}
 	auto env = jni_utilits::getJNIEnv();
 	if (env->GetArrayLength(bytes) == sizeof(face_code)) {
 		auto byte_ptr = jni_utilits::raii_GetByteArrayElements(bytes);
@@ -64,8 +66,9 @@ raii_var<jobject> BeanUtilits::toJCodeBean(const code_bean& bean, jni_utilits::J
 	auto obj = *var;
 	if (nullptr != obj) {
 		mirror.SetField(obj, CODEBEAN_ID, MD5tojbyteArray(bean.id).get());
-		if(full)
+		if (full) {
 			mirror.SetField(obj, CODEBEAN_CODE, face_codetojbyteArray(FACE_CODE_CONVERT(bean.code)).get());
+		}
 		mirror.SetField(obj, CODEBEAN_IMGMD5, MD5toJString(bean.imgMD5).get());
 		mirror.SetField(obj, CODEBEAN_SIMILARITY, (jdouble) (bean.similarity));
 	}
