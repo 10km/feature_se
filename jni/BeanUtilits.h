@@ -26,7 +26,8 @@ public:
 	static bool tocodeBean(code_bean& bean, jbyteArray id, jbyteArray code, jstring imgMD5) {
 		return jbytearraytoMD5(id, bean.id)
 			&& jbytearraytoface_code(code, bean.code)
-			&& jstringToMD5(imgMD5, bean.imgMD5);
+			&& (jstringToMD5(imgMD5, bean.imgMD5) || nullptr == imgMD5 );
+		// 允许 imgMD5为null
 	}
 
 	static bool tocodeBean(code_bean& bean,jobject obj,  jni_utilits::JavaClassMirror& mirror);
