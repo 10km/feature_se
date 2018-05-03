@@ -213,12 +213,14 @@ int fse_size() {
 	}
 	return instance->size();
 }
+static thread_local std::string tls_str_statinfo;
 const char* fse_statInfo() {
 	if (!valid_instance()) {
 		return nullptr;
 	}
 	try {
-		return instance->statInfo().c_str();
+		tls_str_statinfo = instance->statInfo();
+		return tls_str_statinfo.c_str();
 	}
 	catch (exception &e) {
 		fill_error_msg(e.what());

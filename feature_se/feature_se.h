@@ -66,7 +66,7 @@ FSE_API int fse_removeFeatures(MD5 md5s[], size_t md5Count);
 FSE_API int fse_removeFeaturesByImgMD5(MD5 *imgMD5);
 /* 返回内存表中元素个数 */
 FSE_API int fse_size();
-/* 返回哈希表统计信息(用于debug测试),出错返回nullptr */
+/* 返回哈希表统计信息字符串指针(当前线程有效,用于debug测试),出错返回nullptr */
 FSE_API const char* fse_statInfo();
 #ifdef __cplusplus
 }
