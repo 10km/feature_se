@@ -28,6 +28,9 @@ typedef union _MD5{
 	bool operator!=(const _MD5 src)const noexcept{
 		return l[0]!=src.l[0]||l[1]!=src.l[1];
 	}
+	bool is_null()const noexcept {
+		return 0 == l[0] && 0 == l[1];
+	}
 #endif
 }MD5;
 typedef char MD5_STR[MD5_SIZE*2+1];

@@ -71,7 +71,7 @@ raii_var<jobject> BeanUtilits::toJCodeBean(const code_bean& bean, jni_utilits::J
 			mirror.SetField(obj, CODEBEAN_CODE, face_codetojbyteArray(FACE_CODE_CONVERT(bean.code)).get());
 		}
 		// 如果imgMD5不为全0则转为java string,否则为null
-		if (bean.imgMD5.l[0] || bean.imgMD5.l[1]) {
+		if ( ! bean.imgMD5.is_null() ) {
 			mirror.SetField(obj, CODEBEAN_IMGMD5, MD5toJString(bean.imgMD5).get());
 		}
 		mirror.SetField(obj, CODEBEAN_SIMILARITY, (jdouble) (bean.similarity));

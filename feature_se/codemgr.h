@@ -23,6 +23,11 @@ inline string MD5toMD5_STR(MD5 const &md5char) {
 inline void PSTRtoMD5(const char * pStr,MD5 &md5) {
 	com_utilits::hex_to_bytes(pStr,&md5,sizeof(MD5));
 }
+
+inline bool is_null_MD5(const MD5 *md5) {
+	return nullptr == md5 || md5->is_null();
+}
+
 #ifdef CASSDK
 #define FACE_CODE_CONVERT(code) code
 #elif  ((_M_X64||_M_AMD64||_M_IX86) && _MSC_VER) || (__GNUC__&& (__BYTE_ORDER__ ==__ORDER_LITTLE_ENDIAN__))

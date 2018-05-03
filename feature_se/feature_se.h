@@ -49,7 +49,7 @@ FSE_API int fse_addFeature(code_bean* bean);
 /* 添加一组特征码到内存表
 * 正常返回添加的特征记录数,< 0 出错
 */
-FSE_API int fse_addFeatures(code_bean beans[], size_t beanCount);
+FSE_API int fse_addFeatures(code_bean *beans, size_t beanCount);
 
 /* 删除md5指定的特征
  * 删除成功返回1,失败返回0,< 0出错
@@ -58,7 +58,7 @@ FSE_API int fse_removeFeature(MD5 *md5);
 /* 删除md5s指定的一组特征
 * 删除成功返回删除的记录数,失败返回0,< 0出错
 */
-FSE_API int fse_removeFeatures(MD5 md5s[], size_t md5Count);
+FSE_API int fse_removeFeatures( MD5 *md5s, size_t md5Count);
 /* 根据图像imgMD5删除所有指定的记录
  * imgMD5 特征码所在图像的MD5校验码
  * 返回返回删除的记录数,< 0 出错

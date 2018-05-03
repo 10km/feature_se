@@ -141,7 +141,7 @@ int fse_addFeature(code_bean* bean){
 		return -1;
 	}
 }
-int fse_addFeatures(code_bean beans[], size_t beanCount) {
+int fse_addFeatures(code_bean *beans, size_t beanCount) {
 	if (nullptr == beans) {
 		fill_error_msg((NULL_POINTER + "beans").c_str());
 		return -1;
@@ -151,7 +151,7 @@ int fse_addFeatures(code_bean beans[], size_t beanCount) {
 	}
 	int addedCount = 0;
 	for (auto i = beanCount -1; i >= 0; --i, ++addedCount) {
-		if (fse_addFeature(std::addressof(beans[i])) < 0) {
+		if (fse_addFeature(beans + i) < 0) {
 			return -1;
 		}
 	}
@@ -174,17 +174,16 @@ int fse_removeFeature(MD5 *md5) {
 		return -1;
 	}
 }
-int fse_removeFeatures(MD5 md5s[], size_t md5Count) {
+int fse_removeFeatures(MD5 *md5s, size_t md5Count) {
 	if (nullptr == md5s) {
-		fill_error_msg((NULL_POINTER + "md5s").c_str());
-		return -1;
+		return 0;
 	}
 	if (!valid_instance()) {
 		return -1;
 	}
 	int count = 0,result;
 	for (auto i = md5Count - 1; i >= 0; --i, count += result) {
-		result = fse_removeFeature(std::addressof(md5s[i]));
+		result = fse_removeFeature(md5s + i);
 		if (result < 0) {
 			return -1;
 		}
@@ -192,9 +191,8 @@ int fse_removeFeatures(MD5 md5s[], size_t md5Count) {
 	return count;
 }
 int fse_removeFeaturesByImgMD5(MD5 *imgMD5) {
-	if (nullptr == imgMD5) {
-		fill_error_msg((NULL_POINTER + "imgMD5").c_str());
-		return -1;
+	if (is_null_MD5(imgMD5)) {
+		return 0;
 	}
 	if (!valid_instance()) {
 		return -1;
