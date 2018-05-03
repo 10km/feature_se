@@ -22,11 +22,11 @@ typedef union _MD5{
 	uint32_t i[MD5_SIZE/sizeof(uint32_t)];
 	uint64_t l[MD5_SIZE/sizeof(uint64_t)];
 #ifdef __cplusplus
-	bool operator==(const _MD5 src)const noexcept{
-		return l[0]==src.l[0]&&l[1]==src.l[1];
+	bool operator==(const _MD5 &src)const noexcept{
+		return l[0] == src.l[0] && l[1] == src.l[1];
 	}
-	bool operator!=(const _MD5 src)const noexcept{
-		return l[0]!=src.l[0]||l[1]!=src.l[1];
+	bool operator!=(const _MD5 &src)const noexcept{
+		return l[0] != src.l[0] || l[1] != src.l[1];
 	}
 	bool is_null()const noexcept {
 		return 0 == l[0] && 0 == l[1];
