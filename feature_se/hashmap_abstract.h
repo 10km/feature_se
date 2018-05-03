@@ -46,7 +46,8 @@ public:
 		return HashTableAbstract<K, V,CONCURRENCY>::has(keyFrom(value));
 	}
 	const V* get(K& key)const noexcept {
-		return (V*) HashTableAbstract<K, V,CONCURRENCY>::findNode(key)->obj;
+		auto node = HashTableAbstract<K, V, CONCURRENCY>::findNode(key);
+		return nullptr == node ? nullptr : (V*) node->obj;
 	}
 };
 
