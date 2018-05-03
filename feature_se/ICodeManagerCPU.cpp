@@ -26,7 +26,8 @@ void ICodeManagerCPU::_release(){
 		std::call_once(oc, [] {  delete m_instance;m_instance=nullptr;});
 	}
 }
-void ICodeManagerCPU::init(uint32_t initCapacity, bool isCopy, float loadFactor, size_t overBlockCapacity) {
+
+void ICodeManagerCPU::init(HASH_TABLE_SIZE_TYPE initCapacity, bool isCopy, float loadFactor, size_t overBlockCapacity) {
 	static std::once_flag oc;
 	std::call_once(oc, [&] {  m_instance = new ICodeManagerCPU(initCapacity, isCopy, loadFactor, overBlockCapacity);});
 }
@@ -42,14 +43,14 @@ uint32_t ICodeManagerCPU::size()const noexcept{
 inline void ICodeManagerCPU::release() {
 	_release();
 }
-inline const code_bean& ICodeManagerCPU::addBean( code_bean& bean){
+inline const code_bean& ICodeManagerCPU::addBean(const code_bean& bean){
 	return m_maps[mapIndexOf(bean.id)].put(bean);
 }
 
-inline const code_bean* ICodeManagerCPU::getBean(MD5 &md5)const noexcept{
+inline const code_bean* ICodeManagerCPU::getBean(const MD5 &md5)const noexcept{
 	return m_maps[mapIndexOf(md5)].get(md5);
 }
-size_t ICodeManagerCPU::getBeansByImgMD5(MD5 &imgMD5,out_fun out)const{
+size_t ICodeManagerCPU::getBeansByImgMD5(const MD5 &imgMD5,out_fun out)const{
 	if(nullptr == out){
 		throw std::invalid_argument("the argument fun must not be nullptr");
 	}
@@ -67,10 +68,10 @@ size_t ICodeManagerCPU::getBeansByImgMD5(MD5 &imgMD5,out_fun out)const{
 	}
 	return count;
 }
-inline bool ICodeManagerCPU::removeBean(MD5 &md5){
+inline bool ICodeManagerCPU::removeBean(const MD5 &md5){
 	return m_maps[mapIndexOf(md5)].remove(md5);
 }
-HASH_TABLE_SIZE_TYPE ICodeManagerCPU::removeBeansByImgMD5(MD5 &imgMD5){
+HASH_TABLE_SIZE_TYPE ICodeManagerCPU::removeBeansByImgMD5(const MD5 &imgMD5){
 	std::vector< std::future<HASH_TABLE_SIZE_TYPE> > futures(m_maps.size());
 	// 向线程池加入任务，并行删除
 	for (auto i = futures.size(); i > 0; --i){

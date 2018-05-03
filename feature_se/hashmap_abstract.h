@@ -33,19 +33,19 @@ public:
 	 * 向表中插入一个value，返回为插入的对象指针(非复制模式下[isCopy==false],等于value),
 	 * value为nullptr则返回nullptr
 	 */
-	const V & put(V& value) {
+	const V & put(const V& value) {
 		return put(keyFrom(value), value);
 	}
-	bool remove(K &key) {
+	bool remove(const K &key) {
 		return HashTableAbstract<K, V,CONCURRENCY>::removeKey(key);
 	}
-	bool remove(V &value) {
+	bool remove(const V &value) {
 		return HashTableAbstract<K, V,CONCURRENCY>::removeValue(value);
 	}
-	bool hasValue(V &value)const noexcept {
+	bool hasValue(const V &value)const noexcept {
 		return HashTableAbstract<K, V,CONCURRENCY>::has(keyFrom(value));
 	}
-	const V* get(K& key)const noexcept {
+	const V* get(const K& key)const noexcept {
 		auto node = HashTableAbstract<K, V, CONCURRENCY>::findNode(key);
 		return nullptr == node ? nullptr : (V*) node->obj;
 	}

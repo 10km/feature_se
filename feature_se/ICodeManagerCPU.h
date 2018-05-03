@@ -48,11 +48,11 @@ public:
 	virtual void release();
 	virtual uint32_t size()const noexcept;
 	/* 向表中加入一个特征码对象code */
-	virtual const code_bean& addBean(code_bean& bean);
-	virtual const code_bean* getBean(MD5 &md5)const noexcept;
-	virtual size_t getBeansByImgMD5(MD5 &imgMD5,out_fun out)const;
-	virtual bool removeBean(MD5 &md5);
-	virtual HASH_TABLE_SIZE_TYPE removeBeansByImgMD5(MD5 &imgMD5);
+	virtual const code_bean& addBean(const code_bean& bean);
+	virtual const code_bean* getBean(const MD5 &md5)const noexcept;
+	virtual size_t getBeansByImgMD5(const MD5 &imgMD5,out_fun out)const;
+	virtual bool removeBean(const MD5 &md5);
+	virtual HASH_TABLE_SIZE_TYPE removeBeansByImgMD5(const MD5 &imgMD5);
 	virtual std::string statInfo();
 	virtual size_t searchCode(const face_code &code, double threshold, size_t rows, code_bean*out, const MD5Set *md5set=nullptr)const;
 	TopKCodeBean searchCode(const face_code &code, TopKCodeBean::cmp_type threshold, size_t rows, const MD5Set *imgMD5Filter=nullptr)const;

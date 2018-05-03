@@ -40,15 +40,15 @@ public:
 	/* 返回表中数据总数 */
 	virtual uint32_t size()const noexcept=0;
 	/* 向表中加入一个特征码对象code */
-	virtual const code_bean& addBean(code_bean& bean)=0;
+	virtual const code_bean& addBean(const code_bean& bean)=0;
 	/* 向表中获取一个特征码对象code */
-	virtual const code_bean* getBean(MD5 &md5)const noexcept=0;
+	virtual const code_bean* getBean(const MD5 &md5)const noexcept=0;
 	/* 返回所有属于校验码为imgMD5的图片的特征码对象数组 */
-	virtual size_t getBeansByImgMD5(MD5 &imgMD5,out_fun out)const=0;
+	virtual size_t getBeansByImgMD5(const MD5 &imgMD5,out_fun out)const=0;
 	/* 从表中删除一个特征码对象 */
-	virtual bool removeBean(MD5 &md5)=0;
+	virtual bool removeBean(const MD5 &md5)=0;
 	/* 从表中删除所有属于imgMD5的特征码对象 返回删除的记录数目 */
-	virtual uint32_t removeBeansByImgMD5(MD5 &imgMD5)=0;
+	virtual uint32_t removeBeansByImgMD5(const MD5 &imgMD5)=0;
 	/* 返回哈希表统计信息 */
 	virtual std::string statInfo()=0;
 	/* 通过特征码比对查找表中与code相似度大于阀值threshold(>0&&<=1.0)的前rows个code_bean,
@@ -56,8 +56,8 @@ public:
 	 * 返回结果数目,out中返回的搜索结果数组
 	 */
 	virtual size_t searchCode(const face_code &code, double threshold, size_t rows, code_bean*out, const MD5Set *md5set=nullptr) const=0;
-	inline bool removeBean(code_bean &bean) {return removeBean(bean.id);}
-	inline bool hasBean(MD5 &md5) const noexcept{return nullptr != getBean(md5);}
+	inline bool removeBean(const code_bean &bean) {return removeBean(bean.id);}
+	inline bool hasBean(const MD5 &md5) const noexcept{return nullptr != getBean(md5);}
 	inline bool empty(){return 0==size();}
 };
 

@@ -41,21 +41,21 @@ FSE_API int fse_searchCode(const face_code *code, double threshold, size_t rows,
  * out 结果输出,为null时出错
  * 返回 0没有找到,1找到,<0 出错
  */
-FSE_API int fse_getFeature(MD5 *md5, code_bean* out);
+FSE_API int fse_getFeature(const MD5 *md5, code_bean* out);
 /* 添加一组特征码到内存表
 * 正常返回添加的特征记录数,beans为null时返回0,< 0 出错
 */
-FSE_API int fse_addFeatures(code_bean *beans, size_t beanCount = 1);
+FSE_API int fse_addFeatures(const code_bean *beans, size_t beanCount = 1);
 
 /* 删除md5s指定的一组特征
 * 删除成功返回删除的记录数,< 0出错
 */
-FSE_API int fse_removeFeatures( MD5 *md5s, size_t md5Count = 1);
+FSE_API int fse_removeFeatures(const MD5 *md5s, size_t md5Count = 1);
 /* 根据图像imgMD5数组删除所有指定的记录
  * imgMD5s 特征码所在图像的MD5校验码数组
  * 返回返回删除的记录数,< 0 出错
  */
-FSE_API int fse_removeFeaturesByImgMD5(MD5 *imgMD5s, size_t md5Count = 1);
+FSE_API int fse_removeFeaturesByImgMD5(const MD5 *imgMD5s, size_t md5Count = 1);
 /* 返回内存表中元素个数 */
 FSE_API int fse_size();
 /* 返回哈希表统计信息字符串指针(当前线程有效,用于debug测试),出错返回nullptr */

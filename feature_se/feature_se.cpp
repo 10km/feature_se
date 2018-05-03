@@ -101,7 +101,7 @@ int fse_searchCode(const face_code *code, double threshold, size_t rows, code_be
 	}
 }
 
-int fse_getFeature(MD5 *md5, code_bean* out){
+int fse_getFeature(const MD5 *md5, code_bean* out){
 	if (is_null_MD5(md5)) {
 		return 0;
 	}
@@ -125,7 +125,7 @@ int fse_getFeature(MD5 *md5, code_bean* out){
 		return -1;
 	}
 }
-int fse_addFeatures(code_bean *beans, size_t beanCount) {
+int fse_addFeatures(const code_bean *beans, size_t beanCount) {
 	if (nullptr == beans) {
 		return 0;
 	}
@@ -148,7 +148,7 @@ int fse_addFeatures(code_bean *beans, size_t beanCount) {
 	return count;
 }
 
-int fse_removeFeatures(MD5 *md5s, size_t md5Count) {
+int fse_removeFeatures(const MD5 *md5s, size_t md5Count) {
 	if (nullptr == md5s) {
 		return 0;
 	}
@@ -172,7 +172,7 @@ int fse_removeFeatures(MD5 *md5s, size_t md5Count) {
 	return count;
 }
 
-int fse_removeFeaturesByImgMD5(MD5 *imgMD5s, size_t md5Count) {
+int fse_removeFeaturesByImgMD5(const MD5 *imgMD5s, size_t md5Count) {
 	if (nullptr == imgMD5s) {
 		return 0;
 	}
