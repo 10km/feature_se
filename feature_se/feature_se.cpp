@@ -25,7 +25,7 @@ static void fill_error_msg(const char* msg) {
 	}
 }
 // 将MD5数组转为MD5Set对象
-static MD5Set toMD5Set(const MD5 *md5Arrays, size_t md5Count) {
+static MD5Set toMD5Set(const MD5 md5Arrays[], size_t md5Count) {
 	MD5Set md5_set;
 	if(nullptr != md5Arrays){
 		for (auto i = md5Count; i > 0; --i) {
@@ -79,7 +79,7 @@ int fse_release() {
 	}
 }
 
-int fse_searchCode(const face_code *code, double threshold, size_t rows, code_bean*out, const MD5 *md5Arrays,size_t md5Count) {
+int fse_searchCode(const face_code *code, double threshold, size_t rows, code_bean out[], const MD5 imgMD5Array[], size_t md5Count) {
 	if (nullptr == code) {
 		fill_error_msg(NULL_POINTER + "code");
 		return -1;
@@ -92,7 +92,7 @@ int fse_searchCode(const face_code *code, double threshold, size_t rows, code_be
 		return -1;
 	}
 	try {
-		MD5Set md5_set = toMD5Set(md5Arrays, md5Count);
+		MD5Set md5_set = toMD5Set(imgMD5Array, md5Count);
 		return (int)instance->searchCode(*code, threshold, rows, out, std::addressof(md5_set));
 	}
 	catch (exception &e) {
@@ -125,7 +125,7 @@ int fse_getFeature(const MD5 *md5, code_bean* out){
 		return -1;
 	}
 }
-int fse_addFeatures(const code_bean *beans, size_t beanCount) {
+int fse_addFeatures(const code_bean beans[], size_t beanCount) {
 	if (nullptr == beans) {
 		return 0;
 	}
@@ -148,7 +148,7 @@ int fse_addFeatures(const code_bean *beans, size_t beanCount) {
 	return count;
 }
 
-int fse_removeFeatures(const MD5 *md5s, size_t md5Count) {
+int fse_removeFeatures(const MD5 md5s[], size_t md5Count) {
 	if (nullptr == md5s) {
 		return 0;
 	}
@@ -172,7 +172,7 @@ int fse_removeFeatures(const MD5 *md5s, size_t md5Count) {
 	return count;
 }
 
-int fse_removeFeaturesByImgMD5(const MD5 *imgMD5s, size_t md5Count) {
+int fse_removeFeaturesByImgMD5s(const MD5 imgMD5s[], size_t md5Count) {
 	if (nullptr == imgMD5s) {
 		return 0;
 	}
