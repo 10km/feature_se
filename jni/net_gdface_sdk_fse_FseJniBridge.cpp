@@ -100,7 +100,7 @@ JNIEXPORT jboolean JNICALL Java_net_gdface_sdk_fse_FseJniBridge_addFeature
 		auto bean = std::make_shared<code_bean>();
 		if(BeanUtilits::tocodeBean(*bean,featureId,feature,imgMD5)){
 			//BeanUtilits::output_bean(bean,"jni add ");
-			auto result = fse_addFeatures(bean.get());
+			auto result = fse_addFeature(bean.get());
 			if(1==result){
 				return JNI_TRUE;
 			}
@@ -124,7 +124,7 @@ JNIEXPORT jboolean JNICALL Java_net_gdface_sdk_fse_FseJniBridge_removeFeature
 	try {
 		MD5 md5;
 		if (BeanUtilits::jbytearraytoMD5(featureId, md5)) {
-			auto result = fse_removeFeatures(std::addressof(md5));
+			auto result = fse_removeFeature(std::addressof(md5));
 			switch (result) {
 			case 0: {
 				return JNI_FALSE;
