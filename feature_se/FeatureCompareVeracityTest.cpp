@@ -4,8 +4,10 @@
  *  Created on: 2016年1月7日
  *      Author: hadoop
  */
+
 #include <iostream>
 #include <type_traits>
+#include <regex>
 #include "feature_compare.h"
 #include "common_utilits.h"
 #include "sample_log.h"
@@ -20,29 +22,47 @@ inline face_code to_face_code(const string &hex){
 	return *reinterpret_cast<face_code*>(hex_to_bytes(hex).data());
 }
 
-int main() {
-	setlocale(LC_ALL,"");
-	std::wcout.imbue(std::locale(std::locale(), "", LC_CTYPE));
-	//args_print(std::cout, "www", 12);
-	SAMPLE_LOG("{},SM_LOG TEST:{}-->{}", "hello", 75L, (char*)nullptr);
+void test(const std::string&format) {
+	std::regex re{ "\\{\\}" };
+	std::smatch sm;
+	auto in = format;
+	size_t off = 0;
+	while (std::regex_search(in, sm, re)) {
+		off += sm.prefix().length();
+		std::cout << "found {} at " << off << std::endl;
+		in = sm.suffix();
+		off += sm.str().size();
+	}
+	//std::sregex_token_iterator bg(format.begin(), format.end(), re, -1);
+	//std::sregex_token_iterator ed();
 	
-	auto g_result1 = bs_split(std::string("hello,do you ;know the word?"), std::string("[\\s,;?]+"));
-	std::copy(g_result1.begin(), g_result1.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
-	auto g_result2 = bs_split(std::wstring(L"lao ban 老板,来份 小龙虾,快点啊!?"), std::wstring(L"[\\s,;?]+"));
-	std::copy(g_result2.begin(), g_result2.end(), std::ostream_iterator<std::wstring, std::wstring::value_type>(std::wcout, L"\n"));
+	//for (std::sregex_token_iterator bg(format.begin(), format.end(), re, -1),ed; ed != bg; ++bg) {
+	//	std::cout << bg->str() << std::endl;
+	//}
+
+}
+int main() {
+	//setlocale(LC_ALL,"");
+	std::wcout.imbue(std::locale(std::locale(), "", LC_CTYPE));
+	SAMPLE_LOG("", "hello",90);
+	//test("{} hello{}{}");
+	auto g_result1 = split(std::string("hello,do you ;know the word?"), std::string("[\\s,;?]+"));
+	std::copy(g_result1.begin(), g_result1.end(), std::ostream_iterator<std::string>(std::cout, "<->"));
+	auto g_result2 = split(std::wstring(L"lao ban 老板,来份 小龙虾,快点啊!?"), std::wstring(L"[\\s,;?]+"));
+	std::copy(g_result2.begin(), g_result2.end(), std::ostream_iterator<std::wstring, std::wstring::value_type>(std::wcout, L"<->"));
 
 	std::cout << "=============" << std::endl;
 
-	auto s_result = s_split("{}hello{}world{}", "\\{\\}");
-	args_print(std::cout, "size=", s_result.size(), "\n");
-	std::copy(s_result.begin(), s_result.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
+	auto s_result = split("{}hello{}world{}", "\\{\\}");
+	args_print(std::cout, "size=", s_result.size(), "<->");
+	std::copy(s_result.begin(), s_result.end(), std::ostream_iterator<std::string>(std::cout, "<->"));
 	std::cout << "=============" << std::endl;
-	auto c_result = c_split("hello,do you ;know the word?", "[\\s,;?]+");
-	std::copy(c_result.begin(), c_result.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
+	auto c_result = split("hello,do you ;know the word?", "[\\s,;?]+");
+	std::copy(c_result.begin(), c_result.end(), std::ostream_iterator<std::string>(std::cout, "<->"));
 	std::cout << "=============" << std::endl;
 
-	auto ws_result = ws_split(L"lao ban 老板,来份 小龙虾,快点啊!?", L"[\\s,;?]+");
-	std::copy(ws_result.begin(), ws_result.end(), std::ostream_iterator<std::wstring, std::wstring::value_type>(std::wcout, L"\n"));
+	auto ws_result = split(L"lao ban 老板,来份 小龙虾,快点啊!?", L"[\\s,;?]+");
+	std::copy(ws_result.begin(), ws_result.end(), std::ostream_iterator<std::wstring, std::wstring::value_type>(std::wcout, L"<->"));
 
 	//const char *hex_code1 = "f48cb1bf7d0958c0dcdb3a40ac589140bf0b813e34f45740fca3adbf4c3dd6bd2837154091b8b2bf9a4443bf6768b73f99ec483fa312873e6c7ea4bf458290bfef41cebe6bcb1f3e7b40a5bec8847ebfd091f9bf67a344bfc68343bd8e6b2f3e8aa7953f3c160d3f258c76bff0c41dbe6c327fbfa06c53bf93e8fabdc8221bbfb657d9bfef57183e47ca4ebcdff91e3e192c9ebf1b21813fdfeb95bf2e5a523e8557483e72442dbfb593a43e800c5dbe247609bfc8b5a1be728aac3ff319a83e34d959bfd92c933e47f7b5bd6c0b8dbf0229403f022b3a3e069d8f3f2a1513be6fb30e3f89d822bed9719f3f6370bfbe1d1b32be92db10bf7288233f8bf14d3f549f21bfa683983e0440c0bf5eb0323f0654b2bdbb13e7bfb02dc43d7bffe6be600e223fac2e18bf4031b4bf6409c73d8de28dbd2f519dbe51cac83f66328cbe48a4a13ed9d96bbf7d885cbf9f63c53eddf5763fb815583e0333573f49dc3d3e1d7566bfc021b83ed2506dbed43fe6bffb684a3e0c89933f9efebfbe25433bbf7230ef3db4d7b93f868539be8c8d883e90c265bceb83173ea5b9bbbfa43a6d3d0ab403be240b05bf3de240bf95cbb43d1c180d3e1b74b6be4df0d5beb831913e939c2c3e9eaa8e3eb87a423df73d3e3cea20e6bc0fad1ebf2fc45f3fa4c9a3be5658c93f0e3687bf8659913dc50e0d3fa335b03e91b7833e56d5ad3e054f283f563c493f0ce34a3f860367bfde6e813e73b2573f0c7b25be7683a9be4ea4cf3ec659243f995874bf6976043eaae9363f17b9263ffb7e8b3d133617be4873893e803bdebe270f35bf8a0d35bec542ad3e534b7e3f342636bf4555723fbb1f92bdddb09fbf5cc2d93dbb60603d9585713f2f5876be67e006becc6d53bfec4d3bbd76ac2dbf5f66a5bda73e93bf7e59933ef055f33e40981e3f95a977bea843913dbbc38fbe3d8095bff338b0be95edad3e5fb3dabed54041bc787b8b3ea396a43f00bc61bf4103dfbea39f08beaa3c413ef1876abf598c24bfea710fbf5daeb5be70ac12bff5cbbcbe8119f33e8cb7273f6c05dfbedd454fbf8c6d6a3ff346033fde1fc23d3a7dd93e0c73c33effa2263f197070bd94703cbecadb803eee316ebebcc167bf62c49dbed17e04bf0ca316be0a00cabd4633863d1bc700bfc2a42bbf77d5a83d783a63bd00e63f1e53a86340";
 	//const char *hex_code2 = "f9b10fc00712f4c000c31d405a5ba240d77c0bc0d6ed533f71f680c00048f03f855703c0653b1d3fcd2acdbfc11f6c3f10b0c7bfb7f2b1bfdcaa8abf068602c03dee02bf2de7b1be0ad18bbf6a39e0bf94a1bc3e671664c06884b7bffbb4e73f8b24a6bfdfe9e53d94e2d93e48b462402db4ba3fd6a1c63e4fab41bf750e10c01cb02840218bf53f1f43a2bfc9ea10bf53d960bfa6666e3f4f3c163ffc99623f908f42c059a719403817c1bfddc209c022b03d40cc2f0f3dc5b3b5bedb83cb3e695615c0368f873e068ebdbfe1fa37bf5fc261bf1b613540366227c08595f93d463682bf40f0833dad1ba7bf064f40c0106317bfcbd28dbf0b2c0c40925d7a3fb5be4640ae231340645f5fc054e4863f1c80febf064981bf13b5e6bfc3120cc0643a9fbfac3e9dbfb1a8c2be44293ac0b50ffdbf6eb9e93e214c67bf0d6f05405576b3bd0ad3154077521ebe74edb43f58209e3f1af0983ffe6d8abefd16d9bf8d299bbdd528294056d2ca3e518f95bf6f162e3f13606bbf5539b13f861f5bbf1b90ab3d7d29af3f1dd0e7beef210a3f2a2ce4bf92001440c490413f7d6629bf84cc53be327775bf4f8a683f23c14e3fab2fbdbfc70620bf5b00b1be9cb0e93fc9a654bd11751c3f595e10403ef8eb3e81678abf98a9373f3e228f3f29019e3f86a002c0cac3043fe0ae8abf0446c8bfddddc93fd2ea02bffa23b0bdc82ba2bf41328cbf9b4b8ebe6fa7494016ebfc3e879237bf7583ddbec40675bf8ccb0fbf958b1abf31cd0240d5ececbe3fa82c3f6083933f328223bfe17ad13ec6d2ff3f712ba63df7b16dc075698fbfbbe8913d06f2ed3fc8fe3c3f41e548bfce130dbfd44fafbd648eafbe41ca043de88b2e3f4148a7bff3c0b9bf4228413f6af98cbf182fddbebe53c93cdb6a0bbf134bbabe697934bf4965913e4e731bbf4606e03e973da33e77b0c43ead6d51bfe1d8bb3eba211ebf77bd0740446c373e12aaeebe3b6e9b3f6c83d0bfc07d90bfa99d613f763be2bfab35a3be5e23e13e91ecdabef2ea1340a2720d3f0062333ef28fb23dd70582bd2cce423f9d438ebe1daba0bfc375cc3e1ec61fc099391fbe0594bb3f85aba0bd51bd1ac001c21340a08890bf2e01513ebd4a953fcc8995bf2269823f839c0e40c4f86abfe97f7a3f196804bf830d4ac0ae7b54bf001876e198518040";

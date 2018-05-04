@@ -104,7 +104,7 @@ add_executable(fctest2 EXCLUDE_FROM_ALL FeatureCompareVeracityTest.cpp)
 
 target_link_libraries(fctest common_source)
 target_link_libraries(fctest2 common_source)
-
+target_compile_options(fctest2 PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/utf-8>)
 # ----------------------------------------------------------------------------
 set (fse_DEPENDENCY "find_dependency(Cassdk)")
 configure_package_config_file (${PROJECT_SOURCE_DIR}/cmake/config.cmake.in
