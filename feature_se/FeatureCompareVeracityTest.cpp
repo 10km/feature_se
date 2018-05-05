@@ -6,12 +6,10 @@
  */
 
 #include <iostream>
-#include <type_traits>
 #include <regex>
 #include "feature_compare.h"
 #include "common_utilits.h"
 #include "sample_log.h"
-#include "file_utilits.h"
 using namespace gdface;
 using namespace std;
 
@@ -22,29 +20,10 @@ inline face_code to_face_code(const string &hex){
 	return *reinterpret_cast<face_code*>(hex_to_bytes(hex).data());
 }
 
-void test(const std::string&format) {
-	std::regex re{ "\\{\\}" };
-	std::smatch sm;
-	auto in = format;
-	size_t off = 0;
-	while (std::regex_search(in, sm, re)) {
-		off += sm.prefix().length();
-		std::cout << "found {} at " << off << std::endl;
-		in = sm.suffix();
-		off += sm.str().size();
-	}
-	//std::sregex_token_iterator bg(format.begin(), format.end(), re, -1);
-	//std::sregex_token_iterator ed();
-	
-	//for (std::sregex_token_iterator bg(format.begin(), format.end(), re, -1),ed; ed != bg; ++bg) {
-	//	std::cout << bg->str() << std::endl;
-	//}
-
-}
 int main() {
-	//setlocale(LC_ALL,"");
+	//setlocale(LC_CTYPE,"");
 	std::wcout.imbue(std::locale(std::locale(), "", LC_CTYPE));
-	SAMPLE_LOG("", "hello",90);
+	SAMPLE_LOG(std::string("{}TEST{}"), std::string( "hello"));
 	//test("{} hello{}{}");
 	auto g_result1 = split(std::string("hello,do you ;know the word?"), std::string("[\\s,;?]+"));
 	std::copy(g_result1.begin(), g_result1.end(), std::ostream_iterator<std::string>(std::cout, "<->"));
@@ -54,7 +33,6 @@ int main() {
 	std::cout << "=============" << std::endl;
 
 	auto s_result = split("{}hello{}world{}", "\\{\\}");
-	args_print(std::cout, "size=", s_result.size(), "<->");
 	std::copy(s_result.begin(), s_result.end(), std::ostream_iterator<std::string>(std::cout, "<->"));
 	std::cout << "=============" << std::endl;
 	auto c_result = split("hello,do you ;know the word?", "[\\s,;?]+");
