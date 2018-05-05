@@ -23,7 +23,10 @@ inline face_code to_face_code(const string &hex){
 int main() {
 	//setlocale(LC_CTYPE,"");
 	std::wcout.imbue(std::locale(std::locale(), "", LC_CTYPE));
-	SAMPLE_LOG(std::string("{}TEST{}"), std::string( "hello"));
+	SAMPLE_LOG("{}TEST{}", "hello",0.7);
+	std::wcout << gdface::tolower(std::wstring(L"字符串转小写TEST HELLO WORD 测试")) << std::endl;
+	std::wcout << gdface::toupper(std::wstring(L"字符串转大写test hello word 测试")) << std::endl;
+
 	//test("{} hello{}{}");
 	auto g_result1 = split(std::string("hello,do you ;know the word?"), std::string("[\\s,;?]+"));
 	std::copy(g_result1.begin(), g_result1.end(), std::ostream_iterator<std::string>(std::cout, "<->"));
