@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <regex>
+#include <codecvt>
 #include "feature_compare.h"
 #include "common_utilits.h"
 #include "sample_log.h"
@@ -19,15 +20,30 @@ inline face_code to_face_code(const char*hex){
 inline face_code to_face_code(const string &hex){
 	return *reinterpret_cast<face_code*>(hex_to_bytes(hex).data());
 }
+std::wstring to_wide_string(const std::string& input)
+{
+	std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+	return converter.from_bytes(input);
+}
+std::string to_byte_string(const std::wstring& input)
+{
+	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+	//std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+	return converter.to_bytes(input);
+}
 
 int main() {
-	//setlocale(LC_CTYPE,"");
+	//setlocale(LC_ALL, "zh_CN.UTF-8");
+	//locale lc("zh_CN.UTF-8");
 	std::wcout.imbue(std::locale(std::locale(), "", LC_CTYPE));
-	SAMPLE_LOG("{}TEST{}", "hello",0.7);
+	//std::cout.imbue(std::locale(std::locale(), "", LC_CTYPE));
+	const char * p = "hello pointer";
+	SAMPLE_LOG("{}TEST{} {}", "hello",0.7,p);
 	std::wcout << gdface::tolower(std::wstring(L"字符串转小写TEST HELLO WORD 测试")) << std::endl;
 	std::wcout << gdface::toupper(std::wstring(L"字符串转大写test hello word 测试")) << std::endl;
-
-	//test("{} hello{}{}");
+	std::wcout << to_wide_string("string到wstring转换测试") << std::endl;
+	std::cout << to_byte_string(L"wstring到string转换测试") << std::endl;
+	std::cout << "sizeof(wchar_t)(字节):" << sizeof(wchar_t) << std::endl;
 	auto g_result1 = split(std::string("hello,do you ;know the word?"), std::string("[\\s,;?]+"));
 	std::copy(g_result1.begin(), g_result1.end(), std::ostream_iterator<std::string>(std::cout, "<->"));
 	auto g_result2 = split(std::wstring(L"lao ban 老板,来份 小龙虾,快点啊!?"), std::wstring(L"[\\s,;?]+"));
