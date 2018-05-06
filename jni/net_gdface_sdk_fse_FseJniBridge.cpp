@@ -9,6 +9,7 @@
 #include "BeanUtilits.h"
 #include "feature_se.h"
 #include "JNIContext.h"
+#include "sample_log.h"
 using namespace gdface;
 using namespace std;
 // JNI 上下文对象全局指针
@@ -31,7 +32,7 @@ JNIEXPORT void JNICALL Java_net_gdface_sdk_fse_FseJniBridge_init
 
 JNIEXPORT void JNICALL Java_net_gdface_sdk_fse_FseJniBridge_release
   (JNIEnv *, jclass){
-	std::cout << "feature_se jni release..." << std::endl;
+	SAMPLE_OUT("feature_se jni release...");
 	delete context;
 	auto result = fse_release();
 	if (result < 0) {

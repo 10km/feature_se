@@ -7,6 +7,7 @@
 #include <iostream>
 #include "feature_se.h"
 #include "CodeManagerFactory.h"
+#include "sample_log.h"
 using namespace gdface;
 // 搜索引擎对象，需要调用初始化函数初始化才有效
 static ICodeManager* instance = nullptr;
@@ -52,8 +53,9 @@ int fse_init(uint32_t initCapacity, float loadFactor, size_t overBlockCapacity){
 	// 初始化表对象
 	try {
 		if(nullptr == instance){
-			cout << "feature_se jni initialized:" << endl;
-			cout << "initCapacity:" << initCapacity << ";loadFactor:" << loadFactor << ";overBlockCapacity:" << overBlockCapacity << endl;
+			SAMPLE_OUT(L"feature_se jni initialized:\ninitCapacity:{};loadFactor:{};overBlockCapacity:{}", 
+				initCapacity, loadFactor, overBlockCapacity);
+
 			instance = CodeManagerFactory::getICodeManagerCPU(initCapacity, true, loadFactor, overBlockCapacity);
 		}
 		return 0;
@@ -67,7 +69,7 @@ int fse_release() {
 	if (!valid_instance()) {
 		return -1;
 	}
-	std::cout << "ICodeManager instance release" << std::endl;
+	SAMPLE_OUT("ICodeManager instance release");
 	try {
 		instance->release();
 		instance = nullptr;
