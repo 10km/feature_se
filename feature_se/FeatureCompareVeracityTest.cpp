@@ -8,17 +8,11 @@
 #include <iostream>
 #include <regex>
 #include <locale>
-#include <codecvt>
 #include "feature_compare.h"
 #include "common_utilits.h"
 #include "sample_log.h"
 using namespace gdface;
 using namespace std;
-#if (!_DLL) && (_MSC_VER >= 1900 /* VS 2015*/) && (_MSC_VER <= 1911 /* VS 2017 */)
-//std::locale::id std::codecvt<char16_t, char, _Mbstatet>::id;
-std::locale::id std::codecvt<char32_t, char, _Mbstatet>::id;
-
-#endif
 
 inline face_code to_face_code(const char*hex){
 	return *reinterpret_cast<face_code*>(hex_to_bytes(hex).data());
@@ -26,17 +20,6 @@ inline face_code to_face_code(const char*hex){
 inline face_code to_face_code(const string &hex){
 	return *reinterpret_cast<face_code*>(hex_to_bytes(hex).data());
 }
-//std::wstring to_wide_string(const std::string& input)
-//{
-//	std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-//	return converter.from_bytes(input);
-//}
-//std::string to_byte_string(const std::wstring& input)
-//{
-//	//std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-//	std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-//	return converter.to_bytes(input);
-//}
 
 int main() {
 //	setlocale(LC_CTYPE, "");
@@ -49,14 +32,19 @@ int main() {
 
 	const wchar_t * p = L"[char pointer汉字]";
 	SAMPLE_OUT("{}TEST宽字符集输出测试{} {}", "hello",0.7,p);
+
 	std::wcout << gdface::tolower(std::wstring(L"字符串转小写TEST HELLO WORD 测试")) << std::endl;
 	std::wcout << gdface::toupper(std::wstring(L"字符串转大写test hello word 测试")) << std::endl;
+
 	std::wcout << to_wide_string("string到wstring转换测试") << std::endl;
 	std::cout << to_byte_string(L"wstring到string转换测试") << std::endl;
-	std::cout << "sizeof(wchar_t)(字节):" << sizeof(wchar_t) << std::endl;
+
 	auto g_result1 = split(std::string("hello,do you ;know the word?"), std::string("[\\s,;?]+"));
 	std::copy(g_result1.begin(), g_result1.end(), std::ostream_iterator<std::string>(std::cout, "<->"));
-	auto g_result2 = split(std::wstring(L"lao ban 老板,来份 小龙虾,快点啊!?"), std::wstring(L"[\\s,;?]+"));
+
+	std::cout << "=============" << std::endl;
+
+	auto g_result2 = split(std::wstring(L"lao ban 老板，来份，小龙虾，快点啊！？"), std::wstring(L"[\\s，？！]+"));
 	std::copy(g_result2.begin(), g_result2.end(), std::ostream_iterator<std::wstring, std::wstring::value_type>(std::wcout, L"<->"));
 
 	std::cout << "=============" << std::endl;
@@ -68,7 +56,7 @@ int main() {
 	std::copy(c_result.begin(), c_result.end(), std::ostream_iterator<std::string>(std::cout, "<->"));
 	std::cout << "=============" << std::endl;
 
-	auto ws_result = split(L"lao ban 老板,来份 小龙虾,快点啊!?", L"[\\s,;?]+");
+	auto ws_result = split(L"lao ban 老板，来份，小龙虾，快点啊！？", L"[\\s，？！]+");
 	std::copy(ws_result.begin(), ws_result.end(), std::ostream_iterator<std::wstring, std::wstring::value_type>(std::wcout, L"<->"));
 
 	//const char *hex_code1 = "f48cb1bf7d0958c0dcdb3a40ac589140bf0b813e34f45740fca3adbf4c3dd6bd2837154091b8b2bf9a4443bf6768b73f99ec483fa312873e6c7ea4bf458290bfef41cebe6bcb1f3e7b40a5bec8847ebfd091f9bf67a344bfc68343bd8e6b2f3e8aa7953f3c160d3f258c76bff0c41dbe6c327fbfa06c53bf93e8fabdc8221bbfb657d9bfef57183e47ca4ebcdff91e3e192c9ebf1b21813fdfeb95bf2e5a523e8557483e72442dbfb593a43e800c5dbe247609bfc8b5a1be728aac3ff319a83e34d959bfd92c933e47f7b5bd6c0b8dbf0229403f022b3a3e069d8f3f2a1513be6fb30e3f89d822bed9719f3f6370bfbe1d1b32be92db10bf7288233f8bf14d3f549f21bfa683983e0440c0bf5eb0323f0654b2bdbb13e7bfb02dc43d7bffe6be600e223fac2e18bf4031b4bf6409c73d8de28dbd2f519dbe51cac83f66328cbe48a4a13ed9d96bbf7d885cbf9f63c53eddf5763fb815583e0333573f49dc3d3e1d7566bfc021b83ed2506dbed43fe6bffb684a3e0c89933f9efebfbe25433bbf7230ef3db4d7b93f868539be8c8d883e90c265bceb83173ea5b9bbbfa43a6d3d0ab403be240b05bf3de240bf95cbb43d1c180d3e1b74b6be4df0d5beb831913e939c2c3e9eaa8e3eb87a423df73d3e3cea20e6bc0fad1ebf2fc45f3fa4c9a3be5658c93f0e3687bf8659913dc50e0d3fa335b03e91b7833e56d5ad3e054f283f563c493f0ce34a3f860367bfde6e813e73b2573f0c7b25be7683a9be4ea4cf3ec659243f995874bf6976043eaae9363f17b9263ffb7e8b3d133617be4873893e803bdebe270f35bf8a0d35bec542ad3e534b7e3f342636bf4555723fbb1f92bdddb09fbf5cc2d93dbb60603d9585713f2f5876be67e006becc6d53bfec4d3bbd76ac2dbf5f66a5bda73e93bf7e59933ef055f33e40981e3f95a977bea843913dbbc38fbe3d8095bff338b0be95edad3e5fb3dabed54041bc787b8b3ea396a43f00bc61bf4103dfbea39f08beaa3c413ef1876abf598c24bfea710fbf5daeb5be70ac12bff5cbbcbe8119f33e8cb7273f6c05dfbedd454fbf8c6d6a3ff346033fde1fc23d3a7dd93e0c73c33effa2263f197070bd94703cbecadb803eee316ebebcc167bf62c49dbed17e04bf0ca316be0a00cabd4633863d1bc700bfc2a42bbf77d5a83d783a63bd00e63f1e53a86340";
