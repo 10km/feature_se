@@ -30,8 +30,16 @@ int main() {
 	//std::wcout.imbue(std::locale(std::locale(), "", LC_CTYPE));
 	//std::cout.imbue(std::locale(std::locale(), "", LC_CTYPE));
 
-	const wchar_t * p = L"[char pointer汉字]";
-	SAMPLE_OUT("{}TEST宽字符集输出测试{} {}", "hello",0.7,p);
+	const wchar_t * wcp = L"[char pointer汉字]";
+	double pi = 3.14159265358979323846;
+	// string,wstring,pointer,number类型测试
+	SAMPLE_OUT("{}std::wcout输出测试 wchar_t*:{} pointer = {} double:{} chinese char*:{}", "hello,", wcp, &pi, pi,"error程序猿");
+	// 当输入参数多于{} 占位符时，多余的参数不显示
+	SAMPLE_OUT("{}std::wcout输出测试 wchar_t*:{} ", "hello,", wcp, &pi, pi);
+	// 当输入参数少于{} 占位符时，显示多余的占位符
+	SAMPLE_OUT("{}std::wcout输出测试 wchar_t*:{} pointer = {} double:{} chinese char*:{}", "hello,", wcp);
+	SAMPLE_OUT("ERROR: {}", "std::wcerr输出测试");
+	SAMPLE_LOG("LOG: {}", "std::wclog输出测试");
 
 	std::wcout << gdface::tolower(std::wstring(L"字符串转小写TEST HELLO WORD 测试")) << std::endl;
 	std::wcout << gdface::toupper(std::wstring(L"字符串转大写test hello word 测试")) << std::endl;
