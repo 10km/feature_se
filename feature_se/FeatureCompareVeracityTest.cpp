@@ -7,12 +7,18 @@
 
 #include <iostream>
 #include <regex>
+#include <locale>
 #include <codecvt>
 #include "feature_compare.h"
 #include "common_utilits.h"
 #include "sample_log.h"
 using namespace gdface;
 using namespace std;
+#if (!_DLL) && (_MSC_VER >= 1900 /* VS 2015*/) && (_MSC_VER <= 1911 /* VS 2017 */)
+//std::locale::id std::codecvt<char16_t, char, _Mbstatet>::id;
+std::locale::id std::codecvt<char32_t, char, _Mbstatet>::id;
+
+#endif
 
 inline face_code to_face_code(const char*hex){
 	return *reinterpret_cast<face_code*>(hex_to_bytes(hex).data());
@@ -20,25 +26,29 @@ inline face_code to_face_code(const char*hex){
 inline face_code to_face_code(const string &hex){
 	return *reinterpret_cast<face_code*>(hex_to_bytes(hex).data());
 }
-std::wstring to_wide_string(const std::string& input)
-{
-	std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-	return converter.from_bytes(input);
-}
-std::string to_byte_string(const std::wstring& input)
-{
-	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-	//std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-	return converter.to_bytes(input);
-}
+//std::wstring to_wide_string(const std::string& input)
+//{
+//	std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+//	return converter.from_bytes(input);
+//}
+//std::string to_byte_string(const std::wstring& input)
+//{
+//	//std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+//	std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+//	return converter.to_bytes(input);
+//}
 
 int main() {
-	//setlocale(LC_ALL, "zh_CN.UTF-8");
+//	setlocale(LC_CTYPE, "");
+	//std::locale::global(std::locale(""));
+
 	//locale lc("zh_CN.UTF-8");
-	std::wcout.imbue(std::locale(std::locale(), "", LC_CTYPE));
+
+	//std::wcout.imbue(std::locale(std::locale(), "", LC_CTYPE));
 	//std::cout.imbue(std::locale(std::locale(), "", LC_CTYPE));
-	const char * p = "hello pointer";
-	SAMPLE_LOG("{}TEST{} {}", "hello",0.7,p);
+
+	const wchar_t * p = L"[char pointer汉字]";
+	SAMPLE_OUT("{}TEST宽字符集输出测试{} {}", "hello",0.7,p);
 	std::wcout << gdface::tolower(std::wstring(L"字符串转小写TEST HELLO WORD 测试")) << std::endl;
 	std::wcout << gdface::toupper(std::wstring(L"字符串转大写test hello word 测试")) << std::endl;
 	std::wcout << to_wide_string("string到wstring转换测试") << std::endl;
