@@ -1,2 +1,0 @@
-call build_glog_msvc DEBUG
-call build_glog_msvc RELEASE

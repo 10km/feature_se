@@ -1,2 +1,0 @@
-call build_gflags_msvc DEBUG
-call build_gflags_msvc RELEASE
