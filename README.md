@@ -126,4 +126,4 @@ cmake脚本中引用feature_se库的完整示例参见 [test/CMakeLists.txt](tes
 完整脚本参见 [test/make_msvc_project.bat](test/make_msvc_project.bat)
  
 生成unix Makefile过程参见：
-[test/make_unix_makefile.sh](test/make_unix_makefile.sh)
+[test/make_gcc_project.sh](test/make_gcc_project.sh)
