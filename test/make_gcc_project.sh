@@ -23,9 +23,9 @@ pushd $sh_folder/..
 
 [ -d $folder_name.prj ] && rm -fr $folder_name.prj
 mkdir $folder_name.prj
-
 pushd $folder_name.prj
-cmake "$sh_folder" $GXX_PATH -G "Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=$build_type 
+cmake "$sh_folder" $GXX_PATH -G "Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=$build_type \
+	-DCMAKE_MODULE_PATH=$sh_folder/../cmake/Modules \
+	-DFSE_ROOT_DIR=$sh_folder/../release/fse_linux_x86_64
 popd
-
 popd

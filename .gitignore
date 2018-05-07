@@ -51,3 +51,4 @@ install_manifest.txt
 project.vs2015/
 .project
 .cproject
+/test.prj/
