@@ -103,7 +103,7 @@ add_executable(fctest  EXCLUDE_FROM_ALL FeatureCompareSpeedTest.cpp)
 add_executable(fctest2 EXCLUDE_FROM_ALL FeatureCompareVeracityTest.cpp)
 
 target_link_libraries(fctest common_source)
-target_link_libraries(fctest2 common_source)
+target_link_libraries(fctest2 common_source $<$<CXX_COMPILER_ID:GNU>:-lpthread>)
 target_compile_options(fctest2 PRIVATE $<$<CXX_COMPILER_ID:MSVC>:/utf-8>)
 # ----------------------------------------------------------------------------
 set (fse_DEPENDENCY "find_dependency(Cassdk)")
