@@ -14,12 +14,9 @@ set(SOURCE_FILES
 # CASSDK版本的JNI接口
 add_library(fse_cas_jni SHARED ${SOURCE_FILES})
 link_static_libstdcxx_if_linux(fse_cas_jni)
-# 加入依赖库
-if(CMAKE_COMPILER_IS_GNUCXX)
-  target_link_libraries(fse_cas_jni fse_cas_static)  
-else()
-  target_link_libraries(fse_cas_jni fse_cas_static_mt)
-endif()
+# 加入依赖库 MSVC编译时使用/MT静态库
+target_link_libraries(fse_cas_jni fse_cas_static$<$<CXX_COMPILER_ID:MSVC>:_mt>)
+
 target_include_directories (fse_cas_jni	PRIVATE ${DEPENDENT_SOURCE_DIR})
 #############设置动态库版本号###################
 set_target_properties(fse_cas_jni PROPERTIES  VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR} DEBUG_POSTFIX _d)
