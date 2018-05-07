@@ -50,9 +50,7 @@ FSE_API int fse_addFeatures(const code_bean beans[], size_t beanCount);
 /* 添加一条特征码到内存表,bean为null返回0
  * 正常返回1,< 0 出错
  */
-inline int fse_addFeature(const code_bean* bean) {
-	return fse_addFeatures(bean, 1);
-}
+FSE_API int fse_addFeature(const code_bean* bean);
 /* 删除md5s指定的一组特征,md5s为null返回0
  * 删除成功返回删除的记录数,< 0出错
  */
@@ -60,9 +58,7 @@ FSE_API int fse_removeFeatures(const MD5 md5s[], size_t md5Count);
 /* 删除md5指定的特征,md5为null返回0
  * 删除成功返回1,失败返回0,< 0出错
  */
-inline int fse_removeFeature(MD5 *md5) {
-	return fse_removeFeatures(md5, 1);
-}
+FSE_API int fse_removeFeature(MD5 *md5);
 /* 根据图像imgMD5数组删除所有指定的记录
  * imgMD5s 特征码所在图像的MD5校验码数组,为null返回0
  * 返回返回删除的记录数,< 0 出错
@@ -72,10 +68,7 @@ FSE_API int fse_removeFeaturesByImgMD5s(const MD5 imgMD5s[], size_t md5Count);
  * imgMD5 特征码所在图像的MD5校验码
  * 返回返回删除的记录数,< 0 出错
  */
-inline int fse_removeFeaturesByImgMD5(const MD5 *imgMD5) {
-	return fse_removeFeaturesByImgMD5s(imgMD5, 1);
-}
-
+FSE_API int fse_removeFeaturesByImgMD5(const MD5 *imgMD5);
 /* 返回内存表中元素个数 */
 FSE_API int fse_size();
 /* 返回哈希表统计信息字符串指针(当前线程有效,用于debug测试),出错返回null */

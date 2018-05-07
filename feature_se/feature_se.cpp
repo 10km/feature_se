@@ -149,7 +149,9 @@ int fse_addFeatures(const code_bean beans[], size_t beanCount) {
 	}
 	return count;
 }
-
+int fse_addFeature(const code_bean* bean) {
+	return fse_addFeatures(bean, 1);
+}
 int fse_removeFeatures(const MD5 md5s[], size_t md5Count) {
 	if (nullptr == md5s) {
 		return 0;
@@ -173,7 +175,9 @@ int fse_removeFeatures(const MD5 md5s[], size_t md5Count) {
 	}
 	return count;
 }
-
+int fse_removeFeature(MD5 *md5) {
+	return fse_removeFeatures(md5, 1);
+}
 int fse_removeFeaturesByImgMD5s(const MD5 imgMD5s[], size_t md5Count) {
 	if (nullptr == imgMD5s) {
 		return 0;
@@ -194,6 +198,9 @@ int fse_removeFeaturesByImgMD5s(const MD5 imgMD5s[], size_t md5Count) {
 		fill_error_msg(e.what());
 		return -1;
 	}
+}
+int fse_removeFeaturesByImgMD5(const MD5 *imgMD5) {
+	return fse_removeFeaturesByImgMD5s(imgMD5, 1);
 }
 
 int fse_size() {
