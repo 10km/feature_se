@@ -1,4 +1,4 @@
-echo on
+echo off
 rem Android NDK 交叉编译脚本,创建Makefile
 rem author guyadong
 
