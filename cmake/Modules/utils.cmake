@@ -9,12 +9,12 @@ macro (bool_to_int VAR)
     set (${VAR} 0)
   endif ()
 endmacro ()
-## ¶Ô¸ø¶¨µÄlibrary_name,ÔÚlib_dirÖĞ²éÕÒÖ¸¶¨ÀàĞÍ(library_type)µÄ¿â(library_type²»¿É°üº¬¿Õ¸ñ)£¬
-## ¶¨ÒåÎª{library_name}(´óĞ´)${library_type} È«¾Ö±äÁ¿
+## å¯¹ç»™å®šçš„library_name,åœ¨lib_dirä¸­æŸ¥æ‰¾æŒ‡å®šç±»å‹(library_type)çš„åº“(library_typeä¸å¯åŒ…å«ç©ºæ ¼)ï¼Œ
+## å®šä¹‰ä¸º{library_name}(å¤§å†™)${library_type} å…¨å±€å˜é‡
 function(defineLibraryVariable library_name library_type lib_dir )
-  ##¼ÆËã${library_name}µÄ¾²Ì¬¿âÃû
+  ##è®¡ç®—${library_name}çš„é™æ€åº“å
   string(TOUPPER ${library_name} var_project_name)
-  ##²éÕÒ${library_name}µÄ¿â
+  ##æŸ¥æ‰¾${library_name}çš„åº“
   string(REPLACE _ " " doc_str "${library_name} ${library_type}")
   string(TOLOWER ${doc_str} doc_str)
   set (lib_var_name ${var_project_name}${library_type})
@@ -98,7 +98,7 @@ endif()
 endfunction()
 
 function (link_static_libstdcxx_if_linux target )
-############linuxÏÂ¾²Ì¬Á´½Óc++¿â###################
+############linuxä¸‹é™æ€é“¾æ¥c++åº“###################
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
   fatal_if_not_target(${target})
   get_target_property(_type ${target} TYPE)
@@ -135,7 +135,7 @@ if(MSVC)
   endif()
   get_target_property(_type ${target} TYPE)
   if(_type STREQUAL "STATIC_LIBRARY")
-    # ¾²Ì¬¿â½«/MTÑ¡Ïî¼ÓÈëINTERFACE_COMPILE_OPTIONS
+    # é™æ€åº“å°†/MTé€‰é¡¹åŠ å…¥INTERFACE_COMPILE_OPTIONS
     target_compile_options( ${target} PUBLIC "${_options}")
   else()
     target_compile_options( ${target} PRIVATE "${_options}")
@@ -161,7 +161,7 @@ function(with_mt_if_msvc_for_all)
   endforeach()  
 endfunction()
 
-# ¶ÔexecuteableºÍshared library targetÓĞĞ§
+# å¯¹executeableå’Œshared library targetæœ‰æ•ˆ
 function (use_static_library target )
 fatal_if_not_target(${target})
 get_target_property(_type ${target} TYPE)
@@ -175,7 +175,7 @@ unset(_type)
 endfunction()
 
 function(cxx11_support)
-#ÅĞ¶Ï±àÒëÆ÷ÀàĞÍ,Èç¹ûÊÇgcc±àÒëÆ÷,ÔòÔÚ±àÒëÑ¡ÏîÖĞ¼ÓÈëc++11Ö§³Ö
+#åˆ¤æ–­ç¼–è¯‘å™¨ç±»å‹,å¦‚æœæ˜¯gccç¼–è¯‘å™¨,åˆ™åœ¨ç¼–è¯‘é€‰é¡¹ä¸­åŠ å…¥c++11æ”¯æŒ
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")     
   set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}" PARENT_SCOPE)
   message(STATUS "optional:-std=c++11")
@@ -183,8 +183,8 @@ endif()
 endfunction()
 
 
-##############¸ù¾İ±àÒëÌõ¼ş¶¨Òåproject_name °²×°ÎÄ¼ş¼ĞÃû##############
-#¶¨Òå±äÁ¿<project_name>_folder
+##############æ ¹æ®ç¼–è¯‘æ¡ä»¶å®šä¹‰project_name å®‰è£…æ–‡ä»¶å¤¹å##############
+#å®šä¹‰å˜é‡<project_name>_folder
 function(define_project_folder_name project_name with_static_crt)
 if(NOT project_name)
 	message(FATAL_ERROR "INVALID ARGUMENT :project_name")
