@@ -3,12 +3,11 @@ cmake_minimum_required (VERSION 2.6)
 # functionality or the AWT library.
 set(JAVA_AWT_LIBRARY NotNeeded)
 set(JAVA_JVM_LIBRARY NotNeeded)
-set(JAVA_INCLUDE_PATH2 NotNeeded)
 set(JAVA_AWT_INCLUDE_PATH NotNeeded)
 find_package(JNI REQUIRED)
 # 加入jni支持
 include_directories(${JAVA_INCLUDE_PATH})
-#include_directories(${JAVA_INCLUDE_PATH2})
+include_directories(${JAVA_INCLUDE_PATH2})
 
 include_directories("${PROJECT_SOURCE_DIR}/feature_se")
 #设置变量，表示所有的源文件列表  
