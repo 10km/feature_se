@@ -3,11 +3,18 @@ cmake_minimum_required (VERSION 2.6)
 # functionality or the AWT library.
 set(JAVA_AWT_LIBRARY NotNeeded)
 set(JAVA_JVM_LIBRARY NotNeeded)
+if(CMAKE_SYSTEM_NAME STREQUAL "Android")
+	# android 平台没有jni_md.h
+	set(JAVA_INCLUDE_PATH2 NotNeeded)
+endif()
+
 set(JAVA_AWT_INCLUDE_PATH NotNeeded)
 find_package(JNI REQUIRED)
 # 加入jni支持
 include_directories(${JAVA_INCLUDE_PATH})
-include_directories(${JAVA_INCLUDE_PATH2})
+if(NOT CMAKE_SYSTEM_NAME STREQUAL "Android")
+	include_directories(${JAVA_INCLUDE_PATH2})
+endif()
 
 include_directories("${PROJECT_SOURCE_DIR}/feature_se")
 #设置变量，表示所有的源文件列表  
