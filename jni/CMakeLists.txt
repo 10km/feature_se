@@ -10,6 +10,8 @@ endif()
 
 set(JAVA_AWT_INCLUDE_PATH NotNeeded)
 find_package(JNI REQUIRED)
+message(STATUS JAVA_INCLUDE_PATH=${JAVA_INCLUDE_PATH})
+
 # 加入jni支持
 include_directories(${JAVA_INCLUDE_PATH})
 if(NOT CMAKE_SYSTEM_NAME STREQUAL "Android")
