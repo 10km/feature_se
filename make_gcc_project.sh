@@ -1,15 +1,4 @@
 #!/bin/bash
-GXX_PATH=
-if [ `/usr/bin/g++ -dumpversion` != "5.2.0" ]
-then
-	if [ `/usr/local/bin/g++ -dumpversion` = "5.2.0" ]
-	then
-		GXX_PATH="-DCMAKE_CXX_COMPILER:FILEPATH=/usr/local/bin/g++ -DCMAKE_C_COMPILER:FILEPATH=/usr/local/bin/gcc"
-	else
-		echo "g++ compiler required version 5.2.0"
-		exit -1
-	fi
-fi
 
 sh_folder=$(dirname $(readlink -f $0))
 folder_name=$(basename $sh_folder) 
@@ -25,7 +14,7 @@ pushd $sh_folder/..
 mkdir $folder_name.prj
 
 pushd $folder_name.prj
-cmake "$sh_folder" $GXX_PATH -G "Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=$build_type \
+cmake "$sh_folder" -G "Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=$build_type \
 	-DCMAKE_INSTALL_PREFIX=$sh_folder/release/fse_linux_x86_64
 popd
 
