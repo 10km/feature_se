@@ -300,7 +300,7 @@ private:
 		return {bkt,nullptr == m_table.nodes[bkt].obj ? nullptr : findInBucket(key, bkt)};
 	}
 	/* (无锁)根据key向表中插入一个value，返回插入后所在节点指针 */
-	auto inline _insert(const K &key, const V &value)noexcept->decltype(_insertNode(declval<HashNode>(),true)) {
+	inline HashNode& _insert(const K &key, const V &value)noexcept {
 		// 表大小超过重建阀值时则将表容量增加一倍重建哈希表
 		if (m_table.size > m_threshold) {
 			resize(m_table.capacity << 1);

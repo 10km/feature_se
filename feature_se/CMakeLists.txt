@@ -11,7 +11,12 @@ if(WIN32 AND NOT CYGWIN)
 else()
   set (CONFIG_INSTALL_DIR  ${LIBRARY_INSTALL_DIR}/cmake/fse)
 endif()
-find_package(Cassdk REQUIRED)
+if(EXT_SDK_TYPE STREQUAL "CASSDK")
+	find_package(Cassdk REQUIRED)
+elseif(EXT_SDK_TYPE STREQUAL "DEFAULT")
+else()
+	message(STATUS "unsupported operation")
+endif()
 # 定义所有的源文件列表  
 set(_SOURCE_FILES
     OverTableManager.cpp
@@ -65,11 +70,11 @@ endif()
 target_include_directories (${target} 
 	INTERFACE "$<INSTALL_INTERFACE:include>"
 	)
-# 加入CASSDK 版本定义,编译库时必须加FSE_EXPORTS定义
+# 编译库时必须加FSE_EXPORTS定义
 target_compile_definitions (${target} 
 	PRIVATE FSE_EXPORTS
 	PUBLIC FSE_IS_A_DLL=${_is_shared_str}
-	PUBLIC CASSDK
+	_SL_USE_BYTE_STREAM
 	)
 set_target_properties (${target}  PROPERTIES 
 	PUBLIC_HEADER "${_PUBLIC_HEADERS}"
@@ -77,10 +82,19 @@ set_target_properties (${target}  PROPERTIES
 	SOVERSION ${PROJECT_VERSION_MAJOR}
 	DEBUG_POSTFIX _d
 	)
-set(_link_libraries cassdk_THFeature)
+set(_link_libraries )
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
 	list(APPEND _link_libraries -pthread -ldl)
 endif()
+####################
+if(CASSDK_USED)
+	# 加入CASSDK 版本定义
+	target_compile_definitions (${target} 
+		PUBLIC CASSDK
+		)
+	# 加入CASSDK　import target
+	list(APPEND _link_libraries cassdk_THFeature)
+endif(CASSDK_USED)
 
 target_link_libraries(${target} PRIVATE $<BUILD_INTERFACE:common_source>)
 if(_is_shared)
@@ -120,11 +134,13 @@ install(TARGETS ${_FSE_TARGETS} EXPORT fse-targets
   ARCHIVE DESTINATION ${LIBRARY_INSTALL_DIR}
   PUBLIC_HEADER DESTINATION ${INCLUDE_INSTALL_DIR}/feature_se
   )
-  
-foreach(_target ${_FSE_TARGETS})
-	# 如果是动态库则安装对应的pdb文件
-	install(FILES $<$<STREQUAL:SHARED_LIBRARY,$<TARGET_PROPERTY:${_target},TYPE>>:$<TARGET_PDB_FILE:${_target}>> DESTINATION ${RUNTIME_INSTALL_DIR} OPTIONAL)
-endforeach(_target)
+
+if(MSVC)
+	foreach(_target ${_FSE_TARGETS})
+		# 如果是动态库则安装对应的pdb文件
+		install(FILES $<$<STREQUAL:SHARED_LIBRARY,$<TARGET_PROPERTY:${_target},TYPE>>:$<TARGET_PDB_FILE:${_target}>> DESTINATION ${RUNTIME_INSTALL_DIR} OPTIONAL)
+	endforeach(_target)
+endif(MSVC)
 
 install (FILES
   ${CMAKE_CURRENT_BINARY_DIR}/fse-config.cmake

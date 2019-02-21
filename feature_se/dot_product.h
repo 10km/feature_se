@@ -12,6 +12,7 @@
 #include <type_traits>
 #include <cassert>
 #include <memory>
+#include <stdint.h>
 #if defined(__x86_64)|| defined(_M_X64) // x64 体系结构 使用SSE指令优化 gcc 和 MinGW 有定义 __x86_64, MinGW 和 msc 有定义 _M_X64
 	#ifdef _MSC_VER
 		#include <mmintrin.h>

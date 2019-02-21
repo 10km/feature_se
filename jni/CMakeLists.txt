@@ -1,8 +1,15 @@
 cmake_minimum_required (VERSION 2.6)
+# We are only interested in finding jni.h: we do not care about extended JVM
+# functionality or the AWT library.
+set(JAVA_AWT_LIBRARY NotNeeded)
+set(JAVA_JVM_LIBRARY NotNeeded)
+set(JAVA_INCLUDE_PATH2 NotNeeded)
+set(JAVA_AWT_INCLUDE_PATH NotNeeded)
 find_package(JNI REQUIRED)
 # 加入jni支持
 include_directories(${JAVA_INCLUDE_PATH})
-include_directories(${JAVA_INCLUDE_PATH2})
+#include_directories(${JAVA_INCLUDE_PATH2})
+
 include_directories("${PROJECT_SOURCE_DIR}/feature_se")
 #设置变量，表示所有的源文件列表  
 set(SOURCE_FILES
@@ -31,5 +38,7 @@ install(TARGETS fse_cas_jni
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION bin
         )
-# 安装pdb文件
-install(FILES $<TARGET_PDB_FILE:fse_cas_jni> DESTINATION bin OPTIONAL)
+if(MSVC)
+	# 安装pdb文件
+	install(FILES $<TARGET_PDB_FILE:fse_cas_jni> DESTINATION bin OPTIONAL)
+endif(MSVC)

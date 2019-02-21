@@ -176,10 +176,10 @@ endfunction()
 
 function(cxx11_support)
 #判断编译器类型,如果是gcc编译器,则在编译选项中加入c++11支持
-if(CMAKE_COMPILER_IS_GNUCXX)     
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")     
   set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}" PARENT_SCOPE)
   message(STATUS "optional:-std=c++11")
-endif(CMAKE_COMPILER_IS_GNUCXX)
+endif()
 endfunction()
 
 
