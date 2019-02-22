@@ -20,7 +20,10 @@ mkdir $folder_name.ndk.prj
 
 pushd $folder_name.ndk.prj
 cmake "$sh_folder" -G "Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=$build_type \
-	-DEXT_SDK_TYPE=DEFAULT \
+	-DEXT_SDK_TYPE=EUCLIDEAN \
+	-DDEFAULT_ELEM_TYPE=double \
+	-DDEFAULT_ELEM_LEN=512 \
+	-DDEFAULT_CODE_END_WITH_SUM=OFF \
 	-DCMAKE_INSTALL_PREFIX=$sh_folder/release/fse_android_armeabi-v7a \
 	-DCMAKE_SYSTEM_NAME=Android \
 	-DCMAKE_SYSTEM_VERSION=17 \

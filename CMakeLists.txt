@@ -12,9 +12,9 @@ message(STATUS "Project Binary Directory: ${PROJECT_BINARY_DIR}")
 message(STATUS "CMAKE_COMPILER=${CMAKE_CXX_COMPILER}")
 message(STATUS "CMAKE_CXX_COMPILER_VERSION=${CMAKE_CXX_COMPILER_VERSION}")
 
-# 设置外部提供人脸识别SDK类型,可选值CASSDK,CUSTOM,DEFAULT
+# 设置外部提供人脸识别SDK类型,可选值CASSDK,CUSTOM,EUCLIDEAN
 # 当设置为CUSTOM时，必须指定 CUSTOM_SDK_INCLUDE CUSTOM_SDK_LIBRARY
-# 设置为DEFAULT时，使用默认的点积比对函数
+# 设置为EUCLIDEAN时，使用默认的点积比对函数
 if(NOT EXT_SDK_TYPE)
 	## 默认值CASSDK
 	set(EXT_SDK_TYPE CASSDK)
@@ -26,24 +26,24 @@ if(EXT_SDK_TYPE STREQUAL "CUSTOM")
 		message(FATAL_ERROR "MUST DEFINE CUSTOM_SDK_INCLUDE CUSTOM_SDK_LIBRARY")
 	endif()	
 endif()
-if(EXT_SDK_TYPE STREQUAL "DEFAULT")
-	# DEFAULT 使用系统内置的特征值比对函数,需要指定特征值数据类型和特征值长度
+if(EXT_SDK_TYPE STREQUAL "EUCLIDEAN")
+	# EUCLIDEAN 使用系统内置的特征值比对函数,需要指定特征值数据类型和特征值长度
 	# 特征值数据类型如果没指定，默认使用double
 	# 特征值数据长度如果没指定，则报错退出
-	if(NOT DEFAULT_ELEM_TYPE)
-		set(DEFAULT_ELEM_TYPE double)
-		message(STATUS "DEFAULT_ELEM_TYPE use default:double,available value:(double|float)")
+	if(NOT EUCLIDEAN_ELEM_TYPE)
+		set(EUCLIDEAN_ELEM_TYPE double)
+		message(STATUS "EUCLIDEAN_ELEM_TYPE use default:double,available value:(double|float)")
 	endif()
-	if(NOT DEFAULT_ELEM_TYPE STREQUAL "double" OR NOT DEFAULT_ELEM_TYPE STREQUAL "float")
-		message(STATUS "invalid DEFAULT_ELEM_TYPE: ${DEFAULT_ELEM_TYPE},available value:(double|float)")
+	if(NOT EUCLIDEAN_ELEM_TYPE STREQUAL "double" OR NOT EUCLIDEAN_ELEM_TYPE STREQUAL "float")
+		message(STATUS "invalid EUCLIDEAN_ELEM_TYPE: ${EUCLIDEAN_ELEM_TYPE},available value:(double|float)")
 	endif()	
 	# 默认特征值数组后面没有double类型的点积和
-	if(NOT DEFAULT_CODE_END_WITH_SUM)
-		set(DEFAULT_CODE_END_WITH_SUM OFF)
-		message(STATUS "DEFAULT_CODE_END_WITH_SUM: OFF")
+	if(NOT EUCLIDEAN_CODE_END_WITH_SUM)
+		set(EUCLIDEAN_CODE_END_WITH_SUM OFF)
+		message(STATUS "EUCLIDEAN_CODE_END_WITH_SUM: OFF")
 	endif()	
-	if(NOT DEFAULT_ELEM_LEN)
-		message(FATAL_ERROR "MUST DEFINE DEFAULT_ELEM_LEN")
+	if(NOT EUCLIDEAN_ELEM_LEN)
+		message(FATAL_ERROR "MUST DEFINE EUCLIDEAN_ELEM_LEN")
 	endif()	
 endif()
 # 定义动态库名
