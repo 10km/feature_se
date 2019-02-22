@@ -1,0 +1,21 @@
+/*
+ * custom_feature_compare.h
+ *
+ *  Created on: 2019年2月22日
+ *      Author: guyadong
+ */
+
+#ifndef CUSTOM_FEACOMP_H_
+#define CUSTOM_FEACOMP_H_
+
+#include "codemgr.h"
+#include "@CUSTOM_FEACOMP_HEADER_FILE@"
+namespace gdface{
+namespace feature{
+inline double compare(const face_code &f1,const face_code&f2){
+	return @CUSTOM_FEACOMP_FUNNAME@(f1.element,f2.element,f1.sum,f2.sum);
+}
+} /* namespace feature*/
+} /* namespace gdface*/
+
+#endif /* CUSTOM_FEACOMP_H_ */

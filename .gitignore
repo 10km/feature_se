@@ -49,6 +49,7 @@ install_manifest.txt
 /CMakeCache.txt
 /project.gcc
 project.vs2015/
+project.custom.vs2015/
 .project
 .cproject
 /test.prj/

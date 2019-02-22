@@ -15,7 +15,15 @@ if(EXT_SDK_TYPE STREQUAL "CASSDK")
 	find_package(Cassdk REQUIRED)
 elseif(EXT_SDK_TYPE STREQUAL "EUCLIDEAN")
 elseif(EXT_SDK_TYPE STREQUAL "CUSTOM")
-	message(STATUS "unsupported operation")
+	if(NOT IS_DIRECTORY ${DCUSTOM_FEACOMP_INCLUDE})
+		message(FATAL_ERROR "NOT FOUND include directory ${DCUSTOM_FEACOMP_INCLUDE}")
+	endif()
+	get_filename_component(CUSTOM_FEACOMP_HEADERS_FILE ${CUSTOM_FEACOMP_HEADERS} NAME)
+	# 生成比较函数代码
+	configure_file (${PROJECT_SOURCE_DIR}/cmake/custom_feature_compare.h.in
+  ${PROJECT_BINARY_DIR}/generated/custom_feature_compare.h
+  @ONLY
+  )
 else()
 	message(STATUS "unsupported operation")
 endif()
@@ -108,6 +116,13 @@ if(EXT_SDK_TYPE STREQUAL "EUCLIDEAN")
 		target_compile_definitions (${target} PUBLIC CODE_END_WITH_SUM)
 	endif()
 endif()
+if(EXT_SDK_TYPE STREQUAL "CUSTOM")
+	# 加入自定义的包含特征比较函数的算法库
+		target_compile_definitions (${target} PUBLIC CUSTOM)
+	target_link_libraries(${target} PRIVATE ${CUSTOM_FEACOMP_LIBRARY})
+	get_filename_component(_custom_include ${CUSTOM_FEACOMP_HEADERS} DIRECTORY)
+	target_include_directories (${target} PRIVATE "${PROJECT_BINARY_DIR}/generated" ${_custom_include})
+endif()
 target_link_libraries(${target} PRIVATE $<BUILD_INTERFACE:common_source>)
 if(_is_shared)
 	target_link_libraries(${target} PRIVATE ${_link_libraries})
@@ -122,7 +137,6 @@ endfunction()
 define_fse_target(${FSE_LIBNAME}_static)
 define_fse_target(${FSE_LIBNAME}_static_mt)
 define_fse_target(${FSE_LIBNAME})
-
 
 # 测试程序
 add_executable(fctest  EXCLUDE_FROM_ALL FeatureCompareSpeedTest.cpp)
