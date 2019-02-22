@@ -26,7 +26,11 @@
 
 namespace gdface{
 /* 定义点积函数类型  */
-enum dot_product_type{DOT_DEFAULT,DOT_DEFAULT_RECURSIVE,DOT_SIMD_X64,DOT_SIMD_X64_RECURSIVE};
+enum dot_product_type{
+	/**默认循环累加*/DOT_DEFAULT,
+	/** 宏递归 */DOT_DEFAULT_RECURSIVE,
+	/** x64 SIMD 循环累加 */DOT_SIMD_X64,
+	/** x64 SIMD 宏递归 */DOT_SIMD_X64_RECURSIVE};
 
 #if defined(__x86_64)|| defined(_M_X64) // x64 体系结构 使用SSE指令优化 gcc 和 MinGW 有定义 __x86_64, MinGW 和 msc 有定义 _M_X64
 	#ifdef _MSC_VER
@@ -42,8 +46,7 @@ enum dot_product_type{DOT_DEFAULT,DOT_DEFAULT_RECURSIVE,DOT_SIMD_X64,DOT_SIMD_X6
 		}
 		#define _SIMD_X64_
 	#else
-	// 不支持的编译器类型
-	#error unexpected c complier (msc/gcc)
+		const dot_product_type DOT_TYPE_CONST = DOT_DEFAULT;
 	#endif
 #else
 		const dot_product_type DOT_TYPE_CONST=DOT_DEFAULT;
@@ -120,7 +123,7 @@ inline typename std::enable_if<TYPE==DOT_SIMD_X64,double>::type dot_product(cons
 }
 #endif /* _SIMD_X64_ */
 
-/* 默认点积函数(循环版) */
+/* float类型默认点积函数(循环版) */
 template<size_t N,dot_product_type TYPE=DOT_TYPE_CONST>
 inline typename std::enable_if<TYPE==DOT_DEFAULT,double>::type dot_product(const float* f1, const float* f2) {
 	assert(nullptr!=f1&&nullptr!=f2);
@@ -129,7 +132,7 @@ inline typename std::enable_if<TYPE==DOT_DEFAULT,double>::type dot_product(const
 		sum += f1[i] * f2[i];
 	return (double)sum;
 }
-/* 默认点积函数(递归版) */
+/* float类型默认点积函数(递归版) */
 template<size_t N,dot_product_type TYPE=DOT_TYPE_CONST>
 inline typename std::enable_if<(N==1)&&(TYPE==DOT_DEFAULT_RECURSIVE),double>::type dot_product(const float* f1, const float* f2) {
 	assert(nullptr!=f1&&nullptr!=f2);
@@ -140,7 +143,26 @@ inline typename std::enable_if<(N>1)&&(TYPE==DOT_DEFAULT_RECURSIVE),double>::typ
 	assert(nullptr!=f1&&nullptr!=f2);
 	return dot_product<1,TYPE>(f1,f2)+dot_product<N-1,TYPE>(f1+1,f2+1);
 }
-
+/* double类型默认点积函数(循环版) */
+template<size_t N, dot_product_type TYPE = DOT_TYPE_CONST>
+inline typename std::enable_if<TYPE == DOT_DEFAULT, double>::type dot_product(const double* f1, const double* f2) {
+	assert(nullptr != f1&&nullptr != f2);
+	double sum = 0.0;
+	for (size_t i = 0; i < N; ++i)
+		sum += f1[i] * f2[i];
+	return (double)sum;
+}
+/* double类型默认点积函数(递归版) */
+template<size_t N, dot_product_type TYPE = DOT_TYPE_CONST>
+inline typename std::enable_if<(N == 1) && (TYPE == DOT_DEFAULT_RECURSIVE), double>::type dot_product(const double* f1, const double* f2) {
+	assert(nullptr != f1&&nullptr != f2);
+	return (*f1) * (*f1);
+}
+template<size_t N, dot_product_type TYPE = DOT_TYPE_CONST>
+inline typename std::enable_if<(N>1) && (TYPE == DOT_DEFAULT_RECURSIVE), double>::type dot_product(const double* f1, const double* f2) {
+	assert(nullptr != f1&&nullptr != f2);
+	return dot_product<1, TYPE>(f1, f2) + dot_product<N - 1, TYPE>(f1 + 1, f2 + 1);
+}
 } /* namespace gdface */
 
 #endif /* FEATURE_SE_DOT_PRODUCT_H_ */
