@@ -22,13 +22,23 @@ if not defined VisualStudioVersion (
 	echo make MSVC environment ...
 	call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
 )
+
+@rem 使用第三方识别库提供的特征比对函数 
+@rem EXT_SDK_TYPE 识别函数类型 CUSTOM 使用第三方库提供的特征比对函数  
+@rem CUSTOM_FEACOMP_INCLUDE 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在头文件的位置(文件夹全路径) 
+@rem CUSTOM_FEACOMP_LIBRARY 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在库文件(全路径) 
+@rem CUSTOM_FEACOMP_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定引用比对函数所需要的头文件名列表,';'分隔,按顺序引用 
+@rem CUSTOM_FEACOMP_FUNNAME 当EXT_SDK_TYPE为CUSTOM时,指定比对函数名,函数定义:compare_function_name(unsigned char*,unsigned char*) 
+@rem CUSTOM_SYS_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定需要引用的系统头文件名,如windows.h,可不设置 
+
 echo creating x86_64 Project for Visual Studio 2015 ...
-cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_cas_windows_x86_64 .. ^
+cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_custom_windows_x86_64 .. ^
 	-DEXT_SDK_TYPE=CUSTOM ^
 	-DCUSTOM_FEACOMP_INCLUDE=J:\workspace.neon\cassdk54\FSFaceSDK\FSFaceSDK-windows-x86_64\include ^
 	-DCUSTOM_FEACOMP_LIBRARY=J:\workspace.neon\cassdk54\FSFaceSDK\FSFaceSDK-windows-x86_64\lib\FSFaceSDK.lib ^
-	-DCUSTOM_FEACOMP_HEADERS=FiStdDefEx.h,FSFaceSDK.h
-	-DCUSTOM_FEACOMP_FUNNAME=EF_Compare
+	-DCUSTOM_FEACOMP_HEADERS=FSFaceSDK.h ^
+	-DCUSTOM_SYS_HEADERS=windows.h ^
+	-DCUSTOM_FEACOMP_FUNNAME=FSCompare
 
 popd
 popd

@@ -9,11 +9,11 @@
 #define CUSTOM_FEACOMP_H_
 
 #include "codemgr.h"
-@CUST_INCLUDE_STATEMENTS@
+@CUSTOM_INCLUDE_STATEMENTS@
 namespace gdface{
 namespace feature{
 inline double compare(const face_code &f1,const face_code&f2){
-	return @CUSTOM_FEACOMP_FUNNAME@(f1.element,f2.element,f1.sum,f2.sum);
+	return @CUSTOM_FEACOMP_FUNNAME@((unsigned char*)f1.element,(unsigned char*)f2.element);
 }
 } /* namespace feature*/
 } /* namespace gdface*/

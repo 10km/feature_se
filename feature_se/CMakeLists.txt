@@ -18,16 +18,20 @@ elseif(EXT_SDK_TYPE STREQUAL "CUSTOM")
 	if(NOT IS_DIRECTORY ${CUSTOM_FEACOMP_INCLUDE})
 		message(FATAL_ERROR "NOT FOUND include directory ${CUSTOM_FEACOMP_INCLUDE}")
 	endif()
-	set(CUST_INCLUDE_STATEMENTS )
-	foreach(_name ${CUSTOM_FEACOMP_HEADERS}
-		list(APPEND CUST_INCLUDE_STATEMENTS "#include ""${_name}""")
+	set(CUSTOM_INCLUDE_STATEMENTS )
+	foreach(_name ${CUSTOM_SYS_HEADERS})
+		set(CUSTOM_INCLUDE_STATEMENTS "${CUSTOM_INCLUDE_STATEMENTS}
+#include <${_name}>")
 	endforeach()
-	get_filename_component(CUSTOM_FEACOMP_HEADERS_FILE ${CUSTOM_FEACOMP_HEADERS} NAME)
+	message(STATUS CUSTOM_FEACOMP_HEADERS=${CUSTOM_FEACOMP_HEADERS})
+	foreach(_name ${CUSTOM_FEACOMP_HEADERS})
+		set(CUSTOM_INCLUDE_STATEMENTS "${CUSTOM_INCLUDE_STATEMENTS}
+#include \"${_name}\"
+")
+	endforeach()
 	# 生成比较函数代码
-	configure_file (${PROJECT_SOURCE_DIR}/cmake/custom_feature_compare.h.in
-  ${PROJECT_BINARY_DIR}/generated/custom_feature_compare.h
-  @ONLY
-  )
+	configure_file(${PROJECT_SOURCE_DIR}/cmake/custom_feature_compare.h.in
+  		${PROJECT_BINARY_DIR}/generated/custom_feature_compare.h @ONLY )
 else()
 	message(STATUS "unsupported operation")
 endif()
@@ -122,9 +126,9 @@ if(EXT_SDK_TYPE STREQUAL "EUCLIDEAN")
 endif()
 if(EXT_SDK_TYPE STREQUAL "CUSTOM")
 	# 加入自定义的包含特征比较函数的算法库
-		target_compile_definitions (${target} PUBLIC CUSTOM)
+	target_compile_definitions(${target} PUBLIC CUSTOM)
 	target_link_libraries(${target} PRIVATE ${CUSTOM_FEACOMP_LIBRARY})
-	target_include_directories (${target} PRIVATE "${PROJECT_BINARY_DIR}/generated" ${CUSTOM_FEACOMP_INCLUDE})
+	target_include_directories(${target} PRIVATE "${PROJECT_BINARY_DIR}/generated" ${CUSTOM_FEACOMP_INCLUDE})
 endif()
 target_link_libraries(${target} PRIVATE $<BUILD_INTERFACE:common_source>)
 if(_is_shared)
