@@ -7,9 +7,8 @@
 
 #ifndef CUSTOM_FEACOMP_H_
 #define CUSTOM_FEACOMP_H_
-
-#include "codemgr.h"
 @CUSTOM_INCLUDE_STATEMENTS@
+#include "codemgr.h"
 namespace gdface{
 namespace feature{
 inline double compare(const face_code &f1,const face_code&f2){
