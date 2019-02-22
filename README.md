@@ -42,26 +42,6 @@ jni接口定义参见[jni/net_gdface_sdk_fse_FseJniBridge.h](jni/net_gdface_sdk_
 
 要求cmake 3.0以上版本
 
-### 指定第三方库的特征比对函数
-
-本项目独立于具体人脸识别算法，所以在实际应用中需要指定人脸特征比对函数，可以如下示例使用第三方库提供的比对函数，无需修改本项目代码：完整脚本参见  [make_msvc_custom_project.bat](make_msvc_custom_project.bat)
-
-	@rem 使用第三方识别库提供的特征比对函数 
-	@rem EXT_SDK_TYPE 识别函数类型 CUSTOM 使用第三方库提供的特征比对函数  
-	@rem CUSTOM_FEACOMP_INCLUDE 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在头文件的位置(文件夹全路径) 
-	@rem CUSTOM_FEACOMP_LIBRARY 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在库文件(全路径) 
-	@rem CUSTOM_FEACOMP_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定引用比对函数所需要的头文件名列表,';'分隔,按顺序引用 
-	@rem CUSTOM_FEACOMP_FUNNAME 当EXT_SDK_TYPE为CUSTOM时,指定比对函数名,函数定义:double compare_function_name(unsigned char*,unsigned char*) 
-	@rem CUSTOM_SYS_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定需要引用的系统头文件名,如windows.h,可不设置 
-	
-	cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_custom_windows_x86_64 .. ^
-		-DEXT_SDK_TYPE=CUSTOM ^
-		-DCUSTOM_FEACOMP_INCLUDE=J:\workspace.neon\cassdk54\FSFaceSDK\FSFaceSDK-windows-x86_64\include ^
-		-DCUSTOM_FEACOMP_LIBRARY=J:\workspace.neon\cassdk54\FSFaceSDK\FSFaceSDK-windows-x86_64\lib\FSFaceSDK.lib ^
-		-DCUSTOM_FEACOMP_HEADERS=FSFaceSDK.h ^
-		-DCUSTOM_SYS_HEADERS=windows.h ^
-		-DCUSTOM_FEACOMP_FUNNAME=FSCompare
-
 ### windows
 
 window下编译要求Visual Studio 2015
@@ -139,6 +119,25 @@ Android NDK交叉编译方法如下(参见 [make_ndk_project.bat](make_ndk_proje
 		-DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_android_armeabi-v7a ^
 	 	-DCMAKE_TOOLCHAIN_FILE=%ANDROID_NDK%\build\cmake\android.toolchain.cmake 
 
+### 指定第三方库的特征比对函数
+
+本项目独立于具体人脸识别算法，所以在实际应用中需要指定人脸特征比对函数，可以如下示例使用第三方库提供的比对函数，无需修改本项目代码：完整脚本参见  [make_msvc_custom_project.bat](make_msvc_custom_project.bat)
+
+	@rem 使用第三方识别库提供的特征比对函数 
+	@rem EXT_SDK_TYPE 识别函数类型 CUSTOM 使用第三方库提供的特征比对函数  
+	@rem CUSTOM_FEACOMP_INCLUDE 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在头文件的位置(文件夹全路径) 
+	@rem CUSTOM_FEACOMP_LIBRARY 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在库文件(全路径) 
+	@rem CUSTOM_FEACOMP_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定引用比对函数所需要的头文件名列表,';'分隔,按顺序引用 
+	@rem CUSTOM_FEACOMP_FUNNAME 当EXT_SDK_TYPE为CUSTOM时,指定比对函数名,函数定义:double compare_function_name(unsigned char*,unsigned char*) 
+	@rem CUSTOM_SYS_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定需要引用的系统头文件名,如windows.h,可不设置 
+	
+	cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_custom_windows_x86_64 .. ^
+		-DEXT_SDK_TYPE=CUSTOM ^
+		-DCUSTOM_FEACOMP_INCLUDE=J:\workspace.neon\cassdk54\FSFaceSDK\FSFaceSDK-windows-x86_64\include ^
+		-DCUSTOM_FEACOMP_LIBRARY=J:\workspace.neon\cassdk54\FSFaceSDK\FSFaceSDK-windows-x86_64\lib\FSFaceSDK.lib ^
+		-DCUSTOM_FEACOMP_HEADERS=FSFaceSDK.h ^
+		-DCUSTOM_SYS_HEADERS=windows.h ^
+		-DCUSTOM_FEACOMP_FUNNAME=FSCompare
 
 ## 调用示例
 
@@ -160,8 +159,6 @@ cmake脚本中引用feature_se库的示例：
 cmake脚本中引用feature_se库的完整示例参见 [test/CMakeLists.txt](test/CMakeLists.txt)
 
 创建调用示例的VS2015工程:
-
-
 
 	mkdir build
 	cd build
