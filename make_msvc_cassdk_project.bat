@@ -23,7 +23,8 @@ if not defined VisualStudioVersion (
 	call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
 )
 echo creating x86_64 Project for Visual Studio 2015 ...
-cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_windows_x86_64 .. 
+cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_windows_x86_64 .. ^
+	-DEXT_SDK_TYPE=CASSDK
 
 popd
 popd

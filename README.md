@@ -15,7 +15,7 @@
 
 大规模人脸搜索的速度最终取决于人脸识别算法提供的比对函数的计算速度和服务器内存读写速度。本库提供的搜索算法将所有的特征加载到内存，完全基于内存比对，最大限度减少了比对函数之外的运行时间开销，基于CASSDK人脸识别算法在500万条记录的环境下，(24核处理器)搜索速度在0.1~0.2秒。
 
-当前项目支持CASSDK人脸识别算法，但是搜索算法本身已经高度抽象，独立于人脸识别算法，如果需要支持其他人脸识别算法，只需要替换对应的特征比对函数即可,参见:
+当前项目支持CASSDK人脸识别算法，也可以支持其他第三方算法，搜索算法本身已经高度抽象，独立于人脸识别算法，如果需要支持其他人脸识别算法，只需要替换对应的特征比对函数即可,参见:
 
 [feature_se/feature_compare_cas.h](feature_se/feature_compare_cas.h)
 
@@ -42,7 +42,25 @@ jni接口定义参见[jni/net_gdface_sdk_fse_FseJniBridge.h](jni/net_gdface_sdk_
 
 要求cmake 3.0以上版本
 
-要求第三方库:CASSDK 8.0.0 人脸识别算法库（商业产品，需要另外购买）
+### 指定第三方库的特征比对函数
+
+本项目独立于具体人脸识别算法，所以在实际应用中需要指定人脸特征比对函数，可以如下示例使用第三方库提供的比对函数，无需修改本项目代码：完整脚本参见  [make_msvc_custom_project.bat](make_msvc_custom_project.bat)
+
+	@rem 使用第三方识别库提供的特征比对函数 
+	@rem EXT_SDK_TYPE 识别函数类型 CUSTOM 使用第三方库提供的特征比对函数  
+	@rem CUSTOM_FEACOMP_INCLUDE 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在头文件的位置(文件夹全路径) 
+	@rem CUSTOM_FEACOMP_LIBRARY 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在库文件(全路径) 
+	@rem CUSTOM_FEACOMP_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定引用比对函数所需要的头文件名列表,';'分隔,按顺序引用 
+	@rem CUSTOM_FEACOMP_FUNNAME 当EXT_SDK_TYPE为CUSTOM时,指定比对函数名,函数定义:double compare_function_name(unsigned char*,unsigned char*) 
+	@rem CUSTOM_SYS_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定需要引用的系统头文件名,如windows.h,可不设置 
+	
+	cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_custom_windows_x86_64 .. ^
+		-DEXT_SDK_TYPE=CUSTOM ^
+		-DCUSTOM_FEACOMP_INCLUDE=J:\workspace.neon\cassdk54\FSFaceSDK\FSFaceSDK-windows-x86_64\include ^
+		-DCUSTOM_FEACOMP_LIBRARY=J:\workspace.neon\cassdk54\FSFaceSDK\FSFaceSDK-windows-x86_64\lib\FSFaceSDK.lib ^
+		-DCUSTOM_FEACOMP_HEADERS=FSFaceSDK.h ^
+		-DCUSTOM_SYS_HEADERS=windows.h ^
+		-DCUSTOM_FEACOMP_FUNNAME=FSCompare
 
 ### windows
 
@@ -70,7 +88,7 @@ Windows下命令行编译过程:
 
 ### vs2015工程编译
 
-可以用 [make_msvc_project.bat](make_msvc_project.bat) 创建Visuao Studio 2015工程
+可以用 [make_msvc_cassdk_project.bat](make_msvc_cassdk_project.bat) 创建Visuao Studio 2015工程
 
 ### Linux
 
@@ -94,7 +112,11 @@ linux下命令行编译过程:
 
 ### Android NDK
 
-Android NDK交叉编译方法如下(参见 [make_ndk_project.bat](make_ndk_project.bat))
+要求安装Android NDK版本不限及和JDK 7(以上)
+
+Android NDK交叉编译方法如下(参见 [make_ndk_project.bat](make_ndk_project.bat)).
+
+
 
 	@rem EXT_SDK_TYPE 指定算法类型可选值：
 	@rem                    CASSDK(默认值)
@@ -139,6 +161,8 @@ cmake脚本中引用feature_se库的完整示例参见 [test/CMakeLists.txt](tes
 
 创建调用示例的VS2015工程:
 
+
+
 	mkdir build
 	cd build
 	call "%VS140COMNTOOLS%..\..\vc/vcvarsall" x86_amd64
@@ -149,7 +173,7 @@ cmake脚本中引用feature_se库的完整示例参见 [test/CMakeLists.txt](tes
 	rem 需要先编译feature_se
 	rem FSE_ROOT_DIR用于指定 feature_se 安装位置
 
-完整脚本参见 [test/make_msvc_project.bat](test/make_msvc_project.bat)
+完整脚本参见 [test/make_msvc_cassdk_project.bat](test/make_msvc_cassdk_project.bat)
  
 生成unix Makefile过程参见：
 [test/make_gcc_project.sh](test/make_gcc_project.sh)
