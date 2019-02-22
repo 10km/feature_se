@@ -38,17 +38,17 @@ set (_PUBLIC_HEADERS
     cross_define.h 
     feature_se.h
     )
-set (_FSE_TARGETS fse_cas_static fse_cas)
+set (_FSE_TARGETS ${FSE_LIBNAME}_static ${FSE_LIBNAME})
 # CASSDK版本的CodeMgr实现
-add_library(fse_cas_static STATIC ${_SOURCE_FILES})
-add_library(fse_cas        SHARED ${_SOURCE_FILES})
+add_library(${FSE_LIBNAME}_static STATIC ${_SOURCE_FILES})
+add_library(${FSE_LIBNAME}        SHARED ${_SOURCE_FILES})
 
-use_static_library(fse_cas)
+use_static_library(${FSE_LIBNAME})
 
 if(MSVC) 
-	add_library(fse_cas_static_mt STATIC ${_SOURCE_FILES})
-  with_mt_if_msvc(fse_cas_static_mt)
-  list(APPEND _FSE_TARGETS fse_cas_static_mt)
+	add_library(${FSE_LIBNAME}_static_mt STATIC ${_SOURCE_FILES})
+  with_mt_if_msvc(${FSE_LIBNAME}_static_mt)
+  list(APPEND _FSE_TARGETS ${FSE_LIBNAME}_static_mt)
 endif(MSVC)
 
 #########################3
@@ -119,9 +119,9 @@ endif()
 endfunction()
 #####################
 
-define_fse_target(fse_cas_static)
-define_fse_target(fse_cas_static_mt)
-define_fse_target(fse_cas)
+define_fse_target(${FSE_LIBNAME}_static)
+define_fse_target(${FSE_LIBNAME}_static_mt)
+define_fse_target(${FSE_LIBNAME})
 
 
 # 测试程序

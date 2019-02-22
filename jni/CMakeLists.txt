@@ -27,26 +27,26 @@ set(SOURCE_FILES
      BeanUtilits.cpp
      )
 # CASSDK版本的JNI接口
-add_library(fse_cas_jni SHARED ${SOURCE_FILES})
-link_static_libstdcxx_if_linux(fse_cas_jni)
+add_library(${JNI_FSE_LIBNAME} SHARED ${SOURCE_FILES})
+link_static_libstdcxx_if_linux(${JNI_FSE_LIBNAME})
 # 加入依赖库 MSVC编译时使用/MT静态库
-target_link_libraries(fse_cas_jni fse_cas_static$<$<CXX_COMPILER_ID:MSVC>:_mt>)
+target_link_libraries(${JNI_FSE_LIBNAME} fse_cas_static$<$<CXX_COMPILER_ID:MSVC>:_mt>)
 
-target_include_directories (fse_cas_jni	PRIVATE ${DEPENDENT_SOURCE_DIR})
+target_include_directories (${JNI_FSE_LIBNAME}	PRIVATE ${DEPENDENT_SOURCE_DIR})
 #############设置动态库版本号###################
-set_target_properties(fse_cas_jni PROPERTIES  VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR} DEBUG_POSTFIX _d)
+set_target_properties(${JNI_FSE_LIBNAME} PROPERTIES  VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR} DEBUG_POSTFIX _d)
 message(STATUS "feature_se jni VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR}")
 
 #######Windows 下DLL 文件名前缀为空 #######
 if(CMAKE_SYSTEM_NAME MATCHES "Windows")
-	set_property(TARGET fse_cas_jni PROPERTY  PREFIX "")
+	set_property(TARGET ${JNI_FSE_LIBNAME} PROPERTY  PREFIX "")
 endif(CMAKE_SYSTEM_NAME MATCHES "Windows")
 ########安装脚本##########
-install(TARGETS fse_cas_jni 
+install(TARGETS ${JNI_FSE_LIBNAME} 
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION bin
         )
 if(MSVC)
 	# 安装pdb文件
-	install(FILES $<TARGET_PDB_FILE:fse_cas_jni> DESTINATION bin OPTIONAL)
+	install(FILES $<TARGET_PDB_FILE:${JNI_FSE_LIBNAME}> DESTINATION bin OPTIONAL)
 endif(MSVC)

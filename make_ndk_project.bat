@@ -31,8 +31,11 @@ pushd feature_se.ndk.prj
 @rem DEFAULT_ELEM_TYPE 如果EXT_SDK_TYPE指定为DEFAULT则可以指定此值,用于定义特征值数组类型(double/float)，如果不指定，默认值为double
 @rem DEFAULT_ELEM_LEN  如果EXT_SDK_TYPE指定为DEFAULT则需要指定此值,用于定义特征值数组长度
 @rem DEFAULT_ELEM_LEN  如果EXT_SDK_TYPE指定为DEFAULT则可以指定此值,用于定义特征值数组最后是否有一个double保存特征值数组的点积和，默认为OFF
+@rem FSE_LIBNAME 指定生成jni动态名,不指定则使用默认值
+@rem JNI_FSE_LIBNAME 指定生成jni动态名,不指定则使用默认值
 
 cmake %sh_folder% -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
+	-DJNI_FSE_LIBNAME=FS_FaceFeatureCompare ^
 	-DEXT_SDK_TYPE=DEFAULT ^
 	-DDEFAULT_ELEM_TYPE=double ^
 	-DDEFAULT_ELEM_LEN=512 ^
@@ -41,6 +44,7 @@ cmake %sh_folder% -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
 	-DANDROID_ARM_NEON=ON ^
 	-DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_android_armeabi-v7a ^
   -DCMAKE_TOOLCHAIN_FILE=%ANDROID_NDK%\build\cmake\android.toolchain.cmake 
+
 
 popd
 popd

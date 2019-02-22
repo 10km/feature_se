@@ -46,6 +46,14 @@ if(EXT_SDK_TYPE STREQUAL "DEFAULT")
 		message(FATAL_ERROR "MUST DEFINE DEFAULT_ELEM_LEN")
 	endif()	
 endif()
+# 定义动态库名
+if(NOT FSE_LIBNAME)
+	set(FSE_LIBNAME fse_cas)
+endif()
+# 定义JNI动态库名
+if(NOT JNI_FSE_LIBNAME)
+	set(JNI_FSE_LIBNAME fse_cas_jni)
+endif()
 #判断编译类型和版本是否满足编译要求
 if(MSVC AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 19)
 	message(STATUS "CMAKE_CXX_COMPILER: ${CMAKE_CXX_COMPILER}") 
