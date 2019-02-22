@@ -1,8 +1,8 @@
 echo off
-rem Android NDK äº¤å‰ç¼–è¯‘è„šæœ¬,åˆ›å»ºMakefile
+rem Android NDK ½»²æ±àÒë½Å±¾,´´½¨Makefile
 rem author guyadong
 
-rem æ£€æµ‹æ˜¯å¦å®‰è£…NDK,æ²¡æœ‰å®‰è£…NDKåˆ™æŠ¥é”™é€€å‡º
+rem ¼ì²âÊÇ·ñ°²×°NDK,Ã»ÓĞ°²×°NDKÔò±¨´íÍË³ö
 if not DEFINED ANDROID_NDK (
 	echo "ERROR:environment variable ANDROID_NDK not define" && exit /B -1
 	)
@@ -13,7 +13,7 @@ if errorlevel 1 (
 )
 
 set sh_folder=%~dp0
-rem å®šä¹‰ç¼–è¯‘çš„ç‰ˆæœ¬ç±»å‹(DEBUG|RELEASE)
+rem ¶¨Òå±àÒëµÄ°æ±¾ÀàĞÍ(DEBUG|RELEASE)
 set build_type=RELEASE
 if "%1" == "DEBUG" set build_type=%1
 echo build_type=%build_type%
@@ -24,8 +24,19 @@ mkdir feature_se.ndk.prj
 
 pushd feature_se.ndk.prj
 
+@rem EXT_SDK_TYPE Ö¸¶¨Ëã·¨ÀàĞÍ¿ÉÑ¡Öµ£º
+@rem                    CASSDK(Ä¬ÈÏÖµ)
+@rem                    DEFAULT  Ä¬ÈÏÊ¹ÓÃÅ·ÊÏ¾àÀë¼ÆËãÏàËÆ¶È
+@rem                    CUSTOM   Ê¹ÓÃ×Ô¶¨ÒåËã·¨ÌáµÄ¹©ÏàËÆ¶È±È½Ïº¯Êı£¬´Ë·½Ê½ÔİÊ±Î´Ö§³Ö
+@rem DEFAULT_ELEM_TYPE Èç¹ûEXT_SDK_TYPEÖ¸¶¨ÎªDEFAULTÔò¿ÉÒÔÖ¸¶¨´ËÖµ,ÓÃÓÚ¶¨ÒåÌØÕ÷ÖµÊı×éÀàĞÍ(double/float)£¬Èç¹û²»Ö¸¶¨£¬Ä¬ÈÏÖµÎªdouble
+@rem DEFAULT_ELEM_LEN  Èç¹ûEXT_SDK_TYPEÖ¸¶¨ÎªDEFAULTÔòĞèÒªÖ¸¶¨´ËÖµ,ÓÃÓÚ¶¨ÒåÌØÕ÷ÖµÊı×é³¤¶È
+@rem DEFAULT_ELEM_LEN  Èç¹ûEXT_SDK_TYPEÖ¸¶¨ÎªDEFAULTÔò¿ÉÒÔÖ¸¶¨´ËÖµ,ÓÃÓÚ¶¨ÒåÌØÕ÷ÖµÊı×é×îºóÊÇ·ñÓĞÒ»¸ödouble±£´æÌØÕ÷ÖµÊı×éµÄµã»ıºÍ£¬Ä¬ÈÏÎªOFF
+
 cmake %sh_folder% -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
 	-DEXT_SDK_TYPE=DEFAULT ^
+	-DDEFAULT_ELEM_TYPE=double ^
+	-DDEFAULT_ELEM_LEN=512 ^
+	-DDEFAULT_CODE_END_WITH_SUM=OFF ^
 	-DCMAKE_SYSTEM_VERSION=17 ^
 	-DANDROID_ARM_NEON=ON ^
 	-DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_android_armeabi-v7a ^

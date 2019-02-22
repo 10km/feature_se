@@ -36,7 +36,14 @@ public:
 		return jni_utilits::tojbytearray((jbyte*) (&md5), (jsize)sizeof(MD5));
 	}
 	static raii_var<jbyteArray>face_codetojbyteArray(const face_code &code){
-		return jni_utilits::tojbytearray((jbyte*) (&code), (jsize)sizeof(face_code));
+#if defined(CUSTOM_FEACOMP) || defined(CASSDK)
+		return jni_utilits::tojbytearray((jbyte*)(&code), (jsize)sizeof(face_code));
+#elif CODE_END_WITH_SUM
+		return jni_utilits::tojbytearray((jbyte*)(&code), (jsize)sizeof(face_code));
+#else
+		// 特征码中不包含点积和时只将element数组转为java array
+		return jni_utilits::tojbytearray((jbyte*)(&code.element), (jsize)sizeof(code.element));
+#endif
 	}
 	static bool jbytearraytoface_code(jbyteArray bytes, face_code& code);
 

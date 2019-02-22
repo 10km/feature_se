@@ -26,8 +26,26 @@ if(EXT_SDK_TYPE STREQUAL "CUSTOM")
 		message(FATAL_ERROR "MUST DEFINE CUSTOM_SDK_INCLUDE CUSTOM_SDK_LIBRARY")
 	endif()	
 endif()
-
-#set(ANDROID_TOOLCHAIN_NAME arm-linux-androideabi-4.9)
+if(EXT_SDK_TYPE STREQUAL "DEFAULT")
+	# DEFAULT 使用系统内置的特征值比对函数,需要指定特征值数据类型和特征值长度
+	# 特征值数据类型如果没指定，默认使用double
+	# 特征值数据长度如果没指定，则报错退出
+	if(NOT DEFAULT_ELEM_TYPE)
+		set(DEFAULT_ELEM_TYPE double)
+		message(STATUS "DEFAULT_ELEM_TYPE use default:double,available value:(double|float)")
+	endif()
+	if(NOT DEFAULT_ELEM_TYPE STREQUAL "double" OR NOT DEFAULT_ELEM_TYPE STREQUAL "float")
+		message(STATUS "invalid DEFAULT_ELEM_TYPE: ${DEFAULT_ELEM_TYPE},available value:(double|float)")
+	endif()	
+	# 默认特征值数组后面没有double类型的点积和
+	if(NOT DEFAULT_CODE_END_WITH_SUM)
+		set(DEFAULT_CODE_END_WITH_SUM OFF)
+		message(STATUS "DEFAULT_CODE_END_WITH_SUM: OFF")
+	endif()	
+	if(NOT DEFAULT_ELEM_LEN)
+		message(FATAL_ERROR "MUST DEFINE DEFAULT_ELEM_LEN")
+	endif()	
+endif()
 #判断编译类型和版本是否满足编译要求
 if(MSVC AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 19)
 	message(STATUS "CMAKE_CXX_COMPILER: ${CMAKE_CXX_COMPILER}") 
@@ -42,6 +60,10 @@ elseif(CMAKE_COMPILER_IS_GNUCXX)
 	else()
 		message(FATAL_ERROR "compiler required: Visual Studio 2015 OR surrpoted -std=c++11" )
 	endif()	
+	if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS "5.0.0" )
+		message(FATAL_ERROR "compiler required: gcc 5.0.0" )
+	endif()
+		
 endif()
 # includes utils.cmake module
 set (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")

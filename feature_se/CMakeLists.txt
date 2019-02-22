@@ -14,6 +14,8 @@ endif()
 if(EXT_SDK_TYPE STREQUAL "CASSDK")
 	find_package(Cassdk REQUIRED)
 elseif(EXT_SDK_TYPE STREQUAL "DEFAULT")
+elseif(EXT_SDK_TYPE STREQUAL "CUSTOM")
+	message(STATUS "unsupported operation")
 else()
 	message(STATUS "unsupported operation")
 endif()
@@ -95,7 +97,17 @@ if(CASSDK_USED)
 	# 加入CASSDK　import target
 	list(APPEND _link_libraries cassdk_THFeature)
 endif(CASSDK_USED)
-
+if(EXT_SDK_TYPE STREQUAL "DEFAULT")
+	# 加入特征长度和类型定义
+	target_compile_definitions (${target} 
+		PUBLIC CODE_ELEM_TYPE=${DEFAULT_ELEM_TYPE}
+		PUBLIC CODE_ELEM_LEN=${DEFAULT_ELEM_LEN}
+		)	
+	if(DEFAULT_CODE_END_WITH_SUM)
+		# 指定特征值数组后以double类型的点积和结尾
+		target_compile_definitions (${target} PUBLIC CODE_END_WITH_SUM)
+	endif()
+endif()
 target_link_libraries(${target} PRIVATE $<BUILD_INTERFACE:common_source>)
 if(_is_shared)
 	target_link_libraries(${target} PRIVATE ${_link_libraries})
