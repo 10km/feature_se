@@ -43,8 +43,8 @@ if(CMAKE_SYSTEM_NAME MATCHES "Windows")
 endif(CMAKE_SYSTEM_NAME MATCHES "Windows")
 ########安装脚本##########
 install(TARGETS ${JNI_FSE_LIBNAME} 
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION bin
+        RUNTIME DESTINATION ${RUNTIME_INSTALL_DIR}
+        LIBRARY DESTINATION ${LIBRARY_INSTALL_DIR}
         )
 if(MSVC)
 	# 安装pdb文件

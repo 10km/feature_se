@@ -2,10 +2,6 @@
 #author:guyadong
 #created:2018/04/13
 include (CMakePackageConfigHelpers)
-# define RUNTIME_INSTALL_DIR LIBRARY_INSTALL_DIR INCLUDE_INSTALL_DIR CONFIG_INSTALL_DIR
-set (RUNTIME_INSTALL_DIR bin)
-set (LIBRARY_INSTALL_DIR lib)
-set (INCLUDE_INSTALL_DIR include)
 if(WIN32 AND NOT CYGWIN)
   set (CONFIG_INSTALL_DIR  cmake)
 else()
