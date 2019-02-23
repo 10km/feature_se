@@ -97,7 +97,9 @@ linux下命令行编译过程:
 
 ### Android NDK
 
-要求安装Android NDK版本不限
+编译要求
+
+- Android NDK 版本不限，但Clang要求支持C++11编译，15c编译通过 
 
 Android NDK交叉编译方法如下(参见 [make_ndk_project.bat](make_ndk_project.bat)).
 
