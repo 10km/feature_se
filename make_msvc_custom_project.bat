@@ -31,13 +31,14 @@ if not defined VisualStudioVersion (
 
 @rem 使用第三方识别库提供的特征比对函数 
 @rem EXT_SDK_TYPE 识别函数类型 CUSTOM 使用第三方库提供的特征比对函数  
-@rem CUSTOM_FEACOMP_INCLUDE 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在头文件的位置(文件夹全路径) 
-@rem CUSTOM_FEACOMP_LIBRARY 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在库文件(全路径) 
-@rem CUSTOM_FEACOMP_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定引用比对函数所需要的头文件名列表,';'分隔,按顺序引用 
-@rem CUSTOM_FEACOMP_FUNNAME 当EXT_SDK_TYPE为CUSTOM时,指定比对函数名,
-@rem CUSTOM_FEACOMP_FUNTYPE 当EXT_SDK_TYPE为CUSTOM时,指定比对函数类型定义,
-@rem 		格式:return_type(intput_type0,intput_type1),如果不指定则默认为double(unsigned char*,unsigned char*)
-@rem CUSTOM_SYS_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定需要引用的系统头文件名,如windows.h,可不设置 
+@rem 如果EXT_SDK_TYPE指定为CUSTOM,下列参数需要设置:
+@rem CUSTOM_FEACOMP_INCLUDE 指定比对函数所在头文件的位置(文件夹全路径) 
+@rem CUSTOM_FEACOMP_LIBRARY 指定比对函数所在库文件(全路径) 
+@rem CUSTOM_FEACOMP_HEADERS 指定引用比对函数所需要的头文件名列表,';'分隔,按顺序引用 
+@rem CUSTOM_FEACOMP_FUNNAME 指定比对函数名,
+@rem CUSTOM_FEACOMP_FUNTYPE 指定比对函数类型定义,
+@rem        格式:return_type(intput_type0,intput_type1),如果不指定则默认为double(unsigned char*,unsigned char*)
+@rem CUSTOM_SYS_HEADERS 指定需要引用的系统头文件名,如windows.h,可不设置 
 
 echo creating x86_64 Project for Visual Studio 2015 ...
 cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_custom_windows_x86_64 .. ^

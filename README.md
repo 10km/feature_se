@@ -40,7 +40,12 @@ jni接口定义参见[jni/net_gdface_sdk_fse_FseJniBridge.h](jni/net_gdface_sdk_
 
 ## 编译
 
-要求cmake 3.0以上版本
+编译要求
+
+
+- cmake 3.0以上版本
+- JDK 1.7
+
 
 ### windows
 
@@ -92,21 +97,23 @@ linux下命令行编译过程:
 
 ### Android NDK
 
-要求安装Android NDK版本不限及和JDK 7(以上)
+要求安装Android NDK版本不限
 
 Android NDK交叉编译方法如下(参见 [make_ndk_project.bat](make_ndk_project.bat)).
 
 
 
-	@rem EXT_SDK_TYPE 指定算法类型可选值：
-	@rem                    CASSDK(默认值)
-	@rem                    EUCLIDEAN  默认使用欧氏距离计算相似度
-	@rem                    CUSTOM   使用自定义算法提的供相似度比较函数，此方式暂时未支持
-	@rem EUCLIDEAN_ELEM_TYPE 如果EXT_SDK_TYPE指定为EUCLIDEAN则可以指定此值,用于定义特征值数组类型(double/float)，如果不指定，默认值为double
-	@rem EUCLIDEAN_ELEM_LEN  如果EXT_SDK_TYPE指定为EUCLIDEAN则需要指定此值,用于定义特征值数组长度
-	@rem EUCLIDEAN_ELEM_LEN  如果EXT_SDK_TYPE指定为EUCLIDEAN则可以指定此值,用于定义特征值数组最后是否有一个double保存特征值数组的点积和，默认为OFF
-	@rem FSE_LIBNAME 指定生成jni动态名,不指定则使用默认值
-	@rem JNI_FSE_LIBNAME 指定生成jni动态名,不指定则使用默认值
+	@rem EXT_SDK_TYPE 指定算法类型可选值： 
+	@rem                    CASSDK(默认值) 
+	@rem                    EUCLIDEAN  默认使用欧氏距离计算相似度 
+	@rem                    CUSTOM   使用自定义算法提的供相似度比较函数，此方式暂时未支持 
+	@rem 如果EXT_SDK_TYPE指定为EUCLIDEAN,下列参数需要设置:
+	@rem EUCLIDEAN_ELEM_TYPE 定义特征值数组类型(double/float)，如果不指定，默认值为double 
+	@rem EUCLIDEAN_ELEM_LEN  定义特征值数组长度 
+	@rem EUCLIDEAN_CODE_END_WITH_SUM  定义特征值数组最后是否有一个double保存特征值数组的点积和，默认为OFF 
+	@rem ============================下列为通用参数与EXT_SDK_TYPE无关
+	@rem FSE_LIBNAME        指定生成jni动态名,不指定则使用默认值 
+	@rem JNI_FSE_LIBNAME    指定生成jni动态名,不指定则使用默认值 
 	
 	cmake %sh_folder% -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
 		-DJNI_FSE_LIBNAME=FS_FaceFeatureCompare ^
@@ -125,13 +132,14 @@ Android NDK交叉编译方法如下(参见 [make_ndk_project.bat](make_ndk_proje
 	
 	@rem 使用第三方识别库提供的特征比对函数 
 	@rem EXT_SDK_TYPE 识别函数类型 CUSTOM 使用第三方库提供的特征比对函数  
-	@rem CUSTOM_FEACOMP_INCLUDE 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在头文件的位置(文件夹全路径) 
-	@rem CUSTOM_FEACOMP_LIBRARY 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在库文件(全路径) 
-	@rem CUSTOM_FEACOMP_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定引用比对函数所需要的头文件名列表,';'分隔,按顺序引用 
-	@rem CUSTOM_FEACOMP_FUNNAME 当EXT_SDK_TYPE为CUSTOM时,指定比对函数名,
-	@rem CUSTOM_FEACOMP_FUNTYPE 当EXT_SDK_TYPE为CUSTOM时,指定比对函数类型定义,
-	@rem 		格式:return_type(intput_type0,intput_type1),如果不指定则默认为double(unsigned char*,unsigned char*)
-	@rem CUSTOM_SYS_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定需要引用的系统头文件名,如windows.h,可不设置 
+	@rem 如果EXT_SDK_TYPE指定为CUSTOM,下列参数需要设置:
+	@rem CUSTOM_FEACOMP_INCLUDE 指定比对函数所在头文件的位置(文件夹全路径) 
+	@rem CUSTOM_FEACOMP_LIBRARY 指定比对函数所在库文件(全路径) 
+	@rem CUSTOM_FEACOMP_HEADERS 指定引用比对函数所需要的头文件名列表,';'分隔,按顺序引用 
+	@rem CUSTOM_FEACOMP_FUNNAME 指定比对函数名,
+	@rem CUSTOM_FEACOMP_FUNTYPE 指定比对函数类型定义,
+	@rem        格式:return_type(intput_type0,intput_type1),如果不指定则默认为double(unsigned char*,unsigned char*)
+	@rem CUSTOM_SYS_HEADERS 指定需要引用的系统头文件名,如windows.h,可不设置  
 	
 	echo creating x86_64 Project for Visual Studio 2015 ...
 	cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_custom_windows_x86_64 .. ^
