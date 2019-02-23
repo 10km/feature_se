@@ -33,6 +33,10 @@ if(EXT_SDK_TYPE STREQUAL "CUSTOM")
 		CUSTOM_FEACOMP_LIBRARY(feature compare function's library full path),
 		CUSTOM_FEACOMP_FUNNAME(function name)")
 	endif()	
+	# 没有定义 CUSTOM_FEACOMP_FUNTYPE 则使用默认值 
+	if(NOT CUSTOM_FEACOMP_FUNTYPE)
+		set(CUSTOM_FEACOMP_FUNTYPE "double(unsigned char*,unsigned char*)")
+	endif()
 endif()
 if(EXT_SDK_TYPE STREQUAL "EUCLIDEAN")
 	# EUCLIDEAN 使用系统内置的特征值比对函数,需要指定特征值数据类型和特征值长度

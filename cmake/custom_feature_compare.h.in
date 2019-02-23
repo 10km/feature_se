@@ -1,18 +1,39 @@
 /*
  * custom_feature_compare.h
- *
+ *  Description: 由custom_feature_compare.h.in模板自动生成,
+ *               用于将第三方特征比对函数封装为统一的接口供搜索比对调用
  *  Created on: 2019年2月22日
  *      Author: guyadong
  */
 
 #ifndef CUSTOM_FEACOMP_H_
 #define CUSTOM_FEACOMP_H_
+#include <functional>
+#include <tuple>
 @CUSTOM_INCLUDE_STATEMENTS@
 #include "codemgr.h"
 namespace gdface{
 namespace feature{
+template<typename T> 
+struct function_traits;  
+
+template<typename R, typename ...Args> 
+struct function_traits<std::function<R(Args...)>>
+{
+    static const size_t nargs = sizeof...(Args);
+
+    typedef R result_type;
+
+    template <size_t i>
+    struct arg
+    {
+        typedef typename std::tuple_element<i, std::tuple<Args...>>::type type;
+    };
+};
 inline double compare(const face_code &f1,const face_code&f2){
-	return @CUSTOM_FEACOMP_FUNNAME@((unsigned char*)f1.element,(unsigned char*)f2.element);
+
+	typedef std::function<@CUSTOM_FEACOMP_FUNTYPE@> feacomp_fun;
+	return (double)@CUSTOM_FEACOMP_FUNNAME@((function_traits<feacomp_fun>::arg<0>::type)f1.element,(function_traits<feacomp_fun>::arg<1>::type)f2.element);
 }
 } /* namespace feature*/
 } /* namespace gdface*/
