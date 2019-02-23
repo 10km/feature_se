@@ -11,6 +11,12 @@ if errorlevel 1 (
 	exit /B -1
 )
 echo cmake found
+where java
+if errorlevel 1 (
+	echo java NOT FOUND.
+	exit /B -1
+)
+echo java found
 set sh_folder=%~dp0
 pushd %sh_folder%
 

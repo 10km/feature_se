@@ -121,23 +121,75 @@ Android NDK交叉编译方法如下(参见 [make_ndk_project.bat](make_ndk_proje
 
 ### 指定第三方库的特征比对函数
 
-本项目独立于具体人脸识别算法，所以在实际应用中需要指定人脸特征比对函数，可以如下示例使用第三方库提供的比对函数，无需修改本项目代码：完整脚本参见  [make_msvc_custom_project.bat](make_msvc_custom_project.bat)
-
+本项目独立于具体人脸识别算法，所以在实际应用中需要指定人脸特征比对函数，可以如下示例使用第三方库提供的比对函数，无需修改本项目代码,完整脚本参见  [make_msvc_custom_project.bat](make_msvc_custom_project.bat)
+	
 	@rem 使用第三方识别库提供的特征比对函数 
 	@rem EXT_SDK_TYPE 识别函数类型 CUSTOM 使用第三方库提供的特征比对函数  
 	@rem CUSTOM_FEACOMP_INCLUDE 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在头文件的位置(文件夹全路径) 
 	@rem CUSTOM_FEACOMP_LIBRARY 当EXT_SDK_TYPE为CUSTOM时,指定比对函数所在库文件(全路径) 
 	@rem CUSTOM_FEACOMP_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定引用比对函数所需要的头文件名列表,';'分隔,按顺序引用 
-	@rem CUSTOM_FEACOMP_FUNNAME 当EXT_SDK_TYPE为CUSTOM时,指定比对函数名,函数定义:double compare_function_name(unsigned char*,unsigned char*) 
+	@rem CUSTOM_FEACOMP_FUNNAME 当EXT_SDK_TYPE为CUSTOM时,指定比对函数名,
+	@rem CUSTOM_FEACOMP_FUNTYPE 当EXT_SDK_TYPE为CUSTOM时,指定比对函数类型定义,
+	@rem 		格式:return_type(intput_type0,intput_type1),如果不指定则默认为double(unsigned char*,unsigned char*)
 	@rem CUSTOM_SYS_HEADERS 当EXT_SDK_TYPE为CUSTOM时,指定需要引用的系统头文件名,如windows.h,可不设置 
 	
+	echo creating x86_64 Project for Visual Studio 2015 ...
 	cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_custom_windows_x86_64 .. ^
 		-DEXT_SDK_TYPE=CUSTOM ^
 		-DCUSTOM_FEACOMP_INCLUDE=J:\workspace.neon\cassdk54\FSFaceSDK\FSFaceSDK-windows-x86_64\include ^
 		-DCUSTOM_FEACOMP_LIBRARY=J:\workspace.neon\cassdk54\FSFaceSDK\FSFaceSDK-windows-x86_64\lib\FSFaceSDK.lib ^
 		-DCUSTOM_FEACOMP_HEADERS=FSFaceSDK.h ^
 		-DCUSTOM_SYS_HEADERS=windows.h ^
-		-DCUSTOM_FEACOMP_FUNNAME=FSCompare
+		-DCUSTOM_FEACOMP_FUNNAME=FSCompare ^
+		-DCUSTOM_FEACOMP_FUNTYPE="double(unsigned char*, unsigned char*)"
+
+根据以上提供的信息,cmake脚本会自动生成如下的临时代码文件`custom_feature_compare.h`,并加入项目中，在实现内存特征搜索时会调用代码中的`compare`函数从而实现调用第三方比对函数完成特征比对：
+
+	/*
+	 * custom_feature_compare.h
+	 *  Description: 由custom_feature_compare.h.in模板自动生成,
+	 *               用于将第三方特征比对函数封装为统一的接口供搜索比对调用
+	 *  Created on: 2019年2月22日
+	 *      Author: guyadong
+	 */
+	
+	#ifndef CUSTOM_FEACOMP_H_
+	#define CUSTOM_FEACOMP_H_
+	#include <functional>
+	#include <tuple>
+	
+	#include <windows.h>
+	#include "FSFaceSDK.h"
+	
+	#include "codemgr.h"
+	namespace gdface{
+	namespace feature{
+	template<typename T> 
+	struct function_traits;  
+	
+	template<typename R, typename ...Args> 
+	struct function_traits<std::function<R(Args...)>>
+	{
+	    static const size_t nargs = sizeof...(Args);
+	
+	    typedef R result_type;
+	
+	    template <size_t i>
+	    struct arg
+	    {
+	        typedef typename std::tuple_element<i, std::tuple<Args...>>::type type;
+	    };
+	};
+	inline double compare(const face_code &f1,const face_code&f2){
+	
+		typedef std::function<double(unsigned char*, unsigned char*)> feacomp_fun;
+		return (double)FSCompare((function_traits<feacomp_fun>::arg<0>::type)f1.element,(function_traits<feacomp_fun>::arg<1>::type)f2.element);
+	}
+	} /* namespace feature*/
+	} /* namespace gdface*/
+	
+	#endif /* CUSTOM_FEACOMP_H_ */
+
 
 ## 调用示例
 

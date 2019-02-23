@@ -11,7 +11,12 @@ if errorlevel 1 (
 	exit /B -1
 )
 echo cmake found
-
+where java
+if errorlevel 1 (
+	echo java NOT FOUND.
+	exit /B -1
+)
+echo java found
 set sh_folder=%~dp0
 rem 定义编译的版本类型(DEBUG|RELEASE)
 set build_type=RELEASE
@@ -32,7 +37,9 @@ if not defined VisualStudioVersion (
 )
 echo creating x86_64 Project for Visual Studio 2015 ...
 cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
-	-DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_windows_x86_64 ..
+	-DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_windows_x86_64 .. ^
+	-DEXT_SDK_TYPE=CASSDK
+	
 nmake install
 rem cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_windows_x86_64 .. 
 rem devenv feature_se.sln /Build "%build_type%|X64" /Project INSTALL

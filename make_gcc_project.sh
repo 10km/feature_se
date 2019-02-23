@@ -15,7 +15,9 @@ mkdir $folder_name.prj
 
 pushd $folder_name.prj
 cmake "$sh_folder" -G "Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=$build_type \
-	-DCMAKE_INSTALL_PREFIX=$sh_folder/release/fse_linux_x86_64
+	-DCMAKE_INSTALL_PREFIX=$sh_folder/release/fse_linux_x86_64 \
+	-DEXT_SDK_TYPE=CASSDK
+
 popd
 
 popd

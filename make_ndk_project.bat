@@ -30,7 +30,7 @@ pushd feature_se.ndk.prj
 @rem                    CUSTOM   使用自定义算法提的供相似度比较函数，此方式暂时未支持
 @rem EUCLIDEAN_ELEM_TYPE 如果EXT_SDK_TYPE指定为DEFAULT则可以指定此值,用于定义特征值数组类型(double/float)，如果不指定，默认值为double
 @rem EUCLIDEAN_ELEM_LEN  如果EXT_SDK_TYPE指定为DEFAULT则需要指定此值,用于定义特征值数组长度
-@rem EUCLIDEAN_ELEM_LEN  如果EXT_SDK_TYPE指定为DEFAULT则可以指定此值,用于定义特征值数组最后是否有一个double保存特征值数组的点积和，默认为OFF
+@rem EUCLIDEAN_CODE_END_WITH_SUM  如果EXT_SDK_TYPE指定为DEFAULT则可以指定此值,用于定义特征值数组最后是否有一个double保存特征值数组的点积和，默认为OFF
 @rem FSE_LIBNAME 指定生成jni动态名,不指定则使用默认值
 @rem JNI_FSE_LIBNAME 指定生成jni动态名,不指定则使用默认值
 
