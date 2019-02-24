@@ -33,8 +33,8 @@ pushd feature_se.ndk.prj
 @rem EUCLIDEAN_ELEM_LEN  定义特征值数组长度 
 @rem EUCLIDEAN_CODE_END_WITH_SUM  定义特征值数组最后是否有一个double保存特征值数组的点积和，默认为OFF 
 @rem ============================下列为通用参数与EXT_SDK_TYPE无关
-@rem FSE_LIBNAME        指定生成jni动态名,不指定则使用默认值 
-@rem JNI_FSE_LIBNAME    指定生成jni动态名,不指定则使用默认值 
+@rem FSE_LIBNAME        指定生成动态库名,不指定则使用默认值 
+@rem JNI_FSE_LIBNAME    指定生成jni动态库名,不指定则使用默认值 
 
 cmake %sh_folder% -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
 	-DJNI_FSE_LIBNAME=FS_FaceFeatureCompare ^
