@@ -69,7 +69,7 @@ typedef struct _ALIGN_16 _face_code{
 	unsigned char element[CODE_BYTE_LENGTH];
 }face_code;
 #else
-// 默认基于点积计算相似度的特征码类型
+// 默认基于点积(欧氏距离)计算相似度的特征码类型
 typedef struct _ALIGN_16 _face_code {
 	CODE_ELEM_TYPE element[CODE_FLOAT_NUM];
 	double sum;/** element的点积和 */

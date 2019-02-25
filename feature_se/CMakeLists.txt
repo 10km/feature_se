@@ -104,7 +104,7 @@ endif()
 if(CASSDK_USED)
 	# 加入CASSDK 版本定义
 	target_compile_definitions (${target} 
-		PUBLIC CASSDK
+		PUBLIC CASSDK=1
 		)
 	# 加入CASSDK　import target
 	list(APPEND _link_libraries cassdk_THFeature)
@@ -112,18 +112,19 @@ endif(CASSDK_USED)
 if(EXT_SDK_TYPE STREQUAL "EUCLIDEAN")
 	# 加入特征长度和类型定义
 	target_compile_definitions (${target} 
+		PUBLIC EUCLIDEAN_FEACOMP=1
 		PUBLIC CODE_ELEM_TYPE=${EUCLIDEAN_ELEM_TYPE}
 		PUBLIC CODE_ELEM_LEN=${EUCLIDEAN_ELEM_LEN}
 		)	
 	if(EUCLIDEAN_CODE_END_WITH_SUM)
 		# 指定特征值数组后以double类型的点积和结尾
-		target_compile_definitions (${target} PUBLIC CODE_END_WITH_SUM)
+		target_compile_definitions (${target} PUBLIC CODE_END_WITH_SUM=1)
 	endif()
 endif()
 if(EXT_SDK_TYPE STREQUAL "CUSTOM")
 	# 加入自定义的包含特征比较函数的算法库
 	target_compile_definitions(${target} 
-		PUBLIC CUSTOM_FEACOMP 
+		PUBLIC CUSTOM_FEACOMP=1 
 		PUBLIC CODE_BYTE_LENGTH=${CUSTOM_CODE_BYTE_LEN})
 	target_link_libraries(${target} PRIVATE ${CUSTOM_FEACOMP_LIBRARY})
 	target_include_directories(${target} PRIVATE "${PROJECT_BINARY_DIR}/generated" ${CUSTOM_FEACOMP_INCLUDE})

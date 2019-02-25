@@ -34,8 +34,8 @@ inline bool is_null_MD5(const MD5 *md5) {
 #define FACE_CODE_CONVERT(code) code
 #elif __GNUC__ && __BYTE_ORDER__ ==__ORDER_BIG_ENDIAN__
 inline face_code _code_reverse(const face_code& code) {
-	//当系统为大端时把字节序转换为小端
-	//gcc下用内置函数转换
+	// 当系统为大端时把字节序转换为小端
+	// gcc下用内置函数转换
 	face_code new_code;
 	for(int i=0;i<CODE_FLOAT_NUM;++i)
 		new_code.element[i]=(float)__builtin_bswap32((uint32_t)code.element[i]);

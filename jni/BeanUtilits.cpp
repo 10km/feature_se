@@ -61,7 +61,7 @@ bool BeanUtilits::jbytearraytoface_code(jbyteArray bytes, face_code& code) {
 		code = *((face_code*)((byte_ptr.get())));
 		return true;
 	}
-#if CODE_END_WITH_SUM
+#if EUCLIDEAN_FEACOMP && CODE_END_WITH_SUM
 	else if (env->GetArrayLength(bytes) == sizeof(code.element) {
 		// 特征值结尾是一个double类型的值，代表前面所有的浮点数(double|float)的点积和
 		auto byte_ptr = jni_utilits::raii_GetByteArrayElements(bytes);
