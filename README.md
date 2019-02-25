@@ -141,7 +141,8 @@ Android NDK交叉编译方法如下(参见 [make_ndk_project.bat](make_ndk_proje
 	@rem CUSTOM_FEACOMP_FUNNAME 指定比对函数名,
 	@rem CUSTOM_FEACOMP_FUNTYPE 指定比对函数类型定义,
 	@rem        格式:return_type(intput_type0,intput_type1),如果不指定则默认为double(unsigned char*,unsigned char*)
-	@rem CUSTOM_SYS_HEADERS 指定需要引用的系统头文件名,如windows.h,可不设置  
+	@rem CUSTOM_SYS_HEADERS 指定需要引用的系统头文件名,如windows.h,可不设置 
+	@rem CUSTOM_CODE_BYTE_LEN 特征数据长度(byte)
 	
 	echo creating x86_64 Project for Visual Studio 2015 ...
 	cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=..\release\fse_custom_windows_x86_64 .. ^
@@ -151,7 +152,8 @@ Android NDK交叉编译方法如下(参见 [make_ndk_project.bat](make_ndk_proje
 		-DCUSTOM_FEACOMP_HEADERS=FSFaceSDK.h ^
 		-DCUSTOM_SYS_HEADERS=windows.h ^
 		-DCUSTOM_FEACOMP_FUNNAME=FSCompare ^
-		-DCUSTOM_FEACOMP_FUNTYPE="double(unsigned char*, unsigned char*)"
+		-DCUSTOM_FEACOMP_FUNTYPE="double(unsigned char*, unsigned char*)" ^
+		-DCUSTOM_CODE_BYTE_LEN=2560 
 
 根据以上提供的信息,cmake脚本会自动生成如下的临时代码文件`custom_feature_compare.h`,并加入项目中，在实现内存特征搜索时会调用代码中的`compare`函数从而实现调用第三方比对函数完成特征比对：
 

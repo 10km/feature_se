@@ -122,7 +122,9 @@ if(EXT_SDK_TYPE STREQUAL "EUCLIDEAN")
 endif()
 if(EXT_SDK_TYPE STREQUAL "CUSTOM")
 	# 加入自定义的包含特征比较函数的算法库
-	target_compile_definitions(${target} PUBLIC CUSTOM)
+	target_compile_definitions(${target} 
+		PUBLIC CUSTOM_FEACOMP 
+		PUBLIC CODE_BYTE_LENGTH=${CUSTOM_CODE_BYTE_LEN})
 	target_link_libraries(${target} PRIVATE ${CUSTOM_FEACOMP_LIBRARY})
 	target_include_directories(${target} PRIVATE "${PROJECT_BINARY_DIR}/generated" ${CUSTOM_FEACOMP_INCLUDE})
 endif()

@@ -9,7 +9,7 @@
 #include "HashMapCl.h"
 #ifdef CASSDK
 #include "feature_compare_cas.h"
-#elif defined(CUSTOM)
+#elif defined(CUSTOM_FEACOMP)
 #include "custom_feature_compare.h"
 #else
 #include "feature_compare.h"
