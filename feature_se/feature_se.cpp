@@ -53,7 +53,7 @@ int fse_init(uint32_t initCapacity, float loadFactor, size_t overBlockCapacity){
 	// 初始化表对象
 	try {
 		if(nullptr == instance){
-			SAMPLE_OUT(L"feature_se jni initialized:\ninitCapacity:{};loadFactor:{};overBlockCapacity:{}", 
+			SAMPLE_OUT("feature_se jni initialized:\ninitCapacity:{};loadFactor:{};overBlockCapacity:{}", 
 				initCapacity, loadFactor, overBlockCapacity);
 
 			instance = CodeManagerFactory::getICodeManagerCPU(initCapacity, true, loadFactor, overBlockCapacity);
