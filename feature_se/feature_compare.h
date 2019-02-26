@@ -31,7 +31,7 @@ inline double compareV1(const E *f1, const E *f2) {
 /* V2版本特征码比对 */
 template<dot_product_type TYPE=DOT_TYPE_CONST>
 inline double compare(const face_code &f1,const face_code&f2){
-	return compareV2<double,TYPE>(f1.element,f2.element,f1.sum,f2.sum);
+	return compareV2<CODE_ELEM_TYPE,TYPE>(f1.element,f2.element,f1.sum,f2.sum);
 }
 } /* namespace feature*/
 } /* namespace gdface*/

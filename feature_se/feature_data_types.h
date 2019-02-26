@@ -26,7 +26,7 @@
 #ifndef CODE_ELEM_TYPE
 #define CODE_ELEM_TYPE double
 #endif
-#ifndef DEFAULT_ELEM_LEN
+#ifndef CODE_ELEM_LEN
 // 定义 特征码总长度(浮点类型)
 #define CODE_FLOAT_NUM 210
 // 旧版本face sdk

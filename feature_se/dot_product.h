@@ -34,13 +34,13 @@ enum dot_product_type{
 
 #if defined(__x86_64)|| defined(_M_X64) // x64 体系结构 使用SSE指令优化 gcc 和 MinGW 有定义 __x86_64, MinGW 和 msc 有定义 _M_X64
 	#ifdef _MSC_VER
-		const dot_product_type DOT_TYPE_CONST=DOT_SIMD_X64_RECURSIVE;//DOT_SIMD_X64;
+		const dot_product_type DOT_TYPE_CONST= DOT_DEFAULT;//DOT_SIMD_X64;
 		inline double _sum__m128(const __m128 & m1){
 			return m1.m128_f32[0]+m1.m128_f32[1]+m1.m128_f32[2]+m1.m128_f32[3];
 		}
 		#define _SIMD_X64_
 	#elif defined(__GNUC__)
-		const dot_product_type DOT_TYPE_CONST=DOT_SIMD_X64_RECURSIVE;//DOT_SIMD_X64;
+		const dot_product_type DOT_TYPE_CONST= DOT_DEFAULT;//DOT_SIMD_X64;
 		inline double _sum__m128(const __m128 & m1){
 			return m1[0]+m1[1]+m1[2]+m1[3];
 		}

@@ -61,14 +61,14 @@ bool BeanUtilits::jbytearraytoface_code(jbyteArray bytes, face_code& code) {
 		code = *((face_code*)((byte_ptr.get())));
 		return true;
 	}
-#if EUCLIDEAN_FEACOMP && CODE_END_WITH_SUM
-	else if (env->GetArrayLength(bytes) == sizeof(code.element) {
-		// 特征值结尾是一个double类型的值，代表前面所有的浮点数(double|float)的点积和
+#if EUCLIDEAN_FEACOMP && ! CODE_END_WITH_SUM
+	else if (env->GetArrayLength(bytes) == sizeof(code.element)) {		
 		auto byte_ptr = jni_utilits::raii_GetByteArrayElements(bytes);
-		// 复制除最后一个double外的所有数据到element
+		// 复制所有特征数据到element
 		std::memcpy(code.element, byte_ptr.get(), sizeof(code.element));
-		// 计算点积和保存在sum
-		code.sum = dot_product((CODE_ELEM_TYPE*)byte_ptr.get(), (CODE_ELEM_TYPE*)byte_ptr.get());
+		// 计算特征值数组的点积和保存在sum
+		code.sum = dot_product<CODE_FLOAT_NUM>(code.element, code.element);
+		return true;
 	}
 #endif
 	return false;
