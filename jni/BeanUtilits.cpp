@@ -7,7 +7,7 @@
 #include <cstring>
 #include "BeanUtilits.h"
 #include "dot_product.h"
-
+#include "md5/md5.h"
 
 namespace gdface {
 bool BeanUtilits::tocodeBean(code_bean& bean, jobject obj, jni_utilits::JavaClassMirror& mirror) {
@@ -96,11 +96,13 @@ bool BeanUtilits::tocodeBean(code_bean& bean, jbyteArray id, jbyteArray code, js
 	if (result) {
 		if (nullptr == id) {
 			// id 为null抛出异常
-			jni_utilits::throwIllegalArgumentException("feature id must not be null");
-			return false;
+			/*jni_utilits::throwIllegalArgumentException("feature id must not be null");
+			return false;*/
 			/*auto md5util = std::make_shared<md5::MD5>();
 			md5util->digestMemory(std::addressof(bean.code), sizeof(bean.code));
 			bean.id = *(MD5*)md5util->digestRaw;*/
+			auto codeMD5 = md5::md5(std::addressof(bean.code), sizeof(bean.code));
+			bean.id = *(MD5*)codeMD5.data();
 		}
 		else {
 			result &= jbytearraytoMD5(id, bean.id);

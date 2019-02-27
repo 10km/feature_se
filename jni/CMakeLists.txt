@@ -22,10 +22,11 @@ include_directories("${PROJECT_SOURCE_DIR}/feature_se")
 #设置变量，表示所有的源文件列表  
 set(SOURCE_FILES
     ${DEPENDENT_SOURCE_DIR}/jni_utilits.cpp
-     net_gdface_sdk_fse_FseJniBridge.cpp
-     jni_mgr.cpp
-     BeanUtilits.cpp
-     )
+    ${DEPENDENT_SOURCE_DIR}/md5/md5.cpp
+    net_gdface_sdk_fse_FseJniBridge.cpp
+    jni_mgr.cpp
+    BeanUtilits.cpp
+    )
 # CASSDK版本的JNI接口
 add_library(${JNI_FSE_LIBNAME} SHARED ${SOURCE_FILES})
 link_static_libstdcxx_if_linux(${JNI_FSE_LIBNAME})
