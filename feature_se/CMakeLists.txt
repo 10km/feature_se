@@ -82,6 +82,7 @@ else()
   set(_is_shared_str "0")
 endif()
 target_include_directories (${target} 
+	PRIVATE ${CMAKE_CURRENT_LIST_DIR}
 	INTERFACE "$<INSTALL_INTERFACE:include>"
 	)
 # 编译库时必须加FSE_EXPORTS定义

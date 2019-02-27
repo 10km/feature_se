@@ -10,6 +10,8 @@
 #define CUSTOM_FEACOMP_H_
 #include <functional>
 #include <tuple>
+#include <mutex>
+
 @CUSTOM_INCLUDE_STATEMENTS@
 #include "codemgr.h"
 namespace gdface{
@@ -31,7 +33,10 @@ struct function_traits<std::function<R(Args...)>>
     };
 };
 inline double compare(const face_code &f1,const face_code&f2){
-
+	static std::once_flag oc;
+	std::call_once(oc, [&]() { 
+		@CUSTOM_FEACOMP_INIT@
+	});
 	typedef std::function<@CUSTOM_FEACOMP_FUNTYPE@> feacomp_fun;
 	return (double)@CUSTOM_FEACOMP_FUNNAME@((function_traits<feacomp_fun>::arg<0>::type)f1.element,(function_traits<feacomp_fun>::arg<1>::type)f2.element);
 }
