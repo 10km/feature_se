@@ -31,9 +31,13 @@ set(SOURCE_FILES
 add_library(${JNI_FSE_LIBNAME} SHARED ${SOURCE_FILES})
 link_static_libstdcxx_if_linux(${JNI_FSE_LIBNAME})
 # 加入依赖库 MSVC编译时使用/MT静态库
-target_link_libraries(${JNI_FSE_LIBNAME} fse_cas_static$<$<CXX_COMPILER_ID:MSVC>:_mt>)
+target_link_libraries(${JNI_FSE_LIBNAME} fse_cas_static$<$<CXX_COMPILER_ID:MSVC>:_mt> $<$<PLATFORM_ID:Android>:log>)
+
 
 target_include_directories (${JNI_FSE_LIBNAME}	PRIVATE ${DEPENDENT_SOURCE_DIR})
+if(EXT_SDK_TYPE STREQUAL "CUSTOM")
+	target_include_directories(${JNI_FSE_LIBNAME} PRIVATE "${PROJECT_BINARY_DIR}/generated" ${CUSTOM_FEACOMP_INCLUDE})
+endif()
 #############设置动态库版本号###################
 set_target_properties(${JNI_FSE_LIBNAME} PROPERTIES  VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR} DEBUG_POSTFIX _d)
 message(STATUS "feature_se jni VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR}")
