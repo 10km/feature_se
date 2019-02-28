@@ -73,7 +73,28 @@ bool BeanUtilits::jbytearraytoface_code(jbyteArray bytes, face_code& code) {
 #endif
 	return false;
 }
-
+bool BeanUtilits::jdoublearraytoface_code(jdoubleArray bytes, face_code& code) {
+	if (nullptr == bytes) {
+		return false;
+	}
+	auto env = jni_utilits::getJNIEnv();
+	if (env->GetArrayLength(bytes) == sizeof(face_code) / sizeof(double)) {
+		auto byte_ptr = jni_utilits::raii_GetDoubleArrayElements(bytes);
+		code = *((face_code*)((byte_ptr.get())));
+		return true;
+	}
+#if EUCLIDEAN_FEACOMP && ! CODE_END_WITH_SUM
+	else if (env->GetArrayLength(bytes) == sizeof(code.element)) {
+		auto byte_ptr = jni_utilits::raii_GetDoubleArrayElements(bytes);
+		// 复制所有特征数据到element
+		std::memcpy(code.element, byte_ptr.get(), sizeof(code.element));
+		// 计算特征值数组的点积和保存在sum
+		code.sum = dot_product<CODE_FLOAT_NUM>(code.element, code.element);
+		return true;
+	}
+#endif
+	return false;
+}
 raii_var<jobject> BeanUtilits::toJCodeBean(const code_bean& bean, jni_utilits::JavaClassMirror& mirror,jboolean full) {
 	auto var = jni_utilits::raii_NewObject(mirror.javaclass.get(), mirror.constructor);
 	auto obj = *var;
@@ -92,17 +113,11 @@ raii_var<jobject> BeanUtilits::toJCodeBean(const code_bean& bean, jni_utilits::J
 }
 bool BeanUtilits::tocodeBean(code_bean& bean, jbyteArray id, jbyteArray code, jstring imgMD5) {
 	auto result = jbytearraytoface_code(code, bean.code);
-	// 允许imgMD5为null
+	// 允许id,imgMD5为null
 	if (result) {
 		if (nullptr == id) {
-			// id 为null抛出异常
-			/*jni_utilits::throwIllegalArgumentException("feature id must not be null");
-			return false;*/
-			/*auto md5util = std::make_shared<md5::MD5>();
-			md5util->digestMemory(std::addressof(bean.code), sizeof(bean.code));
-			bean.id = *(MD5*)md5util->digestRaw;*/
-			auto codeMD5 = md5::md5(std::addressof(bean.code), sizeof(bean.code));
-			bean.id = *(MD5*)codeMD5.data();
+			auto codeMD5 = md5::digest(std::addressof(bean.code), (unsigned int)sizeof(bean.code));
+			bean.id = *(::MD5*)codeMD5.data();
 		}
 		else {
 			result &= jbytearraytoMD5(id, bean.id);
