@@ -46,7 +46,7 @@ public:
 #endif
 	}
 	static bool jbytearraytoface_code(jbyteArray bytes, face_code& code);
-
+	static bool jdoublearraytoface_code(jdoubleArray bytes, face_code& code);
 	/* 生成 code_bean镜像描述 */
 	static jni_utilits::JavaClassMirror JavaClassMirrorForCodeBean(){
 		return jni_utilits::JavaClassMirror(
