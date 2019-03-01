@@ -14,7 +14,7 @@ if errorlevel 1 (
 
 set sh_folder=%~dp0
 rem 定义编译的版本类型(DEBUG|RELEASE)
-set build_type=DEBUG
+set build_type=RELEASE
 if "%1" == "DEBUG" set build_type=%1
 echo build_type=%build_type%
 
