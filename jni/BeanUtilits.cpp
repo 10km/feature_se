@@ -116,8 +116,13 @@ bool BeanUtilits::tocodeBean(code_bean& bean, jbyteArray id, jbyteArray code, js
 	// 允许id,imgMD5为null
 	if (result) {
 		if (nullptr == id) {
+#if EUCLIDEAN_FEACOMP && ! CODE_END_WITH_SUM
+			auto codeMD5 = md5::digest(std::addressof(bean.code), (unsigned int)sizeof(bean.code.element));
+			bean.id = *(::MD5*)codeMD5.data();
+#else
 			auto codeMD5 = md5::digest(std::addressof(bean.code), (unsigned int)sizeof(bean.code));
 			bean.id = *(::MD5*)codeMD5.data();
+#endif
 		}
 		else {
 			result &= jbytearraytoMD5(id, bean.id);
