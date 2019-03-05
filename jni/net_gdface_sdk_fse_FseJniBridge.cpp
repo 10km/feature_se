@@ -168,28 +168,3 @@ JNIEXPORT jstring JNICALL Java_net_gdface_sdk_fse_FseJniBridge_statInfo
 	}
 	return jni_utilits::raii_NewStringUTF(info).norelease().get();
 }
-//JNIEXPORT jstring JNICALL Java_net_gdface_sdk_fse_FseJniBridge_md5
-//(JNIEnv *env, jclass, jbyteArray input) {
-//	if (nullptr == input) {
-//		return nullptr;
-//	}
-//	auto byte_ptr = jni_utilits::raii_GetByteArrayElements(input);
-//	auto codeMD5 = md5::digestString(byte_ptr.get(), (unsigned int)env->GetArrayLength(input));
-//	return jni_utilits::raii_NewStringUTF(codeMD5.data()).norelease().get();
-//}
-//#ifdef CUSTOM_FEACOMP
-//#include "custom_feature_compare.h"
-//
-//JNIEXPORT jdouble JNICALL Java_net_gdface_sdk_fse_FseJniBridge_compare
-//(JNIEnv *env, jclass, jbyteArray f1, jbyteArray f2) {
-//	if (nullptr == f1 || nullptr == f1) {
-//		return 0;
-//	}
-//	face_code code1,code2;
-//	auto result = BeanUtilits::jbytearraytoface_code(f1, code1);
-//	result &= BeanUtilits::jbytearraytoface_code(f2, code2);
-//	if(result)
-//		return gdface::feature::compare(code1, code2);
-//	return 0;
-//}
-//#endif

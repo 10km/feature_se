@@ -78,10 +78,6 @@ JNIEXPORT jint JNICALL Java_net_gdface_sdk_fse_FseJniBridge_size
  */
 JNIEXPORT jstring JNICALL Java_net_gdface_sdk_fse_FseJniBridge_statInfo
   (JNIEnv *, jclass);
-//JNIEXPORT jstring JNICALL Java_net_gdface_sdk_fse_FseJniBridge_md5
-//(JNIEnv *env, jclass, jbyteArray input);
-//JNIEXPORT jdouble JNICALL Java_net_gdface_sdk_fse_FseJniBridge_compare
-//(JNIEnv *env, jclass, jbyteArray f1, jbyteArray f2);
 #ifdef __cplusplus
 }
 #endif
