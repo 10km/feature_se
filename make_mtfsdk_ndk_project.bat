@@ -14,7 +14,7 @@ if errorlevel 1 (
 
 set sh_folder=%~dp0
 rem 定义编译的版本类型(DEBUG|RELEASE)
-set build_type=DEBUG
+set build_type=RELEASE
 if "%1" == "DEBUG" set build_type=%1
 echo build_type=%build_type%
 
@@ -43,10 +43,11 @@ cmake %sh_folder% -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
 	-DEUCLIDEAN_ELEM_LEN=128 ^
 	-DEUCLIDEAN_CODE_END_WITH_SUM=OFF ^
 	-DCMAKE_SYSTEM_VERSION=17 ^
-	-DANDROID_ARM_NEON=ON ^
 	-DCMAKE_INSTALL_PREFIX=%sh_folder%release\fse_mtfsdk_android_armeabi-v7a ^
 	-DCMAKE_TOOLCHAIN_FILE=%ANDROID_NDK%\build\cmake\android.toolchain.cmake 
 
+@rem 加入NEON指令优化后 会导致release版本执行异常
+@rem 	-DANDROID_ARM_NEON=ON 
 
 popd
 popd
