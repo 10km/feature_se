@@ -39,7 +39,7 @@ pushd feature_se.mtfsdk.ndk.prj
 cmake %sh_folder% -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=%build_type% ^
 	-DJNI_FSE_LIBNAME=FS_FaceFeatureCompare ^
 	-DEXT_SDK_TYPE=EUCLIDEAN ^
-	-DEUCLIDEAN_ELEM_TYPE=double ^
+	-DEUCLIDEAN_ELEM_TYPE=float ^
 	-DEUCLIDEAN_ELEM_LEN=128 ^
 	-DEUCLIDEAN_CODE_END_WITH_SUM=OFF ^
 	-DCMAKE_SYSTEM_VERSION=17 ^
